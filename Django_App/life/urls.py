@@ -1,10 +1,13 @@
-from django.contrib import admin
-from django.urls import path, include
-from .views import loginfunc
+from django.urls import path
+from .views import (
+    RegistView, HomeView, LoginView, LogoutView,
+)
 
 app_name = 'life'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('login/', loginfunc, name='login'),
+    path('regist/', RegistView.as_view(), name='regist'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
+    path('home/', HomeView.as_view(), name='home'),
 ]
