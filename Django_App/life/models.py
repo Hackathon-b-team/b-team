@@ -1,34 +1,28 @@
 from django.db import models
+from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.contrib.auth.models import (
-    BaseUserManager, AbstractBaseUser, PermissionsMixin,
+    UserManager, AbstractBaseUser, PermissionsMixin,
 )
 from django.urls import reverse_lazy
+from django.utils import timezone
 import uuid
 
 
-class UserManager(BaseUserManager):
-    def create_user(self, username, email, password=None):
-        if not email:
-            raise ValueError('Enter Email')
-        user = self.model(
-            username=username,
-            email=email,
-        )
-        user.set_password(password)
-        user.save(using=self._db)
-        return user
-
-
 class Users(AbstractBaseUser, PermissionsMixin):
-    username = models.CharField(max_length=150)
-    email = models.EmailField(max_length=254, unique=True)
+
+    username_validator = UnicodeUsernameValidator()
+
+    username = models.CharField(max_length=150, unique=True, validators=[username_validator])
+    email = models.EmailField(max_length=254)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+    date_joined = models.DateTimeField(default=timezone.now)
 
     objects = UserManager()
+
+    EMAIL_FIELD = "email"
+    USERNAME_FIELD = "username"
+    REQUIRED_FIELDS = ["email"]
 
     def get_absolute_url(self):
         return reverse_lazy('life:home')
