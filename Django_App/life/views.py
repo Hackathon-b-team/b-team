@@ -57,8 +57,7 @@ class BarcodeView(LoginRequiredMixin, FormView):
         if 'form_send_barcode_update' in request.POST:
             updateform = BarcodeUpdateForm(**self.get_form_kwargs())
             # バリデーション
-            if updateform.is_valid():
-                print(updateform)               
+            if updateform.is_valid():          
                 return self.form_valid(updateform)
             else:
                 return self.form_invalid(updateform)
@@ -67,7 +66,6 @@ class BarcodeView(LoginRequiredMixin, FormView):
             inputform = BarcodeInputForm(**self.get_form_kwargs())
             # バリデーション
             if inputform.is_valid():
-                print(inputform)
                 return self.form_valid(inputform)
             else:
                 return self.form_invalid(inputform)
