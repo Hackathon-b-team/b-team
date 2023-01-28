@@ -17,7 +17,7 @@ class RegistView(CreateView):
         self.object = form.save()
         response = super().form_valid(form)
         user = self.object
-        login(self.request, user)
+        login(self.request, user, backend='django.contrib.auth.backends.ModelBackend')
         return response
 
 

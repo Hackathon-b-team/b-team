@@ -4,7 +4,9 @@
     <form method="POST">
     {% csrf_token %}
         {{ form.as_p }}
+        <input type="hidden" name="next" value="{{next}}">
         <input type="submit" value="Log In">
     </form>
+    <li><a href="{% url 'life:social:begin' 'google-oauth2' %}">Googleアカウントでログイン</a></li>
     <a href="{% url 'life:regist' %}">Sign Up</a>
 {% endblock content %}
