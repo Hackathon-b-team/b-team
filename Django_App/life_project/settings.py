@@ -185,6 +185,6 @@ AUTHENTICATION_BACKENDS = [
     'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 ]
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '262010004255-l924fg6pnb8o117dhdto4ca5odvmb6hp.apps.googleusercontent.com' #クライアントID
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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' # クライアント シークレット
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get("SOCIAL_AUTH_GOOGLE_OAUTH2_KEY") #クライアントID
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get("SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET") # クライアント シークレット
 SOCIAL_AUTH_URL_NAMESPACE = 'life:social'
