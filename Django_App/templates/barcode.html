@@ -2,7 +2,7 @@
     <h1>バーコード画面です</h1>
     <a href="{% url 'life:home' %}">ホーム画面へ</a>
     <a href="{% url 'life:logout' %}">ログアウト</a>
-    <form action="" method="POST" name="form_send_barcode_update" id="form_send_barcode_update">
+    <form action="" method="POST" name="form_send_barcode_update" id="form_send_barcode_update" enctype="multipart/form-data">
         {% csrf_token %}
         {{ barcode_update_form.non_field_errors }}
         <div class="form-group">
