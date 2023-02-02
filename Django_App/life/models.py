@@ -39,7 +39,7 @@ class CategoryModel(models.Model):
 
 class BookBarcodeModel(models.Model):
     barcode =models.CharField(max_length=15, unique=True)
-    barcode_image = models.ImageField(upload_to='barcode/')
+    barcode_image = models.ImageField(upload_to='barcode/', null=True, blank=True)
     title = models.CharField(max_length=100)
     auther = models.CharField(max_length=50, null=True, blank=True)
     price = models.IntegerField(null=True, blank=True)

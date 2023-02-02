@@ -19,9 +19,9 @@ WORKDIR /code
 # ローカルのrequirements.txtをコンテナの/codeフォルダ直下に置く
 COPY requirements.txt /code/
 # コンテナ内でpip install -r requirements.txtを実行
-RUN pip install -U pip && \
-    apt update -y && \
+RUN apt update -y && \
     apt install -y libzbar0 && \
+    pip install -U pip && \
     pip install -r requirements.txt
 # ソースコードをコンテナにコピー
 COPY . /code/
