@@ -1,0 +1,6 @@
+{% block content %}
+    <h1>登録画面です</h1>
+    <p>{{ title }}</p>
+    <a href="{% url 'life:home' %}">キャンセル</a>
+    <a href="{% url 'life:logout' %}">ログアウト</a>
+{% endblock content %}
