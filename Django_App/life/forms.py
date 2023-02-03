@@ -2,6 +2,7 @@ from django import forms
 from .models import Users
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth.forms import AuthenticationForm
+from .models import BookModel
 
 
 # SignUp用フォーム
@@ -43,3 +44,9 @@ class BarcodeUpdateForm(forms.Form):
 # バーコード入力用フォーム
 class BarcodeInputForm(forms.Form):
     barcode = forms.IntegerField(label='数字')
+
+# book登録フォーム
+class BookInputForm(forms.ModelForm):
+    class Meta:
+        model = BookModel
+        fields = "__all__"

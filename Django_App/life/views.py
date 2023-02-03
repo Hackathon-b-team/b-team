@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, FormView
 from django.views.generic.base import TemplateView
-from .forms import RegistForm, LoginForm, BarcodeUpdateForm, BarcodeInputForm
+from .forms import RegistForm, LoginForm, BarcodeUpdateForm, BarcodeInputForm, BookInputForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -69,3 +69,9 @@ class BarcodeView(LoginRequiredMixin, FormView):
                 return self.form_valid(inputform)
             else:
                 return self.form_invalid(inputform)
+
+# book_regist用
+class BookregistView(LoginRequiredMixin, CreateView):
+    template_name = 'book_regist.html'
+    form_class = BookInputForm
+    success_url = reverse_lazy('book_regist')
