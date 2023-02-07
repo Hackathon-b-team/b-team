@@ -14,8 +14,12 @@ import numpy
 import uuid
 import requests
 
+from .models import BookBarcodeModel, BookModel
+from django.views.generic import ListView
 
 # SignUp用
+
+
 class RegistView(CreateView):
     template_name = 'regist.html'
     form_class = RegistForm
@@ -41,21 +45,44 @@ class CustumLogoutView(LogoutView):
 
 # home用
 class HomeView(LoginRequiredMixin, TemplateView):
-    template_name = 'home.html'
+    template_name = "home.html"
+    
+    #ユーザーの登録した本だけを表示させるための関数
+    def get(self, request, *args, **kwargs):
+        ctx = {}
+        qs_list = []
+
+        #ログイン中のユーザーのIDを取得
+        user_id = request.user.id
+
+        #ユーザーIDが一致する本を探す
+        books = BookModel.objects.filter(uid=user_id)
+
+        #本のIDとバーコードのIDが一致するデータをまとめて返す
+        for book in books:
+            bid = book.bid_id
+            qs = BookBarcodeModel.objects.filter(id=bid)
+            qs_list.extend(qs)
+        ctx["object_list"] = qs_list
+        return render(request, self.template_name, ctx)
+
 
 
 # バーコード画像保存
 def imageupload(updata, path):
-    f = open(path,'wb+')
+    f = open(path, 'wb+')
     for chunk in updata.chunks():
         f.write(chunk)
     f.close()
 
 # バーコード画像解析
+
+
 def barcodetonumber(img):
     src_img = Image.open(img)
     rate = numpy.arange(0.5, 2.1, 0.1)
-    imgs = [src_img.resize((int(src_img.width * i), int(src_img.height * i)), Image.LANCZOS) for i in rate]
+    imgs = [src_img.resize(
+        (int(src_img.width * i), int(src_img.height * i)), Image.LANCZOS) for i in rate]
     datas = [decode(img) for img in imgs]
     *codes, = filter(lambda x: x, datas)
     if len(codes) > 0:
@@ -109,13 +136,13 @@ class BarcodeView(TemplateView, FormMixin):
                 return self.form_invalid(form)
         elif 'barcode' in form.cleaned_data:
             barcode = form.cleaned_data['barcode']
-        if not len(str(barcode))==10 and not len(str(barcode))==13:
+        if not len(str(barcode)) == 10 and not len(str(barcode)) == 13:
             return self.form_invalid(form)
-        elif len(str(barcode))==13:
+        elif len(str(barcode)) == 13:
             if not str(barcode).startswith("978"):
                 return self.form_invalid(form)
         url = f"https://www.googleapis.com/books/v1/volumes?q=isbn:{barcode}"
         book = requests.get(url)
         book_data = book.json()
-        title = {"title":book_data["items"][0]["volumeInfo"]["title"]}
+        title = {"title": book_data["items"][0]["volumeInfo"]["title"]}
         return render(self.request, 'add.html', context=title)
