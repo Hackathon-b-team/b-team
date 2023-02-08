@@ -64,6 +64,21 @@ class HomeView(LoginRequiredMixin, TemplateView):
             qs = BookBarcodeModel.objects.filter(id=bid)
             qs_list.extend(qs)
         ctx["object_list"] = qs_list
+
+        #ブックモデルのIDを送る
+        return render(request, self.template_name, ctx)
+    
+# detail用
+class DetailView(LoginRequiredMixin, TemplateView):
+    template_name = "detail.html"
+    
+    #URLからnumberを受け取りそのIDの本を表示
+    def get(self, request,number, *args, **kwargs):
+        ctx = {}
+        qs_list = []
+        qs = BookBarcodeModel.objects.filter(id=number)
+        qs_list.extend(qs)
+        ctx["object_list"] = qs_list
         return render(request, self.template_name, ctx)
 
 
