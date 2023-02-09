@@ -1,118 +1,262 @@
-/* Title */
-.title{
-
-    position: absolute;
-    width: 240px;
-    height: 80px;
-    left: 39px;
-    top: 30px;
-
-    /* Title */
-
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 88px;
-    line-height: 103px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    letter-spacing: 0.14em;
-
-    /* Gradation/2color */
-
-    background: linear-gradient(81.45deg, #0891B2 4.54%, #5EEAD4 96.15%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    /* text-fill-color: transparent; */
+body {
+  width: 100vw;
+  height: 100vh;
+  background: #f0fdfa;
+  margin: 0 auto;
 }
 
+/* Body */
+
+main {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  display: flex;
+  height: calc(100vh - 140px);
+  padding-top: 140px;
+}
+
+.content {
+  width: 1000px;
+  height: 657px;
+  display: flex;
+  background-color: white;
+  box-shadow: 0px 0px 30px rgba(200, 200, 200, 0.4);
+  border-radius: 10px;
+  padding: 32px;
+}
+
+.detail {
+  flex-grow: 1;
+  margin-left: 20px;
+}
+
+/* Button */
+
+.btn-wrapper {
+  display: flex;
+  width: 450px;
+  justify-content: space-between;
+}
+.btn-blue {
+  width: 170px;
+  height: 78px;
+  background: radial-gradient(
+      50% 237.51% at 50% 50%,
+      #ccddff 0%,
+      rgba(122, 223, 255, 0) 100%
+    )
+    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+  border-radius: 5px;
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: 0.48px;
+  line-height: 100%;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn-red {
+  width: 170px;
+  height: 78px;
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: 0.48px;
+  line-height: 100%;
+  color: black;
+  background: radial-gradient(
+      50% 237.51% at 50% 50%,
+      #ffb1b1 0%,
+      rgba(255, 158, 87, 0) 100%
+    )
+    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.btn-blue,
+.btn-red {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-blue a,
+.btn-red a {
+  text-decoration: none;
+  color: black;
+}
+
+.form-wrapper {
+  margin: 32px 0;
+  display: flex;
+  gap: 16px;
+  margin-top: 0px;
+  margin-bottom: 140px;
+}
+
+/* Main */
+.book-title {
+  font-size: 48px;
+  letter-spacing: 0.02em;
+  line-height: 100%;
+  color: black;
+  font-family: "Hiragino Sans";
+  font-style: normal;
+  font-weight: 400;
+  margin-top: 90px;
+  margin-bottom: 17px;
+}
+
+.author-name {
+  font-size: 32px;
+  letter-spacing: 0.02em;
+  line-height: 100%;
+  color: black;
+  font-family: "Hiragino Sans";
+  font-style: normal;
+  font-weight: 300;
+  margin-top: 0;
+  margin-bottom: 17px;
+}
+
+.issue {
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  line-height: 100%;
+  color: black;
+  font-family: "Roboto";
+  font-style: normal;
+  margin-top: 0;
+}
+
+.price {
+  font-size: 24px;
+  letter-spacing: 0.02em;
+  line-height: 36px;
+  margin-block-end: 0;
+  color: black;
+  font-family: "Hiragino Sans";
+  font-style: normal;
+  font-weight: 300;
+  margin-top: 64px;
+}
+
+.yen {
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  line-height: 100%;
+  color: black;
+  font-family: "Roboto";
+  font-style: normal;
+}
+
+.book-img-wrapper {
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.book-img {
+  width: 80%;
+  height: 80%;
+}
+
+.price-box {
+  width: 332px;
+  height: 63px;
+  background-color: white;
+  border-width: 1px;
+  border-style: solid;
+  border: 1px solid #929292;
+  border-radius: 15px;
+}
+
+/* ============================================================== */
+
+/* maintitle */
+.life {
+  position: absolute;
+  width: 240px;
+  height: 80px;
+  left: 39px;
+  top: 30px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 88px;
+  line-height: 103px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.14em;
+  background: linear-gradient(81.45deg, #0891b2 4.54%, #5eead4 96.15%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  /* text-fill-color: transparent; */
+}
 
 /* Header */
-ul{
-    padding-left:0;
+ul {
+  padding-left: 0;
 }
 
-li{
-    list-style:none;
+li {
+  list-style: none;
 }
 
 .header-bar {
-    position: fixed;
-    width: 100%;
-    height: 140px;
-    left: 0px;
-    top: 0px;
-    z-index: 9999;
-
-    background: #FFFFFF;
-    box-shadow: 0px 10px 20px rgba(194, 194, 194, 0.2);
+  position: fixed;
+  width: 100%;
+  height: 140px;
+  left: 0px;
+  top: 0px;
+  z-index: 9999;
+  background: #ffffff;
+  box-shadow: 0px 10px 20px rgba(194, 194, 194, 0.2);
 }
 
 .home-icon {
-    position: absolute;
-    width: 119px;
-    height: 140px;
-    left: 723px;
-    top: 0px;
+  position: absolute;
+  width: 119px;
+  height: 140px;
+  right: 599px;
+  top: 0px;
 }
 
 .add-icon {
-    position: absolute;
-    width: 119px;
-    height: 140px;
-    left: 982px;
-    top: 0px;
+  position: absolute;
+  width: 119px;
+  height: 140px;
+  right: 339px;
+  top: 0px;
 }
 
 .logout-icon {
-    position: absolute;
-    width: 119px;
-    height: 140px;
-    left: 1241px;
-    top: 0px;
+  position: absolute;
+  width: 119px;
+  height: 140px;
+  right: 80px;
+  top: 0px;
 }
 
 li svg {
-    position: absolute;
-	top: 50%;
-	left: 50%;
-	-webkit-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
-	width: 100%;
-	display: block;
-	-webkit-transition: .4s ease-in-out;
-	transition: .4s ease-in-out;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 100%;
+  display: block;
+  -webkit-transition: 0.4s ease-in-out;
+  transition: 0.4s ease-in-out;
 }
 
 li:hover svg:nth-of-type(2) {
-    opacity: 0;
-}
-
-body {
-    /* book */
-
-
-    position: relative;
-    width: 1440px;
-    height: 1024px;
-
-    /* Teal/50 */
-
-    background: #F0FDFA;
-}
-
-main {
-    /* Rectangle 40 */
-    position: absolute;
-    width: 1000px;
-    height: 657px;
-    left: 220px;
-    top: 255px;
-
-    /* White */
-    background: #FFFFFF;
-    box-shadow: 0px 0px 30px rgba(200, 200, 200, 0.4);
-    border-radius: 10px;
+  opacity: 0;
 }

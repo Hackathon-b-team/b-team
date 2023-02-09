@@ -1,7 +1,7 @@
 from django.urls import path, include
 from .views import (
     RegistView, HomeView, CustumLoginView, CustumLogoutView, BarcodeView,
-    BookregistView,
+    BookRegistView,
 )
 
 app_name = 'life'
@@ -12,6 +12,6 @@ urlpatterns = [
     path('logout/', CustumLogoutView.as_view(), name='logout'),
     path('home/', HomeView.as_view(), name='home'),
     path('barcode/', BarcodeView.as_view(), name='barcode'),
-    path('book_regist/', BookregistView.as_view(), name='book_regist'),
     path('social-auth/', include('social_django.urls', namespace='social')), # googlelogin
+    path('add/', BookRegistView.as_view(), name='add'),
 ]

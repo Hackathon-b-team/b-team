@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block content %}
+<main>
+    <div class="content">
+        <div class="book-img-wrapper"><img class="book-img" src="https://via.placeholder.com/286x429"/></div>
+        <div class="detail">
+        <p class="book-title">数値化の鬼{{ title }}</p>
+        <p class="author-name">安藤広大</p>
+        <p class="issue">2022-03-02</p>
+        <p class="price">購入金額</p>
+        <div class="form-wrapper">
+            <form method="post" class="price-box"></form>
+            <p class="yen">円</p>
+        </div>
+        <div class=""></div>
+        <div class="btn-wrapper">
+            <div class="btn-blue">
+                <a href="{% url 'life:barcode' %}">キャンセル</a>
+            </div>
+            <div class="btn-red" >
+                <a href="{% url 'life:home' %}">登録</a>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}
+
