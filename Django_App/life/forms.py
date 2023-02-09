@@ -1,7 +1,8 @@
 from django import forms
-from .models import Users
+from .models import Users, CategoryModel, BookBarcodeModel, BookModel
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth.forms import AuthenticationForm
+from datetime import date
 
 
 # SignUp用フォーム
@@ -43,3 +44,37 @@ class BarcodeUpdateForm(forms.Form):
 # バーコード入力用フォーム
 class BarcodeInputForm(forms.Form):
     barcode = forms.IntegerField(label='数字')
+
+
+# Date入力用
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+
+# 本データ入力用フォーム
+class BookAddForm(forms.ModelForm):
+    barcode = forms.CharField(widget=forms.HiddenInput())
+    title = forms.CharField(label='タイトル')
+    author = forms.CharField(label='著者')
+    price = forms.IntegerField(label='値段')
+    page_count = forms.IntegerField(label='ページ')
+    image_link = forms.URLField(label='image', widget=forms.URLInput(attrs={"class":"form-img-link"}), required=False)
+    image_path = forms.ImageField(label='imageファイルをアップロードする', required=False)
+    released_at = forms.DateField(label='発売日', widget=DateInput(), required=False)
+    purchased_at = forms.DateField(label='購入日', widget=DateInput())
+
+    class Meta():
+        model = BookBarcodeModel
+        fields = ['barcode', 'title', 'author', 'price', 'page_count', 'image_link', 'image_path', 'released_at', 'purchased_at']
+
+    def __init__(self, *args, **kwargs):
+        book = kwargs.pop('book')
+        self.base_fields["barcode"].initial = book["barcode"]
+        self.base_fields["title"].initial = book["title"]
+        self.base_fields["author"].initial = '、'.join(book["author"])
+        self.base_fields["price"].initial = book["price"]
+        self.base_fields["page_count"].initial = book["page_count"]
+        self.base_fields["image_link"].initial = book["image_link"]
+        self.base_fields["released_at"].initial = book["released_at"]
+        self.base_fields["purchased_at"].initial = date.today()
+        super().__init__(*args, **kwargs)

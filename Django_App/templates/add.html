@@ -1,6 +1,17 @@
+{% extends 'base.html' %}
+
+{% load static %}
 {% block content %}
     <h1>登録画面です</h1>
-    <p>{{ title }}</p>
-    <a href="{% url 'life:home' %}">キャンセル</a>
-    <a href="{% url 'life:logout' %}">ログアウト</a>
+    <form action="" method="POST" name="form_send_book_update" id="form_send_book_update" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="form-group">
+          {{ form.as_p }}
+          <button type="submit" class="" name="button_send_book_update"> 登録 </button>
+        </div>
+    </form>
+    <a href="{% url 'life:barcode' %}">キャンセル</a>
+
+    <script type="text/javascript" src="{% static 'js/imgadd.js' %}"></script>
 {% endblock content %}

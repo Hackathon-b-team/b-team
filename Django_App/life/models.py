@@ -38,14 +38,15 @@ class CategoryModel(models.Model):
 
 
 class BookBarcodeModel(models.Model):
-    barcode =models.CharField(max_length=15, unique=True)
-    barcode_image = models.ImageField(upload_to='barcode/', null=True, blank=True)
+    barcode =models.CharField(max_length=15)
     title = models.CharField(max_length=100)
-    auther = models.CharField(max_length=50, null=True, blank=True)
+    author = models.CharField(max_length=50, null=True, blank=True)
     price = models.IntegerField(null=True, blank=True)
     page_count = models.SmallIntegerField(null=True, blank=True)
-    image_link = models.ImageField(upload_to='img/', null=True, blank=True)
-    released_at = models.DateTimeField(null=True, blank=True)
+    image_link = models.URLField(null=True, blank=True)
+    image_path = models.ImageField(upload_to='img/', default='img/noimage.png')
+    released_at = models.DateField(null=True, blank=True)
+    purchased_at = models.DateField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -61,7 +62,6 @@ class BookModel(models.Model):
     progress = models.CharField(max_length=10, default='unread')
     evaluation = models.PositiveSmallIntegerField(default=0)
     review = models.TextField(null=True, blank=True)
-    purchased_at = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
 

@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+
 {% block content %}
     <h1>バーコード画面です</h1>
     <a href="{% url 'life:home' %}">ホーム画面へ</a>
@@ -7,7 +9,7 @@
         {{ barcode_update_form.non_field_errors }}
         <div class="form-group">
           {{ barcode_update_form.as_p }}
-          <button type="submit" class="" name="button_send_barcode_update"> 検索 </button>
+          <button type="submit" class="" name="button_send_barcode_update"> バーコード画像で検索 </button>
         </div>
     </form>
 
@@ -16,7 +18,7 @@
         {{ barcode_input_form.non_field_errors }}
         <div class="form-group">
           {{ barcode_input_form.as_p }}
-          <button type="submit" class="" name="button_send_barcode_input"> 検索 </button>
+          <button type="submit" class="" name="button_send_barcode_input"> 数字で検索 </button>
         </div>
     </form>
 {% endblock content %}
