@@ -9,7 +9,9 @@
     {% for obj in object_list %}
       {{ obj.title }}<br>
       <a href="{% url 'life:detail' obj.id %}">
-        {% if obj.image_link %}
+        {% if obj.image_path != "img/noimage.png" %}
+          <img src="/media/{{ obj.image_path}}" alt="画像">
+        {% elif obj.image_link %}
           <img src="{{ obj.image_link}}" alt="画像">
         {% elif obj.image_path %}
           <img src="/media/{{ obj.image_path}}" alt="画像">
