@@ -1,14 +1,23 @@
+{% extends 'base.html' %}
+
 {% block content %}
-<h1>ホーム画面です</h1>
-<a href="{% url 'life:barcode' %}">登録画面へ</a>
+<h1>登録画面です</h1>
+<a href="{% url 'life:home' %}">ホーム画面へ</a>
 <a href="{% url 'life:logout' %}">ログアウト</a>
 <div>
   <ul>
     {% for obj in object_list %}
     {{ obj.title }}
     <br>
-    <a href="http://www.amazon.co.jp/gp/search/?__mk_ja_JP=%83J%83%5E%83J%83i&field-keywords={{ obj.title }}"><img
-        src={{ obj.image_link}} alt="画像"></a>
+    <a href="https://www.amazon.co.jp/s?k={{ obj.barcode }}">
+      {% if obj.image_path != "img/noimage.png" %}
+        <img src="/media/{{ obj.image_path}}" alt="画像">
+      {% elif obj.image_link %}
+        <img src="{{ obj.image_link}}" alt="画像">
+      {% elif obj.image_path %}
+        <img src="/media/{{ obj.image_path}}" alt="画像">
+      {% endif %}
+    </a>
     <br>
     {{ obj.auther }}
     {{ obj.released_at }}
