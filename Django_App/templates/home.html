@@ -1,7 +1,22 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>ホーム画面です</h1>
-    <a href="{% url 'life:barcode' %}">登録画面へ</a>
-    <a href="{% url 'life:logout' %}">ログアウト</a>
+<h1>ホーム画面です</h1>
+<a href="{% url 'life:barcode' %}">登録画面へ</a>
+<a href="{% url 'life:logout' %}">ログアウト</a>
+<div>
+  <ul>
+    {% for obj in object_list %}
+      {{ obj.title }}<br>
+      <a href="{% url 'life:detail' obj.id %}">
+        {% if obj.image_link %}
+          <img src="{{ obj.image_link}}" alt="画像">
+        {% elif obj.image_path %}
+          <img src="/media/{{ obj.image_path}}" alt="画像">
+        {% endif %}
+      </a>
+      <hr>    
+    {% endfor %}
+  </ul>
+</div>
 {% endblock content %}
