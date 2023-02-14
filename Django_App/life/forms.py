@@ -7,10 +7,10 @@ from datetime import date
 
 # SignUp用フォーム
 class RegistForm(forms.ModelForm):
-    username = forms.CharField(label='ユーザーネーム')
-    email = forms.EmailField(label='メールアドレス')
-    password = forms.CharField(label='パスワード', widget=forms.PasswordInput())
-    confirm_password = forms.CharField(label='もう一度パスワードを入力', widget=forms.PasswordInput())
+    username = forms.CharField(label='', widget=forms.TextInput(attrs={"placeholder":"ユーザーネーム"}))
+    email = forms.EmailField(label='',widget=forms.EmailInput(attrs={"placeholder":"メールアドレス"}))
+    password = forms.CharField(label='', widget=forms.PasswordInput(attrs={"placeholder":"パスワード"}))
+    confirm_password = forms.CharField(label='', widget=forms.PasswordInput(attrs={"placeholder":"もう一度パスワードを入力"}))
     class Meta():
         model = Users
         fields = ['username', 'email', 'password']
@@ -32,8 +32,8 @@ class RegistForm(forms.ModelForm):
 
 # login用フォーム
 class LoginForm(AuthenticationForm):
-    username = forms.CharField(label='ユーザーネーム')
-    password = forms.CharField(label='パスワード', widget=forms.PasswordInput())
+    username = forms.CharField(label='', widget=forms.TextInput(attrs={"placeholder":"ユーザーネーム"}))
+    password = forms.CharField(label='', widget=forms.PasswordInput(attrs={"placeholder":"パスワード"}))
 
 
 # バーコードアップデート用フォーム
