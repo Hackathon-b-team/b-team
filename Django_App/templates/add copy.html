@@ -1,11 +1,9 @@
 {% extends 'base.html' %} 
 {% load static %}
 
-
 {% block content %}
 {% include 'nav.html' %}
-
-{% comment %} <main>
+<main>
     <div class="content">
         <div class="book-img-wrapper"><img class="book-img" src="https://via.placeholder.com/286x429"/></div>
         <div class="detail">
@@ -27,23 +25,21 @@
             </div>
         </div>
     </div>
-</main> {% endcomment %}
+</main>
 
 
-<main>
-    <div class="content">
+
     <form action="" method="POST" name="form_send_book_update" id="form_send_book_update" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.non_field_errors }}
         <div class="form-group">
             {{ form.as_p }}
-            <button type="submit" class="btn-blue" name="button_send_book_update"> 登録 </button>
+            <button type="submit" class="" name="button_send_book_update"> 登録 </button>
         </div>
     </form>
-    <a href="{% url 'life:barcode' %}"  class="btn-red">キャンセル</a>
+    <a href="{% url 'life:barcode' %}">キャンセル</a>
 
     <script type="text/javascript" src="{% static 'js/imgadd.js' %}"></script>
-    </div>
-</main>
+
 
 {% endblock content %}

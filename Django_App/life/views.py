@@ -1,25 +1,24 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, resolve_url
 from django.views.generic.edit import CreateView, FormView, FormMixin
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
-from .forms import RegistForm, LoginForm, BarcodeUpdateForm, BarcodeInputForm, BookInputForm
+from django.views.generic.list import ListView
+from django.views.generic import UpdateView
+from .forms import RegistForm, LoginForm, BarcodeUpdateForm, BarcodeInputForm, BookAddForm, UserUpdateForm, PasswordUpdateForm
+from .models import Users, CategoryModel, BookBarcodeModel, BookModel
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.conf import settings
 from PIL import Image
 from pyzbar.pyzbar import decode
 import numpy
-import uuid
 import requests
 
-from .models import BookBarcodeModel, BookModel
-from django.views.generic import ListView
 
 # SignUp用
-
-
 class RegistView(CreateView):
     template_name = 'regist.html'
     form_class = RegistForm
@@ -27,6 +26,8 @@ class RegistView(CreateView):
     def form_valid(self, form):
         self.object = form.save()
         response = super().form_valid(form)
+        users = Users.objects.get(username=self.object.username)
+        CategoryModel.objects.create(uid=users, category_name="本")
         user = self.object
         login(self.request, user, backend='django.contrib.auth.backends.ModelBackend')
         return response
@@ -51,13 +52,10 @@ class HomeView(LoginRequiredMixin, TemplateView):
     def get(self, request, *args, **kwargs):
         ctx = {}
         qs_list = []
-
         #ログイン中のユーザーのIDを取得
         user_id = request.user.id
-
         #ユーザーIDが一致する本を探す
         books = BookModel.objects.filter(uid=user_id)
-
         #本のIDとバーコードのIDが一致するデータをまとめて返す
         for book in books:
             bid = book.bid_id
@@ -67,7 +65,8 @@ class HomeView(LoginRequiredMixin, TemplateView):
 
         #ブックモデルのIDを送る
         return render(request, self.template_name, ctx)
-    
+
+
 # detail用
 class DetailView(LoginRequiredMixin, TemplateView):
     template_name = "detail.html"
@@ -91,8 +90,6 @@ def imageupload(updata, path):
     f.close()
 
 # バーコード画像解析
-
-
 def barcodetonumber(img):
     src_img = Image.open(img)
     rate = numpy.arange(0.5, 2.1, 0.1)
@@ -109,7 +106,7 @@ def barcodetonumber(img):
 
 
 # バーコード用
-class BarcodeView(TemplateView, FormMixin):
+class BarcodeView(LoginRequiredMixin, TemplateView, FormMixin):
     template_name = 'barcode.html'
     success_url = reverse_lazy('life:add')
 
@@ -143,8 +140,9 @@ class BarcodeView(TemplateView, FormMixin):
 
     def form_valid(self, form):
         barcode = None
+        # バーコード取得
         if 'barcode_image' in form.cleaned_data:
-            path = f"{settings.MEDIA_ROOT}/barcode/{uuid.uuid4().hex}{form.cleaned_data['barcode_image']}"
+            path = f"{settings.MEDIA_ROOT}/barcode/{form.cleaned_data['barcode_image']}"
             imageupload(form.cleaned_data['barcode_image'], path)
             barcode = barcodetonumber(path)
             if barcode == 'INVARID':
@@ -156,16 +154,73 @@ class BarcodeView(TemplateView, FormMixin):
         elif len(str(barcode)) == 13:
             if not str(barcode).startswith("978"):
                 return self.form_invalid(form)
+        self.request.session['barcode'] = barcode
+        return HttpResponseRedirect(self.get_success_url())
+
+
+# APIデータ登録用
+class BookAddView(LoginRequiredMixin, CreateView):
+    template_name = 'add.html'
+    form_class = BookAddForm
+    success_url = reverse_lazy('life:home')
+
+    def get_form_kwargs(self):
+        # APIからデータ取得
+        barcode = self.request.session['barcode']
         url = f"https://www.googleapis.com/books/v1/volumes?q=isbn:{barcode}"
         book = requests.get(url)
         book_data = book.json()
-        title = {"title": book_data["items"][0]["volumeInfo"]["title"]}
-        return render(self.request, 'add.html', context=title)
+        # 取得したデータの処理
+        title = book_data["items"][0]["volumeInfo"]["title"]
+        author = book_data["items"][0]["volumeInfo"]["authors"]
+        if "listPrice" in book_data["items"][0]["saleInfo"]:
+            price = book_data["items"][0]["saleInfo"]["listPrice"]["amount"]
+        else:
+            price = 0
+        if "pageCount" in book_data["items"][0]["volumeInfo"]:
+            page_count = book_data["items"][0]["volumeInfo"]["pageCount"]
+        else:
+            page_count = 0
+        if "imageLinks" in book_data["items"][0]["volumeInfo"]:
+            if "thumbnail" in book_data["items"][0]["volumeInfo"]["imageLinks"]:
+                image_link = book_data["items"][0]["volumeInfo"]["imageLinks"]["thumbnail"]
+        else:
+            image_link = None
+        if "publishedDate" in book_data["items"][0]["volumeInfo"]:
+            released_at = book_data["items"][0]["volumeInfo"]["publishedDate"]
+        else:
+            released_at = None
+
+        regist_book_data= {"barcode":barcode,"title":title,"author":author,"price":price,"page_count":page_count,"image_link":image_link,"released_at":released_at}
+        kwargs = super().get_form_kwargs()
+        kwargs["book"] = regist_book_data
+        if hasattr(self, "object"):
+            kwargs.update({"instance": self.object})
+        return kwargs
+
+    def form_valid(self, form):
+        self.object = form.save()
+        self.request.session.pop('barcode')
+        users = Users.objects.get(id=self.request.user.id)
+        cate = CategoryModel.objects.get(uid=self.request.user.id)
+        bar = BookBarcodeModel.objects.get(id=self.object.id)
+        BookModel.objects.create(uid=users, cid=cate, bid=bar)
+        return super().form_valid(form)
 
 
-# Book登録用
+# username,email変更用
+class UserUpdateView(LoginRequiredMixin, UpdateView):
+    model = Users
+    form_class = UserUpdateForm
+    template_name = 'mypage.html'
+    success_url = reverse_lazy('mypage')
 
-class BookRegistView(CreateView):
-    template_name = 'add.html'
-    form_class = BookInputForm
-    success_url = 'home.html'
+    def get_object(self):
+        return self.request.user
+
+
+# password変更用
+class PasswordUpdateView(LoginRequiredMixin, PasswordChangeView):
+    form_class = PasswordUpdateForm
+    success_url = reverse_lazy('mypage.html')
+    template_name = 'mypage.html'

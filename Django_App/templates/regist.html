@@ -3,5 +3,7 @@
     {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Sign Up">
-    </form>
+    </form><br>
+    <a href="{% url 'life:social:begin' 'google-oauth2' %}">Googleアカウントでログイン</a><br>
+    <a href="{% url 'life:login' %}">login</a>
 {% endblock content %}
