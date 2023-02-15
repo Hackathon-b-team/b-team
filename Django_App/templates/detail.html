@@ -7,20 +7,20 @@
 <div>
   <ul>
     {% for obj in object_list %}
-    {{ obj.title }}
+    <p>{{ obj.bid.title }}</p>
     <br>
-    <a href="https://www.amazon.co.jp/s?k={{ obj.barcode }}">
-      {% if obj.image_path != "img/noimage.png" %}
-        <img src="/media/{{ obj.image_path}}" alt="画像">
-      {% elif obj.image_link %}
-        <img src="{{ obj.image_link}}" alt="画像">
-      {% elif obj.image_path %}
-        <img src="/media/{{ obj.image_path}}" alt="画像">
+    <a href="https://www.amazon.co.jp/s?k={{ obj.bid.barcode }}">
+      {% if obj.bid.image_path != "img/noimage.png" %}
+        <img src="/media/{{ obj.bid.image_path}}" alt="画像">
+      {% elif obj.bid.image_link %}
+        <img src="{{ obj.bid.image_link}}" alt="画像">
+      {% elif obj.bid.image_path %}
+        <img src="/media/{{ obj.bid.image_path}}" alt="画像">
       {% endif %}
     </a>
     <br>
-    {{ obj.auther }}
-    {{ obj.released_at }}
+    <p>{{ obj.bid.author }}</p>
+    <p>{{ obj.bid.released_at }}</p>
     {% endfor %}
   </ul>
 </div>
