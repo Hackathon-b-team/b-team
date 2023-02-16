@@ -1,3 +1,10 @@
+from django.shortcuts import render, redirect, resolve_url
+from django.views.generic.edit import CreateView, FormView, FormMixin
+from django.views.generic.base import TemplateView
+from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
+from django.views.generic import UpdateView
+from .forms import RegistForm, LoginForm, BarcodeUpdateForm, BarcodeInputForm, BookAddForm, UserUpdateForm, PasswordUpdateForm
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, FormView, FormMixin, ModelFormMixin
 from django.views.generic.base import TemplateView
@@ -6,7 +13,7 @@ from django.views.generic.list import ListView
 from .forms import RegistForm, LoginForm, CategoryAddForm, BarcodeUpdateForm, BarcodeInputForm, BookAddForm
 from .models import Users, CategoryModel, BookBarcodeModel, BookModel
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
@@ -226,3 +233,20 @@ class BookAddView(LoginRequiredMixin, CreateView):
         BookModel.objects.create(uid=users, cid=cate, bid=bar)
         return super().form_valid(form)
 
+
+# username,email変更用
+class UserUpdateView(LoginRequiredMixin, UpdateView):
+    model = Users
+    form_class = UserUpdateForm
+    template_name = 'mypage.html'
+    success_url = reverse_lazy('mypage')
+
+    def get_object(self):
+        return self.request.user
+
+
+# password変更用
+class PasswordUpdateView(LoginRequiredMixin, PasswordChangeView):
+    form_class = PasswordUpdateForm
+    success_url = reverse_lazy('mypage')
+    template_name = 'mypage.html'

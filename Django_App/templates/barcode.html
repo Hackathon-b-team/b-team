@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% include 'navbar.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/add.css' %}">
+
+<main>
     <h1>バーコード画面です</h1>
     <a href="{% url 'life:home' %}">ホーム画面へ</a>
     <a href="{% url 'life:logout' %}">ログアウト</a>
@@ -21,4 +26,5 @@
           <button type="submit" class="" name="button_send_barcode_input"> 数字で検索 </button>
         </div>
     </form>
+</main>
 {% endblock content %}

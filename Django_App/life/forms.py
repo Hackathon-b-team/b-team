@@ -1,7 +1,7 @@
 from django import forms
 from .models import Users, CategoryModel, BookBarcodeModel, BookModel
 from django.contrib.auth.password_validation import validate_password
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from datetime import date
 
 
@@ -64,7 +64,7 @@ class BookAddForm(forms.ModelForm):
     barcode = forms.CharField(widget=forms.HiddenInput())
     title = forms.CharField(label='タイトル')
     author = forms.CharField(label='著者')
-    price = forms.IntegerField(label='値段')
+    price = forms.IntegerField(label='購入金額')
     page_count = forms.IntegerField(label='ページ')
     image_link = forms.URLField(label='image', widget=forms.URLInput(attrs={"class":"form-img-link"}), required=False)
     image_path = forms.ImageField(label='imageファイルをアップロードする', required=False)
@@ -88,4 +88,19 @@ class BookAddForm(forms.ModelForm):
         self.base_fields["purchased_at"].initial = date.today()
         self.base_fields["category"].queryset = book["category"]
         self.base_fields["category"].initial = book["category"][0]
+        super().__init__(*args, **kwargs)
+
+
+# ユーザー情報変更用
+class UserUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = Users
+        fields = ('username', 'email')
+
+
+# パスワード変更用
+class PasswordUpdateForm(PasswordChangeForm):
+
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
