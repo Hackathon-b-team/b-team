@@ -5,6 +5,12 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic import UpdateView
 from .forms import RegistForm, LoginForm, BarcodeUpdateForm, BarcodeInputForm, BookAddForm, UserUpdateForm, PasswordUpdateForm
+from django.shortcuts import render, redirect
+from django.views.generic.edit import CreateView, FormView, FormMixin, ModelFormMixin
+from django.views.generic.base import TemplateView
+from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
+from .forms import RegistForm, LoginForm, CategoryAddForm, BarcodeUpdateForm, BarcodeInputForm, BookAddForm
 from .models import Users, CategoryModel, BookBarcodeModel, BookModel
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
@@ -44,27 +50,44 @@ class CustumLogoutView(LogoutView):
     pass
 
 
-# home用
-class HomeView(LoginRequiredMixin, TemplateView):
+class HomeView(LoginRequiredMixin, TemplateView, ModelFormMixin):
     template_name = "home.html"
+    form_class = CategoryAddForm
+    success_url = reverse_lazy('life:home')
     
     #ユーザーの登録した本だけを表示させるための関数
     def get(self, request, *args, **kwargs):
-        ctx = {}
-        qs_list = []
+        bk_list = []
+        ca_list = []
         #ログイン中のユーザーのIDを取得
         user_id = request.user.id
         #ユーザーIDが一致する本を探す
-        books = BookModel.objects.filter(uid=user_id)
-        #本のIDとバーコードのIDが一致するデータをまとめて返す
-        for book in books:
-            bid = book.bid_id
-            qs = BookBarcodeModel.objects.filter(id=bid)
-            qs_list.extend(qs)
-        ctx["object_list"] = qs_list
+        books = BookModel.objects.select_related('bid').filter(uid=user_id)
+        bk_list.extend(books)
+        #ユーザーIDが一致するカテゴリーを探す
+        category = CategoryModel.objects.filter(uid=user_id)
+        ca_list.extend(category)
+        self.object = None
+        context = self.get_context_data(**kwargs)
+        context["object_list"] = bk_list
+        context["category_list"] = ca_list
 
         #ブックモデルのIDを送る
-        return render(request, self.template_name, ctx)
+        return self.render_to_response(context)
+
+    def post(self, request, *args, **kwargs):
+        self.object = None
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.uid = Users.objects.get(id=self.request.user.id)
+        self.object.save()
+        return super().form_valid(form)
 
 
 # detail用
@@ -72,10 +95,10 @@ class DetailView(LoginRequiredMixin, TemplateView):
     template_name = "detail.html"
     
     #URLからnumberを受け取りそのIDの本を表示
-    def get(self, request,number, *args, **kwargs):
+    def get(self, request, uuid, *args, **kwargs):
         ctx = {}
         qs_list = []
-        qs = BookBarcodeModel.objects.filter(id=number)
+        qs = BookModel.objects.select_related('bid').filter(uuid=uuid)
         qs_list.extend(qs)
         ctx["object_list"] = qs_list
         return render(request, self.template_name, ctx)
@@ -149,6 +172,7 @@ class BarcodeView(LoginRequiredMixin, TemplateView, FormMixin):
                 return self.form_invalid(form)
         elif 'barcode' in form.cleaned_data:
             barcode = form.cleaned_data['barcode']
+        # バーコードの制限
         if not len(str(barcode)) == 10 and not len(str(barcode)) == 13:
             return self.form_invalid(form)
         elif len(str(barcode)) == 13:
@@ -191,7 +215,8 @@ class BookAddView(LoginRequiredMixin, CreateView):
         else:
             released_at = None
 
-        regist_book_data= {"barcode":barcode,"title":title,"author":author,"price":price,"page_count":page_count,"image_link":image_link,"released_at":released_at}
+        category = CategoryModel.objects.filter(uid=self.request.user.id)
+        regist_book_data= {"barcode":barcode,"title":title,"author":author,"price":price,"page_count":page_count,"image_link":image_link,"released_at":released_at,"category":category}
         kwargs = super().get_form_kwargs()
         kwargs["book"] = regist_book_data
         if hasattr(self, "object"):
@@ -201,8 +226,9 @@ class BookAddView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         self.object = form.save()
         self.request.session.pop('barcode')
+        category = self.request.POST["category"]
         users = Users.objects.get(id=self.request.user.id)
-        cate = CategoryModel.objects.get(uid=self.request.user.id)
+        cate = CategoryModel.objects.get(id=category)
         bar = BookBarcodeModel.objects.get(id=self.object.id)
         BookModel.objects.create(uid=users, cid=cate, bid=bar)
         return super().form_valid(form)
