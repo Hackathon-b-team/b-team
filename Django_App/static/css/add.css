@@ -1,0 +1,218 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  background: #f0fdfa;
+  margin: 0 auto;
+}
+
+/* Body */
+
+main {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  display: flex;
+  height: calc(100vh - 140px);
+  padding-top: 140px;
+}
+
+.content {
+  position: relative;
+  width: 1000px;
+  height: 657px;
+  display: flex;
+  background-color: white;
+  box-shadow: 0px 0px 30px rgba(200, 200, 200, 0.4);
+  border-radius: 10px;
+  padding: 32px;
+}
+
+.detail {
+  flex-grow: 1;
+  margin-left: 20px;
+}
+
+/* Button */
+
+.btn-wrapper {
+  display: flex;
+  width: 450px;
+  justify-content: space-between;
+  margin-left: 240px;
+  margin-top: 72px;
+}
+.btn-blue {
+  width: 170px;
+  height: 78px;
+  background: radial-gradient(
+      50% 237.51% at 50% 50%,
+      #ccddff 0%,
+      rgba(122, 223, 255, 0) 100%
+    )
+    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+  border-radius: 5px;
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: 0.48px;
+  line-height: 100%;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+}
+
+.btn-red {
+  width: 170px;
+  height: 78px;
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: 0.48px;
+  line-height: 100%;
+  color: black;
+  background: radial-gradient(
+      50% 237.51% at 50% 50%,
+      #ffb1b1 0%,
+      rgba(255, 158, 87, 0) 100%
+    )
+    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn-blue,
+.btn-red {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-blue a,
+.btn-red a {
+  text-decoration: none;
+  color: black;
+}
+
+.form-wrapper {
+  margin: 32px 0;
+  display: flex;
+  gap: 16px;
+  margin-top: 0px;
+  margin-bottom: 140px;
+}
+
+/* Main */
+#form_send_book_update {
+  flex-grow: 1;
+  margin-left: 20px;
+  width: 500px;
+  height: 657px;
+  display: flex;
+  justify-content: left;
+}
+
+#id_title {
+  width: 800px;
+  font-size: 48px;
+  letter-spacing: 0.02em;
+  line-height: 100%;
+  color: black;
+  font-family: "Hiragino Sans";
+  font-style: normal;
+  font-weight: 400px;
+  margin-bottom: 17px;
+}
+
+#id_author {
+  font-size: 32px;
+  letter-spacing: 0.02em;
+  line-height: 100%;
+  color: black;
+  font-family: "Hiragino Sans";
+  font-style: normal;
+  font-weight: 300;
+  margin-top: 0;
+  margin-bottom: 17px;
+}
+
+.issue {
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  line-height: 100%;
+  color: black;
+  font-family: "Roboto";
+  font-style: normal;
+  margin-top: 0;
+}
+
+#form-p2 {
+  font-size: 24px;
+  letter-spacing: 0.02em;
+  line-height: 36px;
+  margin-block-end: 0;
+  color: black;
+  font-family: "Hiragino Sans";
+  font-style: normal;
+  font-weight: 300;
+  vertical-align: text-top;
+  justify-content: flex-end;
+}
+
+.yen {
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  line-height: 100%;
+  color: black;
+  font-family: "Roboto";
+  font-style: normal;
+}
+
+#form-p4 {
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  position: absolute;
+  width: 278px;
+  height: auto;
+  left: 59px;
+  top: 150px;
+}
+
+#id_price {
+  width: 332px;
+  height: 63px;
+  font-size: 24px;
+  background-color: white;
+  border-width: 1px;
+  border-style: solid;
+  border: 1px solid #929292;
+  border-radius: 15px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#form-p1,
+#form-p2,
+#form-p3,
+#form-p6,
+#form-p7 {
+  margin-left: 500px;
+}
+
+#id_title,
+#id_author,
+#id_page_count,
+#id_released_at {
+  outline: none;
+  border: none;
+}

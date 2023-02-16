@@ -222,5 +222,5 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
 # password変更用
 class PasswordUpdateView(LoginRequiredMixin, PasswordChangeView):
     form_class = PasswordUpdateForm
-    success_url = reverse_lazy('mypage.html')
+    success_url = reverse_lazy('mypage')
     template_name = 'mypage.html'

@@ -1,0 +1,243 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'Roboto';
+    font-family: 'Poppins';
+    font-family: 'Noto_Sans_JP';
+    src: url(../font/Roboto/Roboto-Regular.ttf);
+    src: url(../font/Poppins/Poppins-Light.ttf);
+    src: url(../font/Noto_Sans_JP/NotoSansJP-Regular.otf);
+}
+
+.signup-page{
+    display: flex;
+    position: relative;
+}
+
+.image-form {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 25%;
+    height: 100vh;
+    text-align: left;
+    background-image: url(../images/Login-Image.png);
+}
+
+.Login-form {
+    position: relative;
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    width: 432px;
+    height: 100vh;
+    text-align: center;
+    /* background-color: blue; */
+}
+
+h1 {
+    top:0px;
+    margin:0px;
+    padding:0px;
+    weight:209;
+    text-align: center;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 88px;
+    line-height: 103px;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.14em;
+
+    /* Gradation/2color */
+
+    background: linear-gradient(81.45deg, #0891B2 4.54%, #5EEAD4 96.15%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+h2 {
+    font-family: 'Noto_Sans_JP';
+    top:0px;
+    margin:0px;
+    padding:0px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 35px;
+    letter-spacing: 0.02em;
+    /* Cyan/700 */
+    color: #0E7490;
+}
+
+input[type="text"]{
+    margin-top:27px;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"]{
+    padding: bottom 48px;
+    font-family: 'Noto_Sans_JP';
+    cursor: default;
+    top: 300px;
+    width: 400px;
+    height: 27px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid  #BEBEBE;
+    transition: all 1s;
+    background: none;
+    color: #BEBEBE;
+    margin-bottom:34px;
+    font-style: normal;
+    font-weight: 275px;
+    font-size: 18px;
+    line-height: 20px;
+}
+.signup-go{
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 38px;
+
+    background: linear-gradient(90deg, #0891B2 0%, #06B6D4 48.52%, #5EEAD4 96.47%);
+    border-radius: 10px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 400px;
+    height: 64px;
+    transition: all 0.25s;
+    margin-bottom:40px;
+    transition-duration: .4s;
+}
+.signup-go:hover{
+    transform: scale(1.1);
+}
+
+
+.sign-up-message{
+    margin-top:20px;
+    cursor: default;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    /* Glay/500 */
+    color: #929292;
+}
+
+.switch-register-mode{
+    text-decoration: none;
+    color: #0D9488;
+    font-family: 'Roboto';
+    transition: all 0.2s;
+}
+
+.switch-register-mode:hover {
+    color: #2DD4BF;
+}
+
+.Google-login{ 
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 38px;
+    color: #A9A9A9;
+    box-sizing: border-box;
+    width: 400px;
+    height: 64px;
+    left: 0px;
+    top: 0px;
+    background: #FFFFFF;
+    border: 1px solid #C8C8C8;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom:33px;
+    transition-duration: .4s;
+  }
+
+.Google-login:hover{
+    transform: scale(1.1);
+  }
+
+.Google-login:before{
+    content: "";
+    display: inline-block;
+    background: url("../images/Google-icon.png") no-repeat;
+    background-size: contain;
+    vertical-align: middle;
+    width: 50px;
+    height: 35px;
+}
+
+  .g-icon{
+    position:absolute;
+    left:30px;
+    bottom:105px;
+  }
+
+.signup{
+    position: absolute;
+    width: 160px;
+    height: 56px;
+    top: 53%;
+    right: 0;
+    background: white;
+    border-radius: 15px 0px 0px 15px;
+}
+
+.btn-Login{
+    position: absolute;
+    width: 124px;
+    height: 38px;
+    top: 46%;
+    right: 0;
+    text-decoration: none;
+    /* Button */
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 38px;
+    /* ボックスの高さと同一 */
+    letter-spacing: -0.03em;
+    /* White */
+    color: white;
+    transition: all 0.25s;
+  }
+
+  .btn-Login:hover{
+    color: #BEBEBE;
+  }
+
+
+  .btn-Signup{
+    text-decoration: none;
+    position: absolute;
+    position: absolute;
+    width: 200px;
+    height: 38px;
+    left: 38px;
+    top: 9px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 38px;
+    /* ボックスの高さと同一 */
+    letter-spacing: -0.03em;
+    /* Gradation/4color */
+    background: linear-gradient(189.73deg, rgba(153, 246, 228, 0.75) 1.76%, rgba(45, 212, 191, 0.75) 31.68%, rgba(8, 145, 178, 0.75) 58.93%, rgba(22, 78, 99, 0.75) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+

@@ -1,9 +1,10 @@
 {% extends 'base.html' %} 
-{% load static %}
-
 
 {% block content %}
-{% include 'nav.html' %}
+{% include 'navbar.html' %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/add.css' %}">
 
 {% comment %} <main>
     <div class="content">
@@ -37,10 +38,12 @@
         {{ form.non_field_errors }}
         <div class="form-group">
             {{ form.as_p }}
+            <div class="btn-wrapper">
             <button type="submit" class="btn-blue" name="button_send_book_update"> 登録 </button>
+            <a href="{% url 'life:barcode' %}"  class="btn-red">キャンセル</a>
+        </div>
         </div>
     </form>
-    <a href="{% url 'life:barcode' %}"  class="btn-red">キャンセル</a>
 
     <script type="text/javascript" src="{% static 'js/imgadd.js' %}"></script>
     </div>

@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %} 
-{% include 'nav.html' %}
-<h1>ホーム画面です</h1>
-<a href="{% url 'life:barcode' %}">登録画面へ</a>
-<a href="{% url 'life:logout' %}">ログアウト</a>
+{% include 'navbar.html' %}
+<main>
+  <div class="content">
 <div>
   <ul>
     {% for obj in object_list %} {{ obj.title }}<br />
@@ -21,4 +20,6 @@
     {% endfor %}
   </ul>
 </div>
+</div>
+</main>
 {% endblock content %}
