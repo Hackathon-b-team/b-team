@@ -12,7 +12,7 @@ class Users(AbstractBaseUser, PermissionsMixin):
 
     username_validator = UnicodeUsernameValidator()
 
-    username = models.CharField(max_length=150, unique=True, validators=[username_validator])
+    username = models.CharField(max_length=100, unique=True, validators=[username_validator])
     email = models.EmailField(max_length=254)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
@@ -30,7 +30,7 @@ class Users(AbstractBaseUser, PermissionsMixin):
 
 class CategoryModel(models.Model):
     uid = models.ForeignKey(Users, on_delete=models.DO_NOTHING)
-    category_name = models.CharField(max_length=150)
+    category_name = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

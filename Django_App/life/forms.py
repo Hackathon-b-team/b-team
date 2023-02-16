@@ -36,6 +36,14 @@ class LoginForm(AuthenticationForm):
     password = forms.CharField(label='', widget=forms.PasswordInput(attrs={"placeholder":"パスワード"}))
 
 
+# カテゴリー作成用フォーム
+class CategoryAddForm(forms.ModelForm):
+    class Meta():
+        model = CategoryModel
+        fields = ['category_name']
+        labels = {'category_name':'カテゴリー'}
+
+
 # バーコードアップデート用フォーム
 class BarcodeUpdateForm(forms.Form):
     barcode_image = forms.ImageField(label='画像')
@@ -62,6 +70,7 @@ class BookAddForm(forms.ModelForm):
     image_path = forms.ImageField(label='imageファイルをアップロードする', required=False)
     released_at = forms.DateField(label='発売日', widget=DateInput(), required=False)
     purchased_at = forms.DateField(label='購入日', widget=DateInput())
+    category = forms.ModelChoiceField(label='カテゴリー', queryset=CategoryModel.objects.none())
 
     class Meta():
         model = BookBarcodeModel
@@ -77,4 +86,6 @@ class BookAddForm(forms.ModelForm):
         self.base_fields["image_link"].initial = book["image_link"]
         self.base_fields["released_at"].initial = book["released_at"]
         self.base_fields["purchased_at"].initial = date.today()
+        self.base_fields["category"].queryset = book["category"]
+        self.base_fields["category"].initial = book["category"][0]
         super().__init__(*args, **kwargs)
