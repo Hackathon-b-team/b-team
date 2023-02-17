@@ -27,19 +27,13 @@ main {
   padding: 32px;
 }
 
-.detail {
-  flex-grow: 1;
-  margin-left: 20px;
-}
-
 /* Button */
-
 .btn-wrapper {
   display: flex;
   width: 450px;
   justify-content: space-between;
   margin-left: 240px;
-  margin-top: 72px;
+  margin-top: 36px;
 }
 .btn-blue {
   width: 170px;
@@ -93,13 +87,6 @@ main {
   color: black;
 }
 
-.form-wrapper {
-  margin: 32px 0;
-  display: flex;
-  gap: 16px;
-  margin-top: 0px;
-  margin-bottom: 140px;
-}
 
 /* Main */
 #form_send_book_update {
@@ -111,8 +98,12 @@ main {
   justify-content: left;
 }
 
+#form-p0 {
+  margin-bottom: 0;
+}
+
 #id_title {
-  width: 800px;
+  width: 100%;
   font-size: 48px;
   letter-spacing: 0.02em;
   line-height: 100%;
@@ -121,32 +112,71 @@ main {
   font-style: normal;
   font-weight: 400px;
   margin-bottom: 17px;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  text-align: center;
 }
 
-#id_author {
+#id_author,
+#id_page_count {
   font-size: 32px;
   letter-spacing: 0.02em;
   line-height: 100%;
   color: black;
   font-family: "Hiragino Sans";
   font-style: normal;
-  font-weight: 300;
+  font-weight: 180px;
   margin-top: 0;
-  margin-bottom: 17px;
+  margin-bottom: 0;
 }
 
-.issue {
+#form-p6,
+#form-p7,
+#form-p8,
+#id_released_at,
+#id_purchased_at,
+#id_category {
+  position: absolute;
   font-size: 24px;
   font-weight: 300;
   letter-spacing: 0.02em;
   line-height: 100%;
   color: black;
-  font-family: "Roboto";
+  font-family: "Hiragino Sans";
   font-style: normal;
   margin-top: 0;
 }
 
-#form-p2 {
+#form-p6 {
+  top: 372px;
+}
+
+#form-p7 {
+  top: 452px;
+}
+
+#form-p8 {
+  top: 532px;
+}
+
+#id_released_at,
+#id_purchased_at,
+#id_category,
+#id_price {
+  width: 240px;
+  height: 54px;
+  font-size: 24px;
+  background-color: white;
+  border-width: 1px;
+  border-style: solid;
+  border: 1px solid #D9D9D9;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+#form-p2,
+#form-p3 {
   font-size: 24px;
   letter-spacing: 0.02em;
   line-height: 36px;
@@ -160,6 +190,7 @@ main {
 }
 
 .yen {
+  position: absolute;
   font-size: 24px;
   font-weight: 300;
   letter-spacing: 0.02em;
@@ -167,6 +198,8 @@ main {
   color: black;
   font-family: "Roboto";
   font-style: normal;
+  top: 232px;
+  right: 120px;
 }
 
 #form-p4 {
@@ -174,25 +207,23 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 180px;
 }
 
 img {
   position: absolute;
   width: 278px;
   height: auto;
-  left: 59px;
+  left: 78px;
   top: 150px;
 }
 
 #id_price {
-  width: 332px;
-  height: 63px;
-  font-size: 24px;
-  background-color: white;
-  border-width: 1px;
-  border-style: solid;
-  border: 1px solid #929292;
-  border-radius: 15px;
+  text-align: right;
+}
+
+#id_image_path {
+  
 }
 
 input[type="number"]::-webkit-outer-spin-button,
@@ -205,14 +236,15 @@ input[type="number"]::-webkit-inner-spin-button {
 #form-p2,
 #form-p3,
 #form-p6,
-#form-p7 {
-  margin-left: 500px;
+#form-p7, 
+#form-p8 {
+  margin-left: 400px;
 }
 
 #id_title,
 #id_author,
-#id_page_count,
-#id_released_at {
+#id_page_count {
   outline: none;
   border: none;
 }
+

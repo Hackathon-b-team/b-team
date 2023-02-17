@@ -62,12 +62,12 @@ class DateInput(forms.DateInput):
 # 本データ入力用フォーム
 class BookAddForm(forms.ModelForm):
     barcode = forms.CharField(widget=forms.HiddenInput())
-    title = forms.CharField(label='タイトル')
-    author = forms.CharField(label='著者')
+    title = forms.CharField(label='')
+    author = forms.CharField(label='')
     price = forms.IntegerField(label='購入金額')
     page_count = forms.IntegerField(label='ページ')
     image_link = forms.URLField(label='image', widget=forms.URLInput(attrs={"class":"form-img-link"}), required=False)
-    image_path = forms.ImageField(label='imageファイルをアップロードする', required=False)
+    image_path = forms.ImageField(label='本の画像を変更する', required=False)
     released_at = forms.DateField(label='発売日', widget=DateInput(), required=False)
     purchased_at = forms.DateField(label='購入日', widget=DateInput())
     category = forms.ModelChoiceField(label='カテゴリー', queryset=CategoryModel.objects.none())
