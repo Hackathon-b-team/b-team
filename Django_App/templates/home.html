@@ -3,39 +3,43 @@
 
 {% block header %}
 {% include "navbar.html" %}
-<link rel="stylesheet" type="text/css" href="{% static '/css/modal.css' %}"/>
-{% endblock %}
+<link rel="stylesheet" type="text/css" href="{% static '/css/modal.css' %}" />
+<link rel="stylesheet" href="{% static 'css/home.css' %}" />
+{% endblock %} 
 
 {% block content %}
-<h1>ホーム画面です</h1>
-<a href="{% url 'life:barcode' %}">登録画面へ</a>
-<a href="{% url 'life:logout' %}">ログアウト</a><br>
-<button id="add-category-btn">カテゴリーを作成</button>
-{% include 'modal/add-category.html' %}
-<div>
-  <ul class="category">
-    {% for cate in category_list %}
-      <button class="em{{ cate.id }}">{{ cate.category_name }}</button>
-    {% endfor %}
-  </ul>
-  <ul class="items">
-    {% for obj in object_list %}
-      <div class="item item{{obj.cid_id}}">
-        <p>{{ obj.bid.title }}</p>
-        <a href="{% url 'life:detail' obj.uuid %}">
-          {% if obj.bid.image_path != "img/noimage.png" %}
-            <img src="/media/{{ obj.bid.image_path }}" alt="画像">
-          {% elif obj.bid.image_link %}
-            <img src="{{ obj.bid.image_link }}" alt="画像">
-          {% elif obj.bid.image_path %}
-            <img src="/media/{{ obj.bid.image_path }}" alt="画像">
-          {% endif %}
-        </a>
-        <hr>
-      </div>
-    {% endfor %}
-  </ul>
-</div>
+<main>
+    <h1>ホーム画面です</h1>
+    <div>
+      <button id="add-category-btn">カテゴリーを作成</button>
+    </div>
+    {% include 'modal/add-category.html' %}
+    <div>
+      <ul class="category">
+        {% for cate in category_list %}
+        <button class="em{{ cate.id }}">{{ cate.category_name }}</button>
+        {% endfor %}
+      </ul>
+      <ul class="items">
+        {% for obj in object_list %}
+        <div class="item item{{obj.cid_id}}">
+          <p>{{ obj.bid.title }}</p>
+          <a href="{% url 'life:detail' obj.uuid %}">
+            {% if obj.bid.image_path != "img/noimage.png" %}
+            <img src="/media/{{ obj.bid.image_path }}" alt="画像" />
+            {% elif obj.bid.image_link %}
+            <img src="{{ obj.bid.image_link }}" alt="画像" />
+            {% elif obj.bid.image_path %}
+            <img src="/media/{{ obj.bid.image_path }}" alt="画像" />
+            {% endif %}
+          </a>
+          <hr />
+        </div>
+        {% endfor %}
+      </ul>
+    </div>
+</main>
 <script type="text/javascript" src="{% static 'js/category.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/modal.js' %}"></script>
+
 {% endblock content %}
