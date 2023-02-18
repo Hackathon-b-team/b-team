@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 {% include 'navbar.html' %}
+<link rel="stylesheet" href="{% static 'css/mypage.css' %}">
 <main>
   <form method="POST">
     {% csrf_token %}

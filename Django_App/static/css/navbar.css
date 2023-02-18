@@ -46,7 +46,7 @@ li {
   position: absolute;
   width: 119px;
   height: 140px;
-  right: 601px;
+  right: 600px;
   top: 0px;
 }
 
@@ -54,7 +54,7 @@ li {
   position: absolute;
   width: 119px;
   height: 140px;
-  right: 390px;
+  right: 450px;
   top: 0px;
 }
 
@@ -62,9 +62,16 @@ li {
   position: absolute;
   width: 119px;
   height: 140px;
-  right: 200px;
+  right: 300px;
   top: 0px;
+}
 
+.mypage-icon {
+  position: absolute;
+  width: 119px;
+  height: 140px;
+  right: 150px;
+  top: 0px;
 }
 
 .logout-icon {
