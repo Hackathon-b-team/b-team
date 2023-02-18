@@ -222,10 +222,6 @@ img {
   text-align: right;
 }
 
-#id_image_path {
-  
-}
-
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
