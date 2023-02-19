@@ -1,16 +1,10 @@
-from django.shortcuts import render, redirect, resolve_url
-from django.views.generic.edit import CreateView, FormView, FormMixin
-from django.views.generic.base import TemplateView
-from django.views.generic.detail import DetailView
-from django.views.generic.list import ListView
-from django.views.generic import UpdateView
-from .forms import RegistForm, LoginForm, BarcodeUpdateForm, BarcodeInputForm, BookAddForm, UserUpdateForm, PasswordUpdateForm
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, FormView, FormMixin, ModelFormMixin
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
-from .forms import RegistForm, LoginForm, CategoryAddForm, BarcodeUpdateForm, BarcodeInputForm, BookAddForm
+from django.views.generic import UpdateView
+from .forms import RegistForm, LoginForm, CategoryAddForm, BarcodeUpdateForm, BarcodeInputForm, BookAddForm, UserUpdateForm, PasswordUpdateForm
 from .models import Users, CategoryModel, BookBarcodeModel, BookModel
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
@@ -20,6 +14,8 @@ from django.urls import reverse_lazy
 from django.conf import settings
 from PIL import Image
 from pyzbar.pyzbar import decode
+from datetime import date
+from dateutil.relativedelta import relativedelta
 import numpy
 import requests
 
@@ -233,6 +229,37 @@ class BookAddView(LoginRequiredMixin, CreateView):
         BookModel.objects.create(uid=users, cid=cate, bid=bar)
         return super().form_valid(form)
 
+
+# お金管理画面用
+class MoneyView(LoginRequiredMixin, TemplateView):
+    template_name = "money.html"
+    
+    #ユーザーの登録した本だけを表示させるための関数
+    def get(self, request, *args, **kwargs):
+        bk_list = []
+        month_list = []
+        #ログイン中のユーザーのIDを取得
+        user_id = request.user.id
+        #ユーザーIDが一致する本を探す
+        books = BookModel.objects.select_related('bid').filter(uid=user_id)
+        for book in books:
+            book.bid.purchased_at = book.bid.purchased_at.strftime('%Y/%m')
+        bk_list.extend(books)
+
+        # 月リストの作成
+        month_list.append(date.today().strftime('%Y/%m'))
+        month = date.today()
+        for i in range(1, 12):
+            month += relativedelta(months=-1)
+            month_list.append(month.strftime('%Y/%m'))
+
+        self.object = None
+        context = self.get_context_data(**kwargs)
+        context["object_list"] = bk_list
+        context["month_list"] = month_list
+
+        return self.render_to_response(context)
+    
 
 # username,email変更用
 class UserUpdateView(LoginRequiredMixin, UpdateView):
