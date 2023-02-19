@@ -1,11 +1,12 @@
 {% extends 'base.html' %} 
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/add.css' %}">
+{% endblock %} 
 
 {% block content %}
 {% include 'navbar.html' %}
-
-{% load static %}
-<link rel="stylesheet" href="{% static 'css/add.css' %}">
-
 <main>
     <div class="content">
     <form action="" method="POST" name="form_send_book_update" id="form_send_book_update" enctype="multipart/form-data">
