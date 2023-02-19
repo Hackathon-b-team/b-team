@@ -239,7 +239,7 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
     model = Users
     form_class = UserUpdateForm
     template_name = 'mypage.html'
-    success_url = reverse_lazy('mypage')
+    success_url = reverse_lazy('life:mypage')
 
     def get_object(self):
         return self.request.user
