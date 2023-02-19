@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>お金管理画面です</h1>
+<a href="{% url 'life:home' %}">ホーム画面へ</a>
+<a href="{% url 'life:logout' %}">ログアウト</a><br>
+<div>
+  <ul class="category">
+    {% for month in month_list %}
+      <button class="em{{ month }}">{{ month }}</button>
+    {% endfor %}
+  </ul>
+  <ul class="items">
+    <table>
+      <tr>
+        <th>タイトル</th>
+        <th>金額</th>
+      </tr>
+      {% for obj in object_list %}
+      <tr class="item item{{obj.bid.purchased_at}}">
+        <td>{{ obj.bid.title }}</td>
+        <td>{{ obj.bid.price }}円</td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <td>合計</td>
+        <td id="total"></td>
+      </tr>
+    </table>
+  </ul>
+</div>
+<script type="text/javascript" src="{% static 'js/money.js' %}"></script>
+{% endblock content %}
