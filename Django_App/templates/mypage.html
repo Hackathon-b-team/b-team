@@ -5,10 +5,25 @@
 {% include 'navbar.html' %}
 <link rel="stylesheet" href="{% static 'css/mypage.css' %}">
 <main>
-  <form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="">変更</button>
-  </form>
+  <div class="sidebar">
+    <p>サイドバー</p>
+  </div>
+    <div class="content">
+      <form method="POST">
+        {% csrf_token %}
+        {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        {{ form.as_p }}
+        <button type="submit" class="">変更</button>
+        <p>
+          <a href="{% url 'life:password_change' %}">パスワード変更へ</a>
+        </p>
+      </form>
+  </div>
 </main>
 {% endblock content %}
