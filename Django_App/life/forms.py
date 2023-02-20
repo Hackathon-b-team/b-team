@@ -99,7 +99,6 @@ class UserUpdateForm(forms.ModelForm):
         model = Users
         fields = ('username', 'email')
 
-
 # パスワード変更用
 class PasswordUpdateForm(PasswordChangeForm):
 

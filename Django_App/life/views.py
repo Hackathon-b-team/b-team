@@ -12,6 +12,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.conf import settings
+from django.contrib import messages
 from PIL import Image
 from pyzbar.pyzbar import decode
 from datetime import date
@@ -271,9 +272,17 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
     def get_object(self):
         return self.request.user
 
+    def form_valid(self, form):
+        messages.success(self.request, '登録内容を変更しました')
+        return super().form_valid(form)
 
 # password変更用
 class PasswordUpdateView(LoginRequiredMixin, PasswordChangeView):
+    model = Users
     form_class = PasswordUpdateForm
-    success_url = reverse_lazy('mypage')
-    template_name = 'mypage.html'
+    success_url = reverse_lazy('life:password_change')
+    template_name = 'password_change.html'
+
+    def form_valid(self, form):
+        messages.success(self.request, '登録内容を変更しました')
+        return super().form_valid(form)
