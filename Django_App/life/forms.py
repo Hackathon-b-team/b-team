@@ -3,6 +3,7 @@ from .models import Users, CategoryModel, BookBarcodeModel, BookModel
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from datetime import date
+from django.contrib.auth import get_user_model
 
 
 # SignUp用フォーム
