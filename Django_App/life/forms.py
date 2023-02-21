@@ -126,11 +126,14 @@ class BookForm(forms.ModelForm):
 class BookBarcodeForm(forms.ModelForm):
     class Meta:
         model = BookBarcodeModel
-        fields = ['price', 'image_path', 'purchased_at']
+        fields = ['title','author','price', 'image_path', 'purchased_at','released_at']
         labels = {
+            'title':'タイトル',
+            'author':'著者',
             'price': '価格',
             'image_path': '画像ファイル',
             'purchased_at': '購入日',
+            'released_at':'発売日',
         }
 
 

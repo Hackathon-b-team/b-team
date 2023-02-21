@@ -115,7 +115,7 @@ class DetailDeleteView(DeleteView,LoginRequiredMixin, TemplateView):
 class DetailUpdateView(UpdateView):
     model = BookModel
     form_class = BookForm
-    success_url = reverse_lazy('life:detail')
+    success_url = reverse_lazy('life:home')
     template_name = 'book_update.html'
     
     def get_context_data(self, **kwargs):
