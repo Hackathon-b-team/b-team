@@ -14,17 +14,20 @@
   <ul class="items">
     <table>
       <tr>
+        <th>購入日</th>
         <th>タイトル</th>
         <th>金額</th>
       </tr>
       {% for obj in object_list %}
-      <tr class="item item{{obj.bid.purchased_at}}">
+      <tr class="item item{{obj.bid.purchased_at_month}}">
+        <td class="date">{{ obj.bid.purchased_at }}</td>
         <td>{{ obj.bid.title }}</td>
         <td>{{ obj.bid.price }}円</td>
       </tr>
       {% endfor %}
       <tr>
         <td>合計</td>
+        <td></td>
         <td id="total"></td>
       </tr>
     </table>
