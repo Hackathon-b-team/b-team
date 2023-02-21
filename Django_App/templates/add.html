@@ -9,18 +9,18 @@
 {% include 'navbar.html' %}
 <main>
     <div class="content">
+        <p class="tag">登録</p>
     <form action="" method="POST" name="form_send_book_update" id="form_send_book_update" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.non_field_errors }}
         <div class="form-group">
             {{ form.as_p }}
-            <div class="btn-wrapper">
-                <button type="submit" class="btn-blue" name="button_send_book_update"> 登録 </button>
-                <a href="{% url 'life:barcode' %}"  class="btn-red">キャンセル</a>
+        <div class="btn-wrapper">
+                <a href="{% url 'life:barcode' %}"  class="btn-c">キャンセル</a>
+                <button type="submit" class="btn-r" name="button_send_book_update"> 登録 </button>
             </div>
         </div>
     </form>
-    <p class="yen">円</p>
 
     <script type="text/javascript" src="{% static 'js/imgadd.js' %}"></script>
     </div>

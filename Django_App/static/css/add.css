@@ -27,99 +27,133 @@ main {
   padding: 32px;
 }
 
+/* Tag */
+.tag {
+  position: absolute;
+  width: 178px;
+  height: 63px;
+  left: 0;
+  top: 40px;
+  background: #155E75;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 0px 25px 25px 0px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 100%;
+  align-items: center;
+  letter-spacing: 0.08em;
+  text-align: center;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+}
+
 /* Button */
 .btn-wrapper {
   display: flex;
   width: 450px;
   justify-content: space-between;
-  margin-left: 240px;
-  margin-top: 36px;
+  margin-left: 200px;
+  margin-top: 24px;
 }
-.btn-blue {
-  width: 170px;
-  height: 78px;
-  background: radial-gradient(
-      50% 237.51% at 50% 50%,
-      #ccddff 0%,
-      rgba(122, 223, 255, 0) 100%
-    )
-    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
-  border-radius: 5px;
-  font-size: 24px;
-  font-weight: 300;
-  letter-spacing: 0.48px;
-  line-height: 100%;
-  color: black;
-  text-align: center;
+.btn-r {
+  width: 195px;
+  height: 62px;
   text-decoration: none;
   border: none;
+  background: #2DD4BF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.08em;
+  color: #FFFFFF;
 }
-
-.btn-red {
-  width: 170px;
-  height: 78px;
-  font-size: 24px;
-  font-weight: 300;
-  letter-spacing: 0.48px;
-  line-height: 100%;
-  color: black;
-  background: radial-gradient(
-      50% 237.51% at 50% 50%,
-      #ffb1b1 0%,
-      rgba(255, 158, 87, 0) 100%
-    )
-    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
-  border-radius: 5px;
+.btn-r:hover,
+.btn-c:hover {
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.btn-c {
+  width: 195px;
+  height: 62px;
+  background: #EDEEEE;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
   text-align: center;
   text-decoration: none;
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #FFFFFF;
 }
 
-.btn-blue,
-.btn-red {
+
+.btn-r,
+.btn-c {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.btn-blue a,
-.btn-red a {
-  text-decoration: none;
-  color: black;
-}
-
-
 /* Main */
-#form_send_book_update {
-  flex-grow: 1;
-  margin-left: 20px;
-  width: 500px;
-  height: 657px;
-  display: flex;
-  justify-content: left;
-}
-
-#form-p0 {
-  margin-bottom: 0;
+.form-group {
+  margin-left: 80px;
 }
 
 #id_title {
-  width: 100%;
-  font-size: 48px;
+  position: absolute;
+  width: 800px;
+  font-size: 36px;
   letter-spacing: 0.02em;
-  line-height: 100%;
   color: black;
   font-family: "Hiragino Sans";
   font-style: normal;
-  font-weight: 400px;
-  margin-bottom: 17px;
-  margin-bottom: 0;
-  margin-left: 0;
-  margin-right: 0;
-  text-align: center;
+  margin-left: 44px;
+  top: 138px;
+  text-decoration:underline;
+  text-decoration-color: #D9D9D9;
+}
+.title,
+.author,
+.released,
+.purchased,
+.page_count,
+.category,
+.price {
+  width: 100%;
+  height: 16px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 16px;
+  letter-spacing: 0.08em;
+  color: #000000;
+}
+.title {
+  margin-top: 130px;
+}
+.author {
+  margin-top: 45px;
 }
 
-#id_author,
-#id_page_count {
+#id_author {
+  margin-left: 85px;
+  text-decoration:underline;
+  text-decoration-color: #D9D9D9;
   font-size: 32px;
   letter-spacing: 0.02em;
   line-height: 100%;
@@ -131,12 +165,39 @@ main {
   margin-bottom: 0;
 }
 
-#form-p6,
-#form-p7,
-#form-p8,
+#id_title,
+#id_author{
+  outline: none;
+  border: none;
+}
+
+
+.released {
+  margin-left: 441px;
+  margin-top: 55px;
+}
+.purchased {
+  margin-left: 441px;
+  margin-top: 43px;
+}
+.page_count {
+  margin-left: 441px;
+  margin-top: 43px;
+}
+.category {
+  margin-left: 441px;
+  margin-top: 43px;
+}
+.price {
+  margin-left: 441px;
+  margin-top: 43px;
+}
+
 #id_released_at,
 #id_purchased_at,
-#id_category {
+#id_page_count,
+#id_category,
+#id_price {
   position: absolute;
   font-size: 24px;
   font-weight: 300;
@@ -146,27 +207,9 @@ main {
   font-family: "Hiragino Sans";
   font-style: normal;
   margin-top: 0;
-}
-
-#form-p6 {
-  top: 372px;
-}
-
-#form-p7 {
-  top: 452px;
-}
-
-#form-p8 {
-  top: 532px;
-}
-
-#id_released_at,
-#id_purchased_at,
-#id_category,
-#id_price {
   width: 240px;
-  height: 54px;
-  font-size: 24px;
+  height: 45px;
+  font-size: 20px;
   background-color: white;
   border-width: 1px;
   border-style: solid;
@@ -174,52 +217,42 @@ main {
   border-radius: 8px;
   box-sizing: border-box;
 }
-
-#form-p2,
-#form-p3 {
-  font-size: 24px;
-  letter-spacing: 0.02em;
-  line-height: 36px;
-  margin-block-end: 0;
-  color: black;
-  font-family: "Hiragino Sans";
-  font-style: normal;
-  font-weight: 300;
-  vertical-align: text-top;
-  justify-content: flex-end;
+#id_released_at {
+  margin-left: 565px;
+  top: 278px;
+}
+#id_purchased_at {
+  margin-left: 565px;
+  top: 337px;
+}
+#id_page_count {
+  margin-left: 565px;
+  top: 396px;
+  text-align: right;
+}
+#id_category {
+  margin-left: 565px;
+  top: 456px;
+}
+#id_price {
+  margin-left: 565px;
+  top: 515px;
+  text-align: right;
 }
 
-.yen {
-  position: absolute;
-  font-size: 24px;
-  font-weight: 300;
-  letter-spacing: 0.02em;
-  line-height: 100%;
-  color: black;
-  font-family: "Roboto";
-  font-style: normal;
-  top: 232px;
-  right: 120px;
-}
-
-#form-p4 {
-  width: 45%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 180px;
+#id_image_path {
+  /* width: 40px;
+  height: 40px; */
+  background: #ADECE2;
+  filter: blur(0.5px);
 }
 
 img {
   position: absolute;
-  width: 278px;
+  width: 163px;
   height: auto;
   left: 78px;
   top: 150px;
-}
-
-#id_price {
-  text-align: right;
 }
 
 input[type="number"]::-webkit-outer-spin-button,
@@ -228,19 +261,4 @@ input[type="number"]::-webkit-inner-spin-button {
   margin: 0;
 }
 
-#form-p1,
-#form-p2,
-#form-p3,
-#form-p6,
-#form-p7, 
-#form-p8 {
-  margin-left: 400px;
-}
-
-#id_title,
-#id_author,
-#id_page_count {
-  outline: none;
-  border: none;
-}
 
