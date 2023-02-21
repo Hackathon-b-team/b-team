@@ -1,0 +1,13 @@
+<div id="book-confirmation-modal">
+  <div class="modal-content">
+    <div class="modal-back">
+      <div class="modal-header">本当に削除しますか？</div>
+
+      <div id="modal-content">
+        <button type="button" id="modal-close-btn">キャンセル</button>
+        <button id="modal-confirmation-btn"><a href="{% url 'life:book_delete' obj.uuid %}">削除</a></button>
+      </div>
+
+    </div>
+  </div>
+</div>

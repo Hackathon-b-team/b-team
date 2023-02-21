@@ -1,0 +1,119 @@
+/* ここは全部同じ値 */
+.modal-content {
+  position: relative;
+  margin: 20% auto;
+  width: 600px;
+  height: 300px;
+  background-color: whitesmoke;
+  border-radius: 20px;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+  overflow: auto;
+}
+
+.modal-back {
+  height: 60px;
+  background: linear-gradient(90.55deg, rgba(0, 26, 255, 0.504) -8.83%, rgba(0, 194, 255, 0.6) 112.46%);
+  backdrop-filter: blur(15px);
+  border-radius: 20px 20px 0px 0px;
+}
+
+/* ---新規カテゴリーを追加---*/
+#book-confirmation-modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(240, 240, 240, 0.5);
+}
+
+.modal-header {
+  position: absolute;
+  width: 350px;
+  text-align: center;
+  height: 40px;
+  top: 85px;
+  left: 120px;
+  /* font-family: 'BIZ UDPGothic'; */
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 40px;
+  letter-spacing: -0.02em;
+  color: #000000;
+  overflow: auto;
+  cursor: default;
+}
+
+#modal-content {
+  position: absolute;
+  top: 130px;
+  left: 130px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  width: 450px;
+  height: 32px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 24px;
+}
+
+/* キャンセルボタン */
+#modal-close-btn {
+  position: absolute;
+  width: 150px;
+  height: 40px;
+  left: 10px;
+  top: 100px;
+  background-color: white;
+  color: #000000;
+
+  /* font-family: 'BIZ UDPGothic'; */
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 24px;
+
+  letter-spacing: -0.02em;
+  border: 1px solid #333;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+#modal-close-btn:hover {
+  background: #D4D4D4;
+}
+
+/* OKボタン */
+#modal-confirmation-btn {
+  position: absolute;
+  width: 150px;
+  height: 40px;
+  right: 130px;
+  top: 100px;
+  background: #ff0000;
+  color: white;
+  /* font-family: 'BIZ UDPGothic'; */
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+#modal-confirmation-btn a{
+  text-decoration: none;
+  color: white;
+}
+
+#modal-confirmation-btn:hover {
+  background: #ae0000;
+}
