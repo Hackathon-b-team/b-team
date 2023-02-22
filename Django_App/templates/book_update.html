@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+<link rel="stylesheet" type="text/css" href="{% static '/css/book-modal.css' %}" />
+{% endblock %}
+{% block content %}
+{% include "navbar.html" %}
+
+<!-- ヘッダー回避用（CSSつけたら消してください） -->
+<br><br><br><br><br><br>
+
+<h1>編集画面</h1>
+<form method="post" enctype="multipart/form-data" id="myForm">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {{ barcode_form.as_p }}
+
+    <button type="button" id="book-confirmation-btn">更新</button>
+  {% include 'modal/book-update.html' %}
+
+</form>
+<script type="text/javascript" src="{% static 'js/book-delete-modal.js' %}"></script>
+{% endblock %}

@@ -104,3 +104,36 @@ class PasswordUpdateForm(PasswordChangeForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+#詳細情報の更新用
+class BookForm(forms.ModelForm):
+    class Meta:
+        model = BookModel
+        fields = ['progress', 'evaluation', 'review']
+        
+        labels = {
+            'progress': '進捗状況',
+            'evaluation': '評価',
+            'review': 'レビュー',
+        }
+
+    def clean_evaluation(self):
+        value = self.cleaned_data['evaluation']
+        if value >= 6:
+            raise forms.ValidationError('5以下の値を入力してください。')
+        return value
+        
+class BookBarcodeForm(forms.ModelForm):
+    class Meta:
+        model = BookBarcodeModel
+        fields = ['title','author','price', 'image_path', 'purchased_at','released_at']
+        labels = {
+            'title':'タイトル',
+            'author':'著者',
+            'price': '価格',
+            'image_path': '画像ファイル',
+            'purchased_at': '購入日',
+            'released_at':'発売日',
+        }
+
+
