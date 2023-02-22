@@ -165,17 +165,28 @@ class BarcodeView(LoginRequiredMixin, TemplateView, FormMixin):
             path = f"{settings.MEDIA_ROOT}/barcode/{form.cleaned_data['barcode_image']}"
             imageupload(form.cleaned_data['barcode_image'], path)
             barcode = barcodetonumber(path)
-            if barcode == 'INVARID':
-                return self.form_invalid(form)
+            if barcode == 'INVALID':
+                messages.error(self.request, 'バーコード画像をアップロードしてください。もしくは、バーコードと認識できません')
+                return redirect('life:barcode')
         elif 'barcode' in form.cleaned_data:
             barcode = form.cleaned_data['barcode']
         # バーコードの制限
-        if not len(str(barcode)) == 10 and not len(str(barcode)) == 13:
-            return self.form_invalid(form)
-        elif len(str(barcode)) == 13:
+        if not len(str(barcode))==10 and not len(str(barcode))==13:
+                messages.error(self.request, '10桁or13桁のISBNコードにしてください')
+                return redirect('life:barcode')
+        elif len(str(barcode))==13:
             if not str(barcode).startswith("978"):
-                return self.form_invalid(form)
+                messages.error(self.request, '13桁の978から始まるISBNコードにしてください')
+                return redirect('life:barcode')
+        # APIからデータ取得
+        url = f"https://www.googleapis.com/books/v1/volumes?q=isbn:{barcode}"
+        book = requests.get(url)
+        book_data = book.json()
+        if "items" not in book_data:
+            messages.error(self.request, 'このバーコード番号では、データを取得できませんでした')
+            return redirect('life:barcode')
         self.request.session['barcode'] = barcode
+        self.request.session['book_data'] = book_data
         return HttpResponseRedirect(self.get_success_url())
 
 
@@ -186,12 +197,9 @@ class BookAddView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('life:home')
 
     def get_form_kwargs(self):
-        # APIからデータ取得
-        barcode = self.request.session['barcode']
-        url = f"https://www.googleapis.com/books/v1/volumes?q=isbn:{barcode}"
-        book = requests.get(url)
-        book_data = book.json()
         # 取得したデータの処理
+        barcode = self.request.session['barcode']
+        book_data = self.request.session['book_data']
         title = book_data["items"][0]["volumeInfo"]["title"]
         author = book_data["items"][0]["volumeInfo"]["authors"]
         if "listPrice" in book_data["items"][0]["saleInfo"]:
@@ -205,6 +213,8 @@ class BookAddView(LoginRequiredMixin, CreateView):
         if "imageLinks" in book_data["items"][0]["volumeInfo"]:
             if "thumbnail" in book_data["items"][0]["volumeInfo"]["imageLinks"]:
                 image_link = book_data["items"][0]["volumeInfo"]["imageLinks"]["thumbnail"]
+            else:
+                image_link = None
         else:
             image_link = None
         if "publishedDate" in book_data["items"][0]["volumeInfo"]:
@@ -223,6 +233,7 @@ class BookAddView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         self.object = form.save()
         self.request.session.pop('barcode')
+        self.request.session.pop('book_data')
         category = self.request.POST["category"]
         users = Users.objects.get(id=self.request.user.id)
         cate = CategoryModel.objects.get(id=category)
@@ -242,9 +253,10 @@ class MoneyView(LoginRequiredMixin, TemplateView):
         #ログイン中のユーザーのIDを取得
         user_id = request.user.id
         #ユーザーIDが一致する本を探す
-        books = BookModel.objects.select_related('bid').filter(uid=user_id)
+        books = BookModel.objects.select_related('bid').filter(uid=user_id).order_by('bid__purchased_at')
         for book in books:
-            book.bid.purchased_at = book.bid.purchased_at.strftime('%Y/%m')
+            book.bid.purchased_at_month = book.bid.purchased_at.strftime('%Y/%m')
+            book.bid.purchased_at = book.bid.purchased_at.strftime('%m/%d')
         bk_list.extend(books)
 
         # 月リストの作成

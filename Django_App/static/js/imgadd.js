@@ -4,7 +4,6 @@ for(let i=0;i<formGroup.length;i++){
     formGroup[i].setAttribute("id",`form-p${i}`);
 }
 
-const imgForm = document.getElementById("form-p4");
 const img = document.createElement("img");
 
 const fileInput = document.getElementById("id_image_path");
