@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'navbar/navbar_mypage.html' %}
+<link rel="stylesheet" href="{% static 'css/mypage.css' %}">
+<main>
+{% include 'sidebar_mypage.html' %}
+    <div class="content">
+      <div class="username">{{ user.username }}</div>
+      <div class="email">
+        メールアドレス： {{ user.email }}
+      </div>
+      <div class="password">
+        パスワード： {{ user.password }}
+      </div>
+  </div>
+</main>
+{% endblock content %}

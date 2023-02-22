@@ -2,13 +2,11 @@
 {% load static %}
 
 {% block content %}
-{% include 'navbar.html' %}
+{% include 'navbar/navbar_mypage.html' %}
 <link rel="stylesheet" href="{% static 'css/mypage.css' %}">
 <main>
-  <div class="sidebar">
-    <p>サイドバー</p>
-  </div>
-    <div class="content">
+  {% include 'sidebar_mypage.html' %}
+      <div class="content">
       <form method="POST">
         {% csrf_token %}
         {% if messages %}
@@ -20,9 +18,6 @@
         {% endif %}
         {{ form.as_p }}
         <button type="submit" class="">変更</button>
-        <p>
-          <a href="{% url 'life:password_change' %}">パスワード変更へ</a>
-        </p>
       </form>
   </div>
 </main>

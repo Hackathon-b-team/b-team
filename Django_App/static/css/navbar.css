@@ -46,7 +46,7 @@ li {
   position: absolute;
   width: 119px;
   height: 140px;
-  right: 600px;
+  right: 601px;
   top: 0px;
 }
 
@@ -54,7 +54,7 @@ li {
   position: absolute;
   width: 119px;
   height: 140px;
-  right: 450px;
+  right: 390px;
   top: 0px;
 }
 
@@ -62,7 +62,7 @@ li {
   position: absolute;
   width: 119px;
   height: 140px;
-  right: 300px;
+  right: 200px;
   top: 0px;
 }
 
@@ -70,18 +70,11 @@ li {
   position: absolute;
   width: 119px;
   height: 140px;
-  right: 150px;
-  top: 0px;
-}
-
-.logout-icon {
-  position: absolute;
-  width: 119px;
-  height: 140px;
   right: 0px;
   top: 0px;
 }
 
+/* 
 li svg {
   position: absolute;
   top: 50%;
@@ -96,4 +89,4 @@ li svg {
 
 li:hover svg:nth-of-type(2) {
   opacity: 0;
-}
+} */

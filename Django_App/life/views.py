@@ -278,8 +278,8 @@ class MoneyView(LoginRequiredMixin, TemplateView):
 class UserUpdateView(LoginRequiredMixin, UpdateView):
     model = Users
     form_class = UserUpdateForm
-    template_name = 'mypage.html'
-    success_url = reverse_lazy('life:mypage')
+    template_name = 'user_change.html'
+    success_url = reverse_lazy('life:user_change')
 
     def get_object(self):
         return self.request.user
@@ -300,3 +300,10 @@ class PasswordUpdateView(LoginRequiredMixin, PasswordChangeView):
         return super().form_valid(form)
 
 # User情報表示用
+class UserProfileView(LoginRequiredMixin, TemplateView):
+    template_name = 'profile.html'
+    model = Users
+
+# プライバシーポリシーリンク用
+class PrivacyView(LoginRequiredMixin, TemplateView):
+    template_name = 'privacy.html'

@@ -12,6 +12,8 @@ from .views import (
     MoneyView,
     UserUpdateView,
     PasswordUpdateView,
+    PrivacyView,
+    UserProfileView,
 )
 from django.conf import settings
 from django.conf.urls.static import static
@@ -27,7 +29,9 @@ urlpatterns = [
     path('barcode/', BarcodeView.as_view(), name='barcode'),
     path('add/', BookAddView.as_view(), name='add'),
     path('money/', MoneyView.as_view(), name='money'),
-    path('mypage/', UserUpdateView.as_view(), name='mypage'),
+    path('user_change/', UserUpdateView.as_view(), name='user_change'),
     path('password_change/', PasswordUpdateView.as_view(), name='password_change'),
+    path('privacy/', PrivacyView.as_view(), name='privacy'),
+    path('profile/', UserProfileView.as_view(), name='profile'),
     path('social-auth/', include('social_django.urls', namespace='social')), # googlelogin
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

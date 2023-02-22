@@ -16,19 +16,8 @@ main {
   padding-top: 140px;
 }
 
-.sidebar {
-  width: 262px;
-  height: 657px;
-  background-color: white;
-  box-shadow: 0px 0px 30px rgba(200, 200, 200, 0.4);
-  border-radius: 10px;
-  left: 37px;
-  padding: 32px;
-  text-align: center;
-}
-
 .content {
-  /* position: relative; */
+  position: relative;
   width: 1000px;
   height: 657px;
   display: flex;
@@ -36,6 +25,49 @@ main {
   box-shadow: 0px 0px 30px rgba(200, 200, 200, 0.4);
   border-radius: 10px;
   padding: 32px;
-  left: 339px;
+  left: 0;
   margin-left: 50px;
+}
+
+.username {
+  position: absolute;
+  width: 73px;
+  height: 28px;
+  left: 266px;
+  top: 77px;
+  font-family: 'Noto_Sans_JP';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+  color: #000000;
+}
+.email {
+  position: absolute;
+  width: 170px;
+  height: 28px;
+  left: 96px;
+  top: 384px;
+  font-family: 'Noto_Sans_JP';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+  color: #000000;
+}
+.password {
+  position: absolute;
+  width: 122px;
+  height: 28px;
+  left: 96px;
+  top: 561px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+  color: #000000;
 }
