@@ -286,3 +286,5 @@ class PasswordUpdateView(LoginRequiredMixin, PasswordChangeView):
     def form_valid(self, form):
         messages.success(self.request, '登録内容を変更しました')
         return super().form_valid(form)
+
+# User情報表示用

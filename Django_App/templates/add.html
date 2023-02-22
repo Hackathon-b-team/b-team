@@ -14,7 +14,27 @@
         {% csrf_token %}
         {{ form.non_field_errors }}
         <div class="form-group">
-            {{ form.as_p }}
+            <div class="title">タイトル{{ form.title }}</div>
+            <div class="author">著者{{ form.author }}</div>
+            <ul>
+            <li class="released">発売日</li>
+                <div>{{ form.released_at }}</div>
+            <li class="purchased">購入日</li>
+                <div>{{ form.purchased_at }}</div>
+            <li class="page_count">ページ数</li>
+                <div>{{ form.page_count }}</div>
+            <li class="category">カテゴリー</li>
+                <div>{{ form.category }}</div>
+            <li class="price">購入金額</li>
+                <div>{{ form.price }}</div>
+            </ul>
+            <div id="image_link">
+                {% if form.instance.image %}
+                <img src="{{ form.instance.image.url }}">
+                {% endif %}
+            </div>
+            <div>{{ form.image_path }}</div>
+            {% comment %} {{ form.as_p }} {% endcomment %}
         <div class="btn-wrapper">
                 <a href="{% url 'life:barcode' %}"  class="btn-c">キャンセル</a>
                 <button type="submit" class="btn-r" name="button_send_book_update"> 登録 </button>

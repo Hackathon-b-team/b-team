@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'navbar.html' %}
+<link rel="stylesheet" href="{% static 'css/mypage.css' %}">
+<main>
+  <div class="sidebar">
+    <p>サイドバー</p>
+  </div>
+    <div class="content">
+      <p>{{ user.get_username }}</p>
+        <p>
+          <a href="{% url 'life:password_change' %}">パスワード変更へ</a>
+        </p>
+      </form>
+  </div>
+</main>
+{% endblock content %}

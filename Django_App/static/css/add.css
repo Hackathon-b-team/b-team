@@ -37,7 +37,7 @@ main {
   background: #155E75;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 0px 25px 25px 0px;
-  font-family: 'Roboto';
+  font-family: 'Noto Sans JP';
   font-style: normal;
   font-weight: 400;
   font-size: 36px;
@@ -99,8 +99,6 @@ main {
   text-align: center;
   color: #FFFFFF;
 }
-
-
 .btn-r,
 .btn-c {
   display: flex;
@@ -112,14 +110,13 @@ main {
 .form-group {
   margin-left: 80px;
 }
-
 #id_title {
   position: absolute;
   width: 800px;
   font-size: 36px;
   letter-spacing: 0.02em;
   color: black;
-  font-family: "Hiragino Sans";
+  font-family: "Noto Sans JP";
   font-style: normal;
   margin-left: 44px;
   top: 138px;
@@ -135,7 +132,7 @@ main {
 .price {
   width: 100%;
   height: 16px;
-  font-family: 'Roboto';
+  font-family: 'Noto Sans JP';
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -149,7 +146,6 @@ main {
 .author {
   margin-top: 45px;
 }
-
 #id_author {
   margin-left: 85px;
   text-decoration:underline;
@@ -158,20 +154,17 @@ main {
   letter-spacing: 0.02em;
   line-height: 100%;
   color: black;
-  font-family: "Hiragino Sans";
+  font-family: "Noto Sans JP";
   font-style: normal;
   font-weight: 180px;
   margin-top: 0;
   margin-bottom: 0;
 }
-
 #id_title,
 #id_author{
   outline: none;
   border: none;
 }
-
-
 .released {
   margin-left: 441px;
   margin-top: 55px;
@@ -192,7 +185,6 @@ main {
   margin-left: 441px;
   margin-top: 43px;
 }
-
 #id_released_at,
 #id_purchased_at,
 #id_page_count,
@@ -204,7 +196,7 @@ main {
   letter-spacing: 0.02em;
   line-height: 100%;
   color: black;
-  font-family: "Hiragino Sans";
+  font-family: "Noto Sans JP";
   font-style: normal;
   margin-top: 0;
   width: 240px;
@@ -239,14 +231,12 @@ main {
   top: 515px;
   text-align: right;
 }
-
 #id_image_path {
   /* width: 40px;
   height: 40px; */
   background: #ADECE2;
   filter: blur(0.5px);
 }
-
 img {
   position: absolute;
   width: 163px;
