@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Webカメラで写真を撮る</h1>
+<video id="video" width="640" height="480" autoplay></video>
+<canvas id="canvas" style="display: none;"></canvas>
+<form method="post">
+  {% csrf_token %}
+  <input type="hidden" name="photo" id="photo" />
+  <button type="submit">写真を撮る</button>
+</form>
+{% if photo %}
+<h2>撮影した写真</h2>
+<img src="{{ photo }}" alt="写真" width="640" height="480" />
+{% endif %}
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  const video = document.getElementById('video');
+  const canvas = document.getElementById('canvas');
+  const context = canvas.getContext('2d');
+  const photo = document.getElementById('photo');
+
+  // navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+  //   .then(function (stream) {
+  //     video.srcObject = stream;
+  //   })
+  //   .catch(function (error) {
+  //     console.error('mediaDevice.getUserMedia() error:', error);
+  //     return;
+  //   });
+  navigator.mediaDevices.getUserMedia({video: true, audio: false})
+        .then(function(stream) {
+          const video = document.getElementById('video');
+          video.srcObject = stream;
+        })
+        .catch(function(error) {
+          console.error('mediaDevice.getUserMedia() error:', error);
+          return;
+        });
+
+  function takePhoto() {
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    context.drawImage(video, 0, 0);
+    photo.value = canvas.toDataURL();
+  }
+
+  document.querySelector('form').addEventListener('submit', function (event) {
+    event.preventDefault();
+    takePhoto();
+    this.submit();
+  });
+
+</script>
+{% endblock %}
