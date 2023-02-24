@@ -52,7 +52,7 @@ class BarcodeUpdateForm(forms.Form):
 
 # バーコード入力用フォーム
 class BarcodeInputForm(forms.Form):
-    barcode = forms.IntegerField(label='数字', required=False)
+    barcode = forms.IntegerField(label='', required=False)
 
 
 # Date入力用

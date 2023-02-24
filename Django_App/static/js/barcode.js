@@ -10,3 +10,6 @@ img.src = '/media/img/noimage.png'
 
 const labelImg = document.querySelector(".form-group-update label");
 labelImg.after(img);
+
+let element = document.querySelector('label');
+element.id = 'img_title'

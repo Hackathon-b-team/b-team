@@ -26,3 +26,124 @@ main {
   border-radius: 10px;
   padding: 32px;
 }
+
+/* Tag */
+.tag {
+  position: absolute;
+  width: 178px;
+  height: 63px;
+  left: 0;
+  top: 40px;
+  background: #155E75;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 0px 25px 25px 0px;
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 100%;
+  align-items: center;
+  letter-spacing: 0.08em;
+  text-align: center;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+}
+.messages {
+  position: absolute;
+  width: 650px;
+  height: auto;
+  top: 50px;
+  left: 200px;
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 46px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: #000000;
+}
+.search {
+  display: flex;
+  width: 800px;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 100px;
+}
+
+#form_send_barcode_update,
+#form_send_barcode_input {
+  width: 290px;
+  height: 342px;
+  padding: 12px;
+  background: #F8F8F8;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.form-group-input,
+.form-group-update {
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 46px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: #000000;
+}
+p {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+#id_barcode {
+  width: 210px;
+  height: 46px;
+  margin-top: 54px;
+  margin-bottom: 80px;
+  background: #FFFFFF;
+  border: 0.5px solid #929292;
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+}
+.number_search,
+.img_search {
+  display: flex;
+  width: 191px;
+  height: 56px;
+  position: absolute;
+  top: 85%;
+  left: 28%;
+  background: #EBFF00;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 46px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: #000000;
+  border: none;
+  margin: -25px 0 0 -25px;
+}
+
+#img_title {
+  display: none;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
