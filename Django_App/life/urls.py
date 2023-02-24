@@ -16,6 +16,7 @@ from .views import (
     MoneyView,
     UserUpdateView,
     PasswordUpdateView,
+    TakePhotoView,
     PrivacyView,
     UserProfileView,
 )
@@ -35,6 +36,9 @@ urlpatterns = [
     path('book_delete/<uuid:pk>/', DetailDeleteView.as_view(), name='book_delete'),
     path('book_update/<uuid:pk>/',DetailUpdateView.as_view(), name='book_update'),
     path('barcode/', BarcodeView.as_view(), name='barcode'),
+
+    path('take_photo/', TakePhotoView.as_view(), name='take_photo'),
+
     path('add/', BookAddView.as_view(), name='add'),
     path('money/', MoneyView.as_view(), name='money'),
     path('user_change/', UserUpdateView.as_view(), name='user_change'),
