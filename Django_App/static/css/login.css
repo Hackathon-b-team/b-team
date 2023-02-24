@@ -20,10 +20,11 @@
     position: relative;
     margin: 0;
     padding: 0;
-    width: 25%;
+    width: 20%;
     height: 100vh;
     text-align: left;
     background-image: url(../images/Login-Image.png);
+    background-repeat: no-repeat;
 }
 
 .Login-form {
