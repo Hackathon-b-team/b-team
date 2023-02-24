@@ -74,6 +74,13 @@ li {
   top: 0px;
 }
 
+.logout-icon {
+  position: absolute;
+  width: 119px;
+  height: 140px;
+  right: 0px;
+  top: 0px;
+}
 /* 
 li svg {
   position: absolute;
