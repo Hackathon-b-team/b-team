@@ -3,7 +3,7 @@
 
 {% block content %}
 {% include 'navbar/navbar_mypage.html' %}
-<link rel="stylesheet" href="{% static 'css/mypage.css' %}">
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
 <main>
   {% include 'sidebar_mypage.html' %}
       <div class="content">
@@ -16,7 +16,7 @@
           {% endfor %}
         </ul>
         {% endif %}
-        {{ user_update_form.as_p }}
+        {{ form.as_p }}
         <button type="submit" class="">変更</button>
       </form>
   </div>

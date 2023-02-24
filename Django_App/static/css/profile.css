@@ -28,7 +28,26 @@ main {
   left: 0;
   margin-left: 50px;
 }
-
+.my_icon {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  left: 60px;
+  top: 25px;
+  background: #D9D9D9;
+  border-radius: 50px;
+}
+.myicon_add {
+  position: absolute;
+  top: 12%;
+  left: 25%;
+  background: #D9D9D9;
+  border: none;
+  font-family: 'Noto_Sans_JP';
+  font-style: normal;
+  font-size: 64px;
+  color: #FFFFFF;
+}
 .username {
   position: absolute;
   width: 73px;
@@ -43,12 +62,22 @@ main {
   letter-spacing: 0.02em;
   color: #000000;
 }
-.email {
+hr{
   position: absolute;
-  width: 170px;
+  width: 840px;
+  top: 236px;
+  left: 80px;
+  border: none;
+  border-bottom: 2px solid #E0E4EC;
+  margin: 0;
+  transform: rotate(0.07deg);
+}
+.email,
+.password {
+  position: absolute;
+  width: 200px;
   height: 28px;
   left: 96px;
-  top: 384px;
   font-family: 'Noto_Sans_JP';
   font-style: normal;
   font-weight: 300;
@@ -57,17 +86,35 @@ main {
   letter-spacing: 0.02em;
   color: #000000;
 }
+.email {
+  top: 384px;
+}
 .password {
-  position: absolute;
-  width: 122px;
-  height: 28px;
-  left: 96px;
   top: 561px;
-  font-family: 'Roboto';
+}
+.user_email,
+.user_password {
+  position: absolute;
+  width: 400px;
+  height: 48px;
+  left: 96px;
+  box-sizing: border-box;
+  position: absolute;
+  border: 1px solid #D9D9D9;
+  border-radius: 8px;
+  font-family: 'Noto_Sans_JP';
   font-style: normal;
   font-weight: 300;
   font-size: 24px;
   line-height: 28px;
   letter-spacing: 0.02em;
   color: #000000;
+  display: flex;
+  align-items: center;
+}
+.user_email {
+  top: 420px;
+}
+.user_password {
+  top: 600px;
 }

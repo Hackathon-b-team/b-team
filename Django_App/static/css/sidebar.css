@@ -10,7 +10,7 @@
   position: relative;
 }
 
-.logout-icon svg {
+.logout-button svg {
   position: absolute;
   top: 684px;
   left: 150px;
@@ -22,7 +22,7 @@
   transition: 0.4s ease-in-out;
 }
 
-.logout-icon:hover svg:nth-of-type(2) {
+.logout-button:hover svg:nth-of-type(2) {
   opacity: 0;
 }
 
