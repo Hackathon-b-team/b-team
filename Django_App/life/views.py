@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
-from django.views.generic.edit import CreateView, FormView, FormMixin, ModelFormMixin
+from django.views.generic.edit import CreateView, FormView, FormMixin, ModelFormMixin,DeleteView,UpdateView
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic import UpdateView
-from .forms import RegistForm, LoginForm, CategoryAddForm, BarcodeUpdateForm, BarcodeInputForm, BookAddForm, UserUpdateForm, PasswordUpdateForm
+from .forms import RegistForm, LoginForm, CategoryAddForm, BarcodeUpdateForm, BarcodeInputForm, BookAddForm, UserUpdateForm, PasswordUpdateForm,BookForm, BookBarcodeForm
 from .models import Users, CategoryModel, BookBarcodeModel, BookModel
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
@@ -87,7 +87,7 @@ class HomeView(LoginRequiredMixin, TemplateView, ModelFormMixin):
         return super().form_valid(form)
 
 
-# detail用
+# 詳細画面用
 class DetailView(LoginRequiredMixin, TemplateView):
     template_name = "detail.html"
     
@@ -99,8 +99,45 @@ class DetailView(LoginRequiredMixin, TemplateView):
         qs_list.extend(qs)
         ctx["object_list"] = qs_list
         return render(request, self.template_name, ctx)
+    
+# 詳細画面から削除する
+class DetailDeleteView(DeleteView,LoginRequiredMixin, TemplateView):
+    template_name = "delete.html"
+    model = BookModel
+    def get(self, request,pk, *args, **kwargs):
+        self.object = self.get_object()
+        barcode = self.object.bid
+        self.object.delete()
+        barcode.delete()
+        return redirect("life:home")
+
+#詳細情報を更新
+class DetailUpdateView(UpdateView):
+    model = BookModel
+    form_class = BookForm
+    success_url = reverse_lazy('life:home')
+    template_name = 'book_update.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.POST:
+            context['barcode_form'] = BookBarcodeForm(self.request.POST, instance=self.object.bid)
+        else:
+            context['barcode_form'] = BookBarcodeForm(instance=self.object.bid)
+        return context
+    
+    def form_valid(self, form):
+        context = self.get_context_data()
+        barcode_form = context['barcode_form']
+        if barcode_form.is_valid():
+            barcode_form.save()
+        return super().form_valid(form)
 
 
+    
+        
+
+    
 
 # バーコード画像保存
 def imageupload(updata, path):
