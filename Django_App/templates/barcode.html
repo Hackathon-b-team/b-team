@@ -1,56 +1,46 @@
-{% extends 'base.html' %} {% load static %} {% block header %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
 <link rel="stylesheet" href="{% static 'css/barcode.css' %}" />
-{% endblock %} {% block content %} {% include "navbar/navbar_add.html" %}
+{% endblock %}
+
+{% block content %}
+{% include "navbar/navbar_add.html" %}
 <main>
   <div class="content">
-    <p class="tag">検索</p>
+    <h1>検索</h1>
     {% if messages %}
-    <ul class="messages">
-      {% for message in messages %}
-      <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
-        {{ message }}
-      </li>
-      {% endfor %}
-    </ul>
+      <ul class="messages">
+        {% for message in messages %}
+          <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+      </ul>
     {% endif %}
-    <div class="search">
-    <form
-      action=""
-      method="POST"
-      name="form_send_barcode_update"
-      id="form_send_barcode_update"
-      enctype="multipart/form-data"
-    >
-      {% csrf_token %}
-      <!-- {{ barcode_update_form.non_field_errors }} -->
-      <div class="form-group-update">
-        <p>画像で検索する？</p>
-        {{ barcode_update_form.as_p }}
-        <button type="submit" class="img_search" name="button_send_barcode_update">
-          検索！
-        </button>
-      </div>
-    </form>
-
-    <form
-      action=""
-      method="POST"
-      name="form_send_barcode_input"
-      id="form_send_barcode_input"
-    >
-      {% csrf_token %}
-      <!-- {{ barcode_input_form.non_field_errors }} -->
-      <div class="form-group-input">
-        <p>バーコードの<br>
-          数字で探す？</p>
-        {{ barcode_input_form.as_p }}
-        <button type="submit" class="number_search" name="button_send_barcode_input">
-          検索！
-        </button>
-      </div>
-    </form>
+    <div id="form1">
+      <h2>バーコード画像で探す？</h2>
+      <div id="image-area"></div>
+      <form action="" method="POST" name="form_send_barcode_update" id="form_send_barcode_update" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ barcode_update_form.non_field_errors }}
+          <div class="form-group-update">
+            {{ barcode_update_form.as_p }}
+            <button type="submit" class="" name="button_send_barcode_update"> 検索！ </button>
+          </div>
+      </form>
+    </div>
+    <div id="form2">
+      <h2>バーコード数字で探す？</h2>
+      <form action="" method="POST" name="form_send_barcode_input" id="form_send_barcode_input">
+          {% csrf_token %}
+          {{ barcode_input_form.non_field_errors }}
+          <div class="form-group-input">
+            {{ barcode_input_form.as_p }}
+            <button type="submit" class="" name="button_send_barcode_input"> 検索！ </button>
+          </div>
+      </form>
+    </div>
   </div>
-</div>
-    <script type="text/javascript" src="{% static 'js/barcode.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/barcode.js' %}"></script>
 </main>
 {% endblock content %}

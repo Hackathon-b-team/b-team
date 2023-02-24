@@ -26,6 +26,7 @@
         <div class="item item{{obj.cid_id}}">
           <p>{{ obj.bid.title }}</p>
           <a href="{% url 'life:detail' obj.uuid %}">
+            <span>詳細ページへ</span>
             {% if obj.bid.image_path != "img/noimage.png" %}
             <img src="/media/{{ obj.bid.image_path }}" alt="画像" />
             {% elif obj.bid.image_link %}

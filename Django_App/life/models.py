@@ -59,7 +59,7 @@ class BookModel(models.Model):
     uid = models.ForeignKey(Users, on_delete=models.DO_NOTHING)
     cid = models.ForeignKey(CategoryModel, on_delete=models.DO_NOTHING)
     bid = models.ForeignKey(BookBarcodeModel, on_delete=models.DO_NOTHING)
-    progress = models.CharField(max_length=10, default='unread')
+    progress = models.PositiveIntegerField(default=0)
     evaluation = models.PositiveSmallIntegerField(default=0)
     review = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)

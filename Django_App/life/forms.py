@@ -47,7 +47,7 @@ class CategoryAddForm(forms.ModelForm):
 
 # バーコードアップデート用フォーム
 class BarcodeUpdateForm(forms.Form):
-    barcode_image = forms.ImageField(label='画像', required=False)
+    barcode_image = forms.ImageField(label='', required=False)
 
 
 # バーコード入力用フォーム
