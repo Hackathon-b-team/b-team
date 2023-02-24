@@ -199,6 +199,9 @@ class BarcodeView(LoginRequiredMixin, TemplateView, FormMixin):
         barcode = None
         # バーコード取得
         if 'barcode_image' in form.cleaned_data:
+            if form.cleaned_data['barcode_image'] == None:
+                messages.error(self.request, '10桁or13桁のISBNコードの画像をアップロードしてください')
+                return redirect('life:barcode')
             path = f"{settings.MEDIA_ROOT}/barcode/{form.cleaned_data['barcode_image']}"
             imageupload(form.cleaned_data['barcode_image'], path)
             barcode = barcodetonumber(path)
@@ -209,8 +212,8 @@ class BarcodeView(LoginRequiredMixin, TemplateView, FormMixin):
             barcode = form.cleaned_data['barcode']
         # バーコードの制限
         if not len(str(barcode))==10 and not len(str(barcode))==13:
-                messages.error(self.request, '10桁or13桁のISBNコードにしてください')
-                return redirect('life:barcode')
+            messages.error(self.request, '10桁or13桁のISBNコードにしてください')
+            return redirect('life:barcode')
         elif len(str(barcode))==13:
             if not str(barcode).startswith("978"):
                 messages.error(self.request, '13桁の978から始まるISBNコードにしてください')

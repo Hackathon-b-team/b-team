@@ -13,7 +13,7 @@
 <div>
   <ul>
     {% for obj in object_list %}
-    <a href="https://www.amazon.co.jp/s?k={{ obj.bid.barcode }}">
+    <a href="https://www.amazon.co.jp/s?k={{ obj.bid.barcode }}" target="_blank">
       {% if obj.bid.image_path != "img/noimage.png" %}
       <img src="/media/{{ obj.bid.image_path}}" alt="画像">
       {% elif obj.bid.image_link %}
@@ -80,7 +80,7 @@
     <p>レビュー：なし</p>
     {% endif %}
 
-    <a href="https://www.amazon.co.jp/s?k={{ obj.bid.barcode }}">この本をAmazonで確認する</a>
+    <a href="https://www.amazon.co.jp/s?k={{ obj.bid.barcode }}" target="_blank">この本をAmazonで確認する</a>
     <div>
       <button > <a href="{% url 'life:book_update' obj.uuid %}">編集する</a></button>
    
