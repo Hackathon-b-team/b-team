@@ -231,12 +231,6 @@ main {
   top: 515px;
   text-align: right;
 }
-#id_image_path {
-  /* width: 40px;
-  height: 40px; */
-  background: #ADECE2;
-  filter: blur(0.5px);
-}
 img {
   position: absolute;
   width: 163px;
@@ -250,5 +244,19 @@ input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
+/* アップロードボタンのスタイルを無効にする */
+#image_add input {
+  display:none; 
+}
+#image_add {
+  position: absolute;
+  width: 41px;
+  height: 41px;
+  left: 342px;
+  top: 486px;
+  background: url(../images/plus.png);
+  border: none; /* インラインボックスに設定 */
+  display: inline-block; /* マウスカーソルを当てた時、ポインタに設定 */
+  cursor: pointer;
+}
 
