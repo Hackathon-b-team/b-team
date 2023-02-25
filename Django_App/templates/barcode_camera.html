@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/barcode-camera.css' %}" />
+{% endblock %}
+
+{% block content %}
+{% include "navbar/navbar_add.html" %}
+<main>
+  <div class="main-content">
+    <div class="content">
+      <h1>カメラで取得</h1>
+      {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+      <div id="take">
+        <video id="video" width="480" height="320" autoplay></video><br>
+        <button type="button" id="picture">写真を撮る</button>
+      </div>
+      <div id="send">
+        <div id="send_canvas">
+          <canvas id="canvas"></canvas>
+        </div>
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="photo" id="photo" />
+          <button type="submit" id="send_button">検索</button>
+        </form>
+      </div>
+    </div>
+    <a href="{% url 'life:barcode' %}" id="barcode_link">
+      <label>戻る</label>
+    </a>
+  </div>
+</main>
+<script type="text/javascript" src="{% static 'js/barcode-camera.js' %}"></script>
+{% endblock %}
