@@ -1,0 +1,21 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block content %}
+{% include 'navbar/navbar_mypage.html' %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}" />
+<main>
+  {% include 'sidebar_mypage.html' %}
+  <div class="content">
+    <div class="my_icon">
+      <img src="" alt="">
+    </div>
+    <div class="username">{{ user.username }}</div>
+    <hr>
+    <div class="email">メールアドレス</div>
+    <div class="user_email">{{ user.email }}</div>
+    <div class="password">パスワード</div>
+    <div class="user_password">●●●●●●●●●●</div>
+  </div>
+  <script type="text/javascript" src="{% static 'js/profile.js' %}"></script>
+</main>
+{% endblock content %}

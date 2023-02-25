@@ -19,6 +19,32 @@ from datetime import date
 from dateutil.relativedelta import relativedelta
 import numpy
 import requests
+from django.http import JsonResponse
+import base64
+import io
+from PIL import Image
+
+class TakePhotoView(FormView):
+    template_name = 'take_photo.html'
+    form_class = None
+    success_url = reverse_lazy('life:take_photo')
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+    def post(self, request, *args, **kwargs):
+        data_url = request.POST.get('photo')
+        # ここでデータURLを使って必要な処理を行う
+
+        # データURLをデコードして、画像データを取得する
+        image_data = base64.b64decode(data_url.split(',')[1])
+
+        # 画像データからPILイメージを作成する
+        image = Image.open(io.BytesIO(image_data))
+
+        # 画像ファイルを保存する
+        image.save('path/to/image.png')
+        return JsonResponse({'status': 'success'})
 
 
 # SignUp用
@@ -199,6 +225,9 @@ class BarcodeView(LoginRequiredMixin, TemplateView, FormMixin):
         barcode = None
         # バーコード取得
         if 'barcode_image' in form.cleaned_data:
+            if form.cleaned_data['barcode_image'] == None:
+                messages.error(self.request, '10桁or13桁のISBNコードの画像をアップロードしてください')
+                return redirect('life:barcode')
             path = f"{settings.MEDIA_ROOT}/barcode/{form.cleaned_data['barcode_image']}"
             imageupload(form.cleaned_data['barcode_image'], path)
             barcode = barcodetonumber(path)
@@ -209,8 +238,8 @@ class BarcodeView(LoginRequiredMixin, TemplateView, FormMixin):
             barcode = form.cleaned_data['barcode']
         # バーコードの制限
         if not len(str(barcode))==10 and not len(str(barcode))==13:
-                messages.error(self.request, '10桁or13桁のISBNコードにしてください')
-                return redirect('life:barcode')
+            messages.error(self.request, '10桁or13桁のISBNコードにしてください')
+            return redirect('life:barcode')
         elif len(str(barcode))==13:
             if not str(barcode).startswith("978"):
                 messages.error(self.request, '13桁の978から始まるISBNコードにしてください')
@@ -315,8 +344,8 @@ class MoneyView(LoginRequiredMixin, TemplateView):
 class UserUpdateView(LoginRequiredMixin, UpdateView):
     model = Users
     form_class = UserUpdateForm
-    template_name = 'mypage.html'
-    success_url = reverse_lazy('life:mypage')
+    template_name = 'user_change.html'
+    success_url = reverse_lazy('life:profile')
 
     def get_object(self):
         return self.request.user
@@ -335,3 +364,11 @@ class PasswordUpdateView(LoginRequiredMixin, PasswordChangeView):
     def form_valid(self, form):
         messages.success(self.request, '登録内容を変更しました')
         return super().form_valid(form)
+
+# User情報表示用
+class UserProfileView(LoginRequiredMixin, TemplateView):
+    template_name = 'profile.html'
+
+# プライバシーポリシーリンク用
+class PrivacyView(LoginRequiredMixin, TemplateView):
+    template_name = 'privacy.html'

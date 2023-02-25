@@ -7,33 +7,35 @@
 {% endblock %} 
 
 {% block content %}
-{% include "navbar.html" %}
+{% include "navbar/navbar_home.html" %}
 <main>
   <div class="main-content">
     <div class="sab-content">
-      <div class="cotegory">
-        カテゴリー
+      <div class="category-name">カテゴリー</div>
+      <ul class="category">
+        {% for cate in category_list %}
+        <button  id="category-button" class="em{{ cate.id }}">{{ cate.category_name }}</button>
+        {% endfor %}
+      </ul>
+      <div class="btn-content">
+        <button id="add-category-btn" >
+          <img src="../static/images/plus-hover.png"/>
+          <img src="../static/images/plus.png"/>
+        </button>
       </div>
     </div>
     <div class="content">
       <div class="title">
         本棚
       </div>
-      <div>
-        <button id="add-category-btn">カテゴリーを作成</button>
-      </div>
       {% include 'modal/add-category.html' %}
       <div>
-        <ul class="category">
-          {% for cate in category_list %}
-          <button class="em{{ cate.id }}">{{ cate.category_name }}</button>
-          {% endfor %}
-        </ul>
         <ul class="items">
           {% for obj in object_list %}
           <div class="item item{{obj.cid_id}}">
             <p>{{ obj.bid.title }}</p>
             <a href="{% url 'life:detail' obj.uuid %}">
+              <span>詳細ページへ</span>
               {% if obj.bid.image_path != "img/noimage.png" %}
               <img src="/media/{{ obj.bid.image_path }}" alt="画像" />
               {% elif obj.bid.image_link %}
@@ -47,7 +49,6 @@
           {% endfor %}
         </ul>
       </div>
-    </div>
   </div>
 </main>
 <script type="text/javascript" src="{% static 'js/category.js' %}"></script>
