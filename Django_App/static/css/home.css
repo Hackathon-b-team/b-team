@@ -1,32 +1,113 @@
 body {
-  width: 100vw;
-  height: 100vh;
   background: #f0fdfa;
   margin: 0 auto;
 }
-
-/* Body */
-
-main {
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+.main-content{
   display: flex;
-  height: calc(100vh - 140px);
-  padding-top: 140px;
+  margin-top:10%;
+  margin-right: 5%;
 }
 
-.content {
-  position: relative;
-  width: 1000px;
-  height: 657px;
-  display: flex;
-  background-color: white;
-  box-shadow: 0px 0px 30px rgba(200, 200, 200, 0.4);
+/* カテゴリー */
+.sab-content{
+  position: absolute;
+  left: 5%;
+  width: 15%;
+  height: 70%;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 30px rgba(170, 170, 170, 0.16), 0px 10px 20px rgba(194, 194, 194, 0.16);
   border-radius: 10px;
-  padding: 32px;
-  overflow-y: scroll;
 }
+
+.category-name{
+  /* フォント */
+  font-family: 'Noto Sans JP';
+  font-size: 40px;
+  text-align: center;
+  color: white;
+  background: #155E75;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px 15px 0px 0px;
+}
+
+.category{
+  margin: 0 auto;
+  
+}
+
+#category-button{
+  justify-content: center;
+  display:flex;
+  background-color: white;
+  width: 100%;
+  height: 56px;
+  border: none;
+  border-bottom: 1px solid #D9D9D9;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 16px;
+  align-items: center;
+  letter-spacing: 0.08em;
+  color: #BEBEBE;
+}
+
+#category-button::after {
+  position:absolute;
+  margin-top: 10%;
+  content: '';
+  width: 35%;
+  height: 2px;
+  background: #A9A9A9;
+  border-radius: 20px;
+  transform: scale(0, 1);
+  transform-origin: center top;
+  transition: transform .3s;
+}
+
+#category-button:hover::after {
+  transform: scale(1, 1);
+}
+
+.btn-content{
+  position: relative;
+}
+
+#add-category-btn{
+  border: none;
+  overflow: hidden;
+  cursor: pointer;
+  background: transparent;
+}
+
+#add-category-btn img{
+  position: absolute;
+  top: 0px;
+  right: 0;
+  display: block;
+  transition: all 0.25s;
+  z-index: 1;
+}
+
+#add-category-btn:hover img:nth-of-type(2){
+  opacity: 0;
+}
+
+/* 本棚 */
+.content{
+  position: absolute;
+  right: 5%;
+  width: 70%;
+  height: 70%;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 30px rgba(170, 170, 170, 0.16), 0px 10px 20px rgba(194, 194, 194, 0.16);
+  border-radius: 10px;
+}
+
+
+
 
 .item {
   position: relative;
@@ -66,4 +147,16 @@ main {
   left: 20px;
   border: 6px solid transparent;
   border-top: 10px solid white;
+}
+
+.title{
+  margin-top: 2%;
+  font-family: 'Noto Sans JP';
+  text-align: center;
+  width: 10%;
+  font-size: 36px;
+  color: white;
+  background: #155E75;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 0px 25px 25px 0px;
 }

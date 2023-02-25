@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
 
 @font-face {
     font-family: 'Roboto';
@@ -20,15 +18,17 @@
     position: relative;
     margin: 0;
     padding: 0;
-    width: 25%;
+    width: 20%;
     height: 100vh;
     text-align: left;
     background-image: url(../images/Login-Image.png);
+    background-repeat: no-repeat;
 }
 
 .Login-form {
     position: relative;
     position: absolute;
+    margin-top:5%;
     top: 5%;
     left: 50%;
     width: 432px;
@@ -41,7 +41,6 @@ h1 {
     top:0px;
     margin:0px;
     padding:0px;
-    weight:209;
     text-align: center;
     font-family: 'Roboto';
     font-style: normal;
@@ -238,6 +237,5 @@ input[type="password"]{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-fill-color: transparent;
   }
 
