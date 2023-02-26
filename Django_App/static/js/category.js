@@ -9,17 +9,20 @@ items.forEach((item) => {
         item.style.display = "none";
     }
 
-    category[0].style.backgroundColor = "#FFFFFF";
+    category[0].style.color = "#155E75";
+    category[0].style.backgroundColor = "#EBEBEB";
 
     for(let i=0; i<category.length; i++){
         category[i].addEventListener('click',()=>{
 
             const categoryName = category[i].className
 
-            category[i].style.backgroundColor = "#FFFFFF";
+            category[i].style.color = "#155E75";
+            category[i].style.backgroundColor = "#EBEBEB";
             for(let j=0; j<category.length; j++){
-                if(j!==i){
-                    category[j].style.backgroundColor = "#555555";
+                if( j !== i ){
+                    category[j].style.color = "#BEBEBE";
+                    category[j].style.backgroundColor = "#FFFFFF";
                 }
             }
 
