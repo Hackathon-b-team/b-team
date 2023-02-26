@@ -10,24 +10,29 @@
   position: relative;
 }
 
-.logout-button svg {
+.logout-button {
   position: absolute;
-  top: 684px;
-  left: 150px;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  width: 100%;
-  display: block;
-  -webkit-transition: 0.4s ease-in-out;
-  transition: 0.4s ease-in-out;
+  top: 650px;
+  left: 72px;
+  width: 224px;
+  height: 40px;
+  overflow: hidden;
+  cursor: pointer;
 }
-
-.logout-button:hover svg:nth-of-type(2) {
-  opacity: 0;
-}
-
 .profile-icon {
   position: absolute;
   top: 80px;
   justify-content: center;
+}
+
+.logout-button button {
+  width: 262px;
+  height: 40px;
+  border: none;
+  background-color: white;
+  background-image:  url(../images/logout.png);
+}
+
+.logout-button button:hover  {
+  background-image:  url(../images/logout-hover.png);
 }
