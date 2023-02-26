@@ -30,7 +30,7 @@ class Users(AbstractBaseUser, PermissionsMixin):
 
 class CategoryModel(models.Model):
     uid = models.ForeignKey(Users, on_delete=models.DO_NOTHING)
-    category_name = models.CharField(max_length=50)
+    category_name = models.CharField(max_length=10)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
