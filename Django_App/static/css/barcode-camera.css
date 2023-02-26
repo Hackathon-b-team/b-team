@@ -17,26 +17,32 @@ main {
   margin-top: 140px;
 }
 
-.content {
+.main-content {
   position: absolute;
   width: 70%;
   height: 70%;
-  min-width: 700px;
-  min-height: 480px;
-  display: flex;
+  min-width: 1100px;
+  min-height: 500px;
+  /* display: flex; */
   background-color: white;
   box-shadow: 0px 0px 30px rgba(200, 200, 200, 0.4);
   border-radius: 10px;
-  padding: 32px;
+  /* padding: 32px; */
   justify-content: center;
+}
+
+.content {
+  position: relative;
+  display: flex;
 }
 
 h1 {
   position: absolute;
-  width: 15%;
+  width: 20%;
   height: 10%;
   left: 0%;
   top: 2%;
+  padding-left: 0%;
   background: #155E75;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 0px 25px 25px 0px;
@@ -44,7 +50,7 @@ h1 {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
-  font-size: 36px;
+  font-size: 24px;
   line-height: 16px;
 
   display: flex;
@@ -57,75 +63,62 @@ h1 {
 
 .messages {
   position: absolute;
-  width: 44%;
+  width: 70%;
   height: 10%;
-  left: 30%;
+  left: 20%;
   top: 6%;
   color: red;
   text-align: center;
-  font-family: 'Roboto';
-  font-style: normal;
 }
 
-#form1, #form2 {
+#take, #send {
   position: relative;
   text-align: center;
-  width: 30%;
+  width: 40%;
   height: 80%;
-  min-width: 270px;
+  min-width: 460px;
   min-height: 370px;
-  margin-top: 6%;
-  margin-left: 10%;
+  margin-top: 7%;
+  margin-left: 8%;
   background-color: #F8F8F8;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
-  font-family: 'Roboto';
-  font-style: normal;
 }
 
-.errorlist {
+#take button {
+  position: relative;
+  width: 50%;
+  height: 15%;
+
+  background: #7796f5;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+
   font-family: 'Roboto';
   font-style: normal;
-  font-size: 10px;
-  color: red;
-  font-family: 'Roboto';
-  font-style: normal;
+  font-size: 24px;
 }
 
-#image-area {
+#send_canvas {
   position: relative;
   display: inline-block;
   background-color: #D9D9D9;
-  width: 60%;
-  height: 50%;
-  text-align: center;
+  width: 440px;
+  height: 320px;
 }
 
-#image-area img {
+#canvas {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-input[type="file"] {
-  display: none;
-}
-
-#form-group-update-label {
-  padding: 0 2%;
-  color: #ffffff;
-  background-color: #384878;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-  cursor: pointer;
-  font-family: 'Roboto';
-  font-style: normal;
-}
-
-.form-group-update button {
+#send_button {
   position: relative;
   width: 60%;
-  height: 20%;
+  height: 18%;
 
   background: #EBFF00;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -138,53 +131,21 @@ input[type="file"] {
   font-size: 30px;
 }
 
-.form-group-input input {
-  position: relative;
-  margin-top: 10%;
-  font-size: large;
-}
-
-.form-group-input button {
-  position: relative;
-  margin-top: 10%;
-  width: 60%;
-  height: 20%;
-
-  background: #EBFF00;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
-
-  font-family: 'Roboto';
-  font-style: normal;
-  font-size: 30px;
-}
-
-#camera-link {
-  position: relative;
+#barcode_link {
   display: inline-block;
-  margin-top: 130%;
-  margin-left: 10%;
-  width: 40%;
-  height: 5%;
-  min-width: 360px;
+  text-align: center;
+  width: 80px;
+  height: 30px;
+  margin-top: 30px;
+  margin-left: 7%;
 
-  background: #107070;
+  background: white;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
-  border: none;
+  border-color: black;
   cursor: pointer;
 
   font-family: 'Roboto';
   font-style: normal;
   font-size: 20px;
-  text-align: center;
-  color: white;
-}
-
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
 }

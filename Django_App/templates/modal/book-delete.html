@@ -7,7 +7,7 @@
       <div id="modal-button">
         <button type="button" id="modal-close-btn">NO</button>
         <button id="modal-confirmation-btn">
-          <a href="{% url 'life:book_delete' %}">YES</a>
+          <a href="{% url 'life:book_delete' obj.uuid %}">YES</a>
         </button>
       </div>
   </div>
