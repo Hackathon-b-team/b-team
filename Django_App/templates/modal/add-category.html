@@ -1,16 +1,19 @@
 <div id="add-category-modal">
   <div class="modal-content">
     <div class="modal-back">
-      <div class="modal-header-add-category">新規カテゴリーを作成</div>
+      <p class="confirmation">タグ作成</p>
+    </div>
+      <div class="modal-header-add-category">タグ名を入力してください</div>
       <form action="" method="POST" name="form_send_category_create" id="form_send_category_create">
         {% csrf_token %}
         {{ form.non_field_errors }}
         <div class="form-group">
           {{ form.as_p }}
         </div>
-        <button type="button" id="add-category-close-btn">キャンセル</button>
-        <button id="add-category-confirmation-btn">作成</button>
+        <div class="modal_button">
+          <button type="button" id="add-category-close-btn">戻る</button>
+          <button id="add-category-confirmation-btn">作成</button>
+        </div>
       </form>
-    </div>
   </div>
 </div>

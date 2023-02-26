@@ -1,24 +1,28 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 {% load static %}
-
-{% block content %}
+{% block content %} 
 {% include 'navbar/navbar_mypage.html' %}
-<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static '/css/user-modal.css' %}" />
+<link rel="stylesheet" href="{% static 'css/profile.css' %}" />
 <main>
   {% include 'sidebar_mypage.html' %}
-      <div class="content">
-      <form method="POST">
-        {% csrf_token %}
-        {% if messages %}
-        <ul class="messages">
-          {% for message in messages %}
-            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-          {% endfor %}
-        </ul>
-        {% endif %}
-        {{ form.as_p }}
-        <button type="submit" class="">変更</button>
-      </form>
+  <div class="content">
+    <form method="POST">
+      {% csrf_token %}
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+          {{ message }}
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {{ form.as_p }}
+      <button type="button" id="book-confirmation-btn">変更</button>
+      {% include 'modal/user-fix.html' %}
+    </form>
   </div>
 </main>
+<script type="text/javascript" src="{% static 'js/book-delete-modal.js' %}"></script>
 {% endblock content %}
