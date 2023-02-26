@@ -19,32 +19,7 @@ from datetime import date
 from dateutil.relativedelta import relativedelta
 import numpy
 import requests
-from django.http import JsonResponse
 import base64
-import io
-from PIL import Image
-
-class TakePhotoView(FormView):
-    template_name = 'take_photo.html'
-    form_class = None
-    success_url = reverse_lazy('life:take_photo')
-
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name)
-
-    def post(self, request, *args, **kwargs):
-        data_url = request.POST.get('photo')
-        # ここでデータURLを使って必要な処理を行う
-
-        # データURLをデコードして、画像データを取得する
-        image_data = base64.b64decode(data_url.split(',')[1])
-
-        # 画像データからPILイメージを作成する
-        image = Image.open(io.BytesIO(image_data))
-
-        # 画像ファイルを保存する
-        image.save('path/to/image.png')
-        return JsonResponse({'status': 'success'})
 
 
 # SignUp用
@@ -125,9 +100,10 @@ class DetailView(LoginRequiredMixin, TemplateView):
         qs_list.extend(qs)
         ctx["object_list"] = qs_list
         return render(request, self.template_name, ctx)
-    
+
+
 # 詳細画面から削除する
-class DetailDeleteView(DeleteView,LoginRequiredMixin, TemplateView):
+class DetailDeleteView(DeleteView, LoginRequiredMixin, TemplateView):
     template_name = "delete.html"
     model = BookModel
     def get(self, request,pk, *args, **kwargs):
@@ -137,13 +113,14 @@ class DetailDeleteView(DeleteView,LoginRequiredMixin, TemplateView):
         barcode.delete()
         return redirect("life:home")
 
+
 #詳細情報を更新
-class DetailUpdateView(UpdateView):
+class DetailUpdateView(LoginRequiredMixin, UpdateView):
     model = BookModel
     form_class = BookForm
     success_url = reverse_lazy('life:home')
     template_name = 'book_update.html'
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.request.POST:
@@ -151,7 +128,7 @@ class DetailUpdateView(UpdateView):
         else:
             context['barcode_form'] = BookBarcodeForm(instance=self.object.bid)
         return context
-    
+
     def form_valid(self, form):
         context = self.get_context_data()
         barcode_form = context['barcode_form']
@@ -159,11 +136,6 @@ class DetailUpdateView(UpdateView):
             barcode_form.save()
         return super().form_valid(form)
 
-
-    
-        
-
-    
 
 # バーコード画像保存
 def imageupload(updata, path):
@@ -185,7 +157,7 @@ def barcodetonumber(img):
         code = codes[0]
         return code[0][0].decode('utf8')
     else:
-        return 'INVARID'
+        return 'INVALID'
 
 
 # バーコード用
@@ -256,6 +228,45 @@ class BarcodeView(LoginRequiredMixin, TemplateView, FormMixin):
         return HttpResponseRedirect(self.get_success_url())
 
 
+# Webカメラでのバーコード取得
+class BarcodeCameraView(LoginRequiredMixin, FormView):
+    template_name = 'barcode_camera.html'
+    form_class = None
+    success_url = reverse_lazy('life:add')
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+    def post(self, request, *args, **kwargs):
+        # バーコード取得
+        data_url = request.POST.get('photo')
+        path = f"{settings.MEDIA_ROOT}/barcode/{request.user.username}"
+        with open(path,"wb") as f:
+            f.write(base64.b64decode(data_url.split(',')[1]))
+        barcode = barcodetonumber(path)
+        if barcode == 'INVALID':
+            messages.error(self.request, 'バーコード画像をアップロードしてください。もしくは、バーコードと認識できません')
+            return redirect('life:barcode_camera')
+        # バーコードの制限
+        if not len(str(barcode))==10 and not len(str(barcode))==13:
+            messages.error(self.request, '10桁or13桁のISBNコードにしてください')
+            return redirect('life:barcode_camera')
+        elif len(str(barcode))==13:
+            if not str(barcode).startswith("978"):
+                messages.error(self.request, '13桁の978から始まるISBNコードにしてください')
+                return redirect('life:barcode_camera')
+        # APIからデータ取得
+        url = f"https://www.googleapis.com/books/v1/volumes?q=isbn:{barcode}"
+        book = requests.get(url)
+        book_data = book.json()
+        if "items" not in book_data:
+            messages.error(self.request, 'このバーコード番号では、データを取得できませんでした')
+            return redirect('life:barcode_camera')
+        self.request.session['barcode'] = barcode
+        self.request.session['book_data'] = book_data
+        return HttpResponseRedirect(self.get_success_url())
+
+
 # APIデータ登録用
 class BookAddView(LoginRequiredMixin, CreateView):
     template_name = 'add.html'
@@ -267,7 +278,10 @@ class BookAddView(LoginRequiredMixin, CreateView):
         barcode = self.request.session['barcode']
         book_data = self.request.session['book_data']
         title = book_data["items"][0]["volumeInfo"]["title"]
-        author = book_data["items"][0]["volumeInfo"]["authors"]
+        if "authors" in book_data["items"][0]["volumeInfo"]:
+            author = book_data["items"][0]["volumeInfo"]["authors"]
+        else:
+            author = None
         if "listPrice" in book_data["items"][0]["saleInfo"]:
             price = book_data["items"][0]["saleInfo"]["listPrice"]["amount"]
         else:
@@ -345,7 +359,7 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
     model = Users
     form_class = UserUpdateForm
     template_name = 'user_change.html'
-    success_url = reverse_lazy('life:profile')
+    success_url = reverse_lazy('life:user_change')
 
     def get_object(self):
         return self.request.user

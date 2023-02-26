@@ -55,8 +55,8 @@ p.caveat {
 .modal-header {
   position: absolute;
   width: 700px;
-  height: 47px;
-  top: 166px;
+  height: 134px;
+  top: 133px;
   left: 0;
   font-family: 'Noto_Sans_JP';
   text-align: center;
@@ -65,7 +65,7 @@ p.caveat {
   font-style: normal;
   font-weight: 400;
   font-size: 32px;
-  line-height: 16px;
+  line-height: 50px;
   letter-spacing: 0.08em;
   color: #000000;
   cursor: default;

@@ -1,14 +1,14 @@
 <div id="book-confirmation-modal">
   <div class="modal-content">
     <div class="modal-back">
-      <p class="caveat">削除</p>
+      <p class="caveat">ログアウト</p>
     </div>
-      <div class="modal-header">本当に削除しますか？</div>
+      <div class="modal-header">本当にログアウトしますか？</div>
       <div id="modal-button">
         <button type="button" id="modal-close-btn">NO</button>
         <button id="modal-confirmation-btn">
-          <a href="{% url 'life:book_delete' obj.uuid %}">YES</a>
-        </button>
+          <a href="{% url 'life:logout' %}">YES</a>
+          </button>
       </div>
   </div>
 </div>
