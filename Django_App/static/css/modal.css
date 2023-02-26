@@ -1,20 +1,32 @@
 /* ここは全部同じ値 */
 .modal-content {
   position: relative;
-  margin: 20% auto;
-  width: 600px;
-  height: 300px;
-  background-color: whitesmoke;
+  margin: 10% auto;
+  width: 700px;
+  height: 400px;
+  background-color: #FBFBFB;
   border-radius: 20px;
-  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
-  overflow: auto;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
 }
 
 .modal-back {
-  height: 60px;
-  background: linear-gradient(90.55deg, rgba(0, 26, 255, 0.504) -8.83%, rgba(0, 194, 255, 0.6) 112.46%);
-  backdrop-filter: blur(15px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  background-color: #FBFBFB;
   border-radius: 20px 20px 0px 0px;
+  border-bottom: 2px solid #D9D9D9;
+}
+p.confirmation {
+  margin: 0;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 16px;
+  letter-spacing: 0.08em;
+  color: #06B6D4;
 }
 
 /* ---新規カテゴリーを追加---*/
@@ -32,85 +44,104 @@
 
 .modal-header-add-category {
   position: absolute;
-  width: 350px;
+  width: 700px;
+  height: 47px;
+  top: 110px;
+  left: 0;
+  font-family: 'Noto_Sans_JP';
   text-align: center;
-  height: 40px;
-  top: 85px;
-  left: 120px;
-  /* font-family: 'BIZ UDPGothic'; */
+  display: flex;
+  justify-content: center;
   font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 40px;
-  letter-spacing: -0.02em;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 16px;
+  letter-spacing: 0.08em;
   color: #000000;
-  overflow: auto;
   cursor: default;
 }
 
-#form_send_category_create {
+#id_category_name {
   position: absolute;
-  top: 130px;
-  left: 130px;
+  top: 185px;
+  left: 0;
+  margin: 0 179px;
   cursor: pointer;
-  margin-bottom: 20px;
-  width: 450px;
-  height: 32px;
+  width: 340px;
+  height: 70px;
   font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 24px;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 16px;
+  letter-spacing: 0.08em;
+  background: #FFFFFF;
+  border: 2px solid #555555;
+  border-radius: 10px;
 }
 
+label {
+  display: none;
+}
+
+.modal_button {
+  width: 700px;
+  height: 108px;
+  position: absolute;
+  bottom: 0;
+  justify-content: center;
+  align-items: flex-end;
+  background: #6AF3DB;
+  border-radius: 0px 0px 20px 20px;
+}
 /* キャンセルボタン */
 #add-category-close-btn {
   position: absolute;
-  width: 150px;
-  height: 40px;
-  left: 10px;
-  top: 100px;
-  background-color: white;
-  color: #000000;
-
-  /* font-family: 'BIZ UDPGothic'; */
+  width: 200px;
+  height: 108px;
+  left: 150px;
+  bottom: 0;
+  background-color: #6AF3DB;
+  color: #115E59;
+  font-family: 'Noto_Sans_JP';
   font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 24px;
-
-  letter-spacing: -0.02em;
-  border: 1px solid #333;
-  border-radius: 5px;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 16px;
+  letter-spacing: 0.08em;
+  box-sizing: border-box;
+  border-width: 0px 1px;
+  border-style: solid;
+  border-color: #5EEAD4;
   cursor: pointer;
-  transition: all 0.25s;
 }
 
 #add-category-close-btn:hover {
-  background: #D4D4D4;
+  background: #5EEAD4;
 }
 
 /* OKボタン */
 #add-category-confirmation-btn {
   position: absolute;
-  width: 150px;
-  height: 40px;
-  right: 130px;
-  top: 100px;
-  background: #278AFF;
-  color: white;
-  /* font-family: 'BIZ UDPGothic'; */
+  width: 200px;
+  height: 108px;
+  left: 350px;
+  bottom: 0;
+  background-color: #6AF3DB;
+  color: #115E59;
+  font-family: 'Noto_Sans_JP';
   font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 24px;
-  letter-spacing: -0.02em;
-  border: none;
-  border-radius: 5px;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 16px;
+  letter-spacing: 0.08em;
+  box-sizing: border-box;
+  border-width: 0px 1px;
+  border-style: solid;
+  border-color: #5EEAD4;
   cursor: pointer;
-  transition: all 0.25s;
 }
 
 #add-category-confirmation-btn:hover {
-  background: #126BD5;
+  background: #5EEAD4;
 }
 
