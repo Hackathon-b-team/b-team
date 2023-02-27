@@ -36,7 +36,7 @@ function outsideClose(e) {
 }
 
 // モーダル内のキャンセルがクリックされた時
-bookCategoryCloseBtn.addEventListener("click", () => {
+addCategoryCloseBtn.addEventListener("click", () => {
   modalClose("book-confirmation");
 });
 
@@ -47,3 +47,7 @@ function outsideClose(e) {
     bookCategoryModal.style.display = "none";
   }
 }
+
+$(document).ready(function(){
+  $('.modal').modal(); // モーダルを初期化
+});

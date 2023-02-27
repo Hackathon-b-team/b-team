@@ -24,12 +24,17 @@
         </svg>
       </div>
       <div class="username">{{ user.username }}</div>
-      <hr>  
-      {{ form.as_p }}
-      <button type="button" id="book-confirmation-btn">変更</button>
+      <hr>
+      <div class="name-fix-label">名前</div>
+      <div>{{ form.username }}</div>
+      <div class="mail-fix-label">メールアドレス</div>
+      <div>{{ form.email }}</div>
+      <div class="completion">
+        <button type="button" class="modal" id="user-fix">変更</button>
+      </div>
       {% include 'modal/user-fix.html' %}
     </form>
   </div>
 </main>
-<script type="text/javascript" src="{% static 'js/book-delete-modal.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/user-fix-modal.js' %}"></script>
 {% endblock content %}

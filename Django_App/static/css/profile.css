@@ -63,9 +63,12 @@ hr{
 .email,
 .password,
 .name-fix-label,
-.mail-fix-label {
+.mail-fix-label,
+.old-ps-label,
+.new-ps1-label,
+.new-ps2-label {
   position: absolute;
-  width: 200px;
+  width: 450px;
   height: 28px;
   left: 96px;
   font-family: 'Noto_Sans_JP';
@@ -83,6 +86,15 @@ hr{
 .password,
 .mail-fix-label {
   top: 450px;
+}
+.old-ps-label {
+  top: 261px
+}
+.new-ps1-label {
+  top: 369px
+}
+.new-ps2-label {
+  top: 471px
 }
 .user_email,
 .user_password {
@@ -105,7 +117,10 @@ hr{
   align-items: center;
 }
 #id_username,
-#id_email {
+#id_email,
+#id_old_password,
+#id_new_password1,
+#id_new_password2 {
   width: 450px;
   height: 54px;
   left: 96px;
@@ -131,13 +146,22 @@ hr{
 #id_email {
   top: 478px;
 }
+#id_old_password {
+  top: 289px;
+}
+#id_new_password1 {
+  top: 397px;
+}
+#id_new_password2 {
+  top: 499px;
+}
 
 .completion {
   display: flex;
   align-items: center;
   text-align: center;
 }
-.completion-button {
+#user-fix {
   position: absolute;
   width: 80px;
   height: 30px;
@@ -155,7 +179,30 @@ hr{
   color: #FFFFFF;
   border: none;
 }
-.completion-button:hover {
+#user-fix:hover {
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 20px;
+}
+.messages {
+  width: 572px;
+  font-family: 'Noto_Sans_JP';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: 0.08em;
+  color: red;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#success {
+  font-family: 'Noto_Sans_JP';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.08em;
+  color: red;
 }

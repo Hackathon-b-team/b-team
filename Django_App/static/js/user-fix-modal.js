@@ -1,42 +1,42 @@
 // モーダルを表示させる
-const addCategoryBtn = document.getElementById("user-fix");
-const addCategoryModal = document.getElementById("book-confirmation-modal");
-const addCategoryCloseBtn = document.getElementById("modal-close-btn");
+const changeUserBtn = document.getElementById("user-fix");
+const changeUserModal = document.getElementById("user-confirmation-modal");
+const changeUserCloseBtn = document.getElementById("modal-close");
 
 // モーダルを開く
 function modalOpen(mode) {
   if (mode === "add-category") {
-    addCategoryModal.style.display = "block";
+    changeUserModal.style.display = "block";
   }
 }
 
 // <button id="add-category-btn">カテゴリーを作成</button>ボタンがクリックされた時
-addCategoryBtn.addEventListener("click", () => {
+changeUserBtn.addEventListener("click", () => {
   modalOpen("add-category");
 });
 
 // モーダルを閉じる
 function modalClose(mode) {
   if (mode === "add-category") {
-    addCategoryModal.style.display = "none";
+    changeUserModal.style.display = "none";
   }
 }
 
 // モーダル内のキャンセルがクリックされた時
-addCategoryCloseBtn.addEventListener("click", () => {
+changeUserCloseBtn.addEventListener("click", () => {
   modalClose("add-category");
 });
 
 // モーダルコンテンツ以外がクリックされた時
 addEventListener("click", outsideClose);
 function outsideClose(e) {
-  if (e.target == addCategoryModal) {
-    addCategoryModal.style.display = "none";
+  if (e.target == changeUserModal) {
+    changeUserModal.style.display = "none";
   }
 }
 
 // モーダル内のキャンセルがクリックされた時
-bookCategoryCloseBtn.addEventListener("click", () => {
+changeUserCloseBtn.addEventListener("click", () => {
   modalClose("book-confirmation");
 });
 
