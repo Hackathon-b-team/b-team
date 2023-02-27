@@ -28,7 +28,9 @@
   top: 192px;
 }
 
-a {
+.profile-tag a,
+.mail-tag a,
+.password-tag a {
   font-family: 'Noto_Sans_JP';
   font-style: normal;
   font-weight: 400;
@@ -48,7 +50,9 @@ a {
   margin-right: 24px;
 }
 
-a:hover {
+.profile-tag a:hover,
+.mail-tag a:hover,
+.password-tag a:hover {
   color: #115E59;
 }
 
