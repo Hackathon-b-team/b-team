@@ -63,10 +63,10 @@ class DateInput(forms.DateInput):
 # 本データ入力用フォーム
 class BookAddForm(forms.ModelForm):
     barcode = forms.CharField(widget=forms.HiddenInput())
-    title = forms.CharField(label='')
-    author = forms.CharField(label='')
+    title = forms.CharField(label='タイトル')
+    author = forms.CharField(label='著者')
     price = forms.IntegerField(label='購入金額')
-    page_count = forms.IntegerField(label='ページ')
+    page_count = forms.IntegerField(label='ページ数')
     image_link = forms.URLField(label='image', widget=forms.URLInput(attrs={"class":"form-img-link"}), required=False)
     image_path = forms.ImageField(label='本の画像を変更する', required=False)
     released_at = forms.DateField(label='発売日', widget=DateInput(), required=False)
@@ -75,7 +75,7 @@ class BookAddForm(forms.ModelForm):
 
     class Meta():
         model = BookBarcodeModel
-        fields = ['barcode', 'title', 'author', 'price', 'page_count', 'image_link', 'image_path', 'released_at', 'purchased_at']
+        fields = ['barcode', 'title', 'author', 'image_link', 'image_path', 'released_at', 'purchased_at', 'page_count', 'category', 'price']
 
     def __init__(self, *args, **kwargs):
         book = kwargs.pop('book')
@@ -90,7 +90,7 @@ class BookAddForm(forms.ModelForm):
         self.base_fields["category"].queryset = book["category"]
         self.base_fields["category"].initial = book["category"][0]
         super().__init__(*args, **kwargs)
-
+        self.label_suffix = ''
 
 # ユーザー情報変更用
 class UserUpdateForm(forms.ModelForm):
