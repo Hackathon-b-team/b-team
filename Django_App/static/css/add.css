@@ -20,6 +20,8 @@ main {
   position: relative;
   width: 1000px;
   height: 657px;
+  min-width: 700px;
+  min-height: 480px;
   display: flex;
   background-color: white;
   box-shadow: 0px 0px 30px rgba(200, 200, 200, 0.4);
@@ -56,7 +58,7 @@ main {
   width: 450px;
   justify-content: space-between;
   margin-left: 200px;
-  margin-top: 24px;
+  margin-top: 54px;
 }
 .btn-r {
   width: 195px;
@@ -84,7 +86,7 @@ main {
 .btn-c {
   width: 195px;
   height: 62px;
-  background: #EDEEEE;
+  background: #E1E1E1;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
   text-align: center;
@@ -110,9 +112,11 @@ main {
 .form-group {
   margin-left: 80px;
 }
+
+/* タイトルと著者 */
 #id_title {
   position: absolute;
-  width: 800px;
+  width: 786px;
   font-size: 36px;
   letter-spacing: 0.02em;
   color: black;
@@ -123,31 +127,10 @@ main {
   text-decoration:underline;
   text-decoration-color: #D9D9D9;
 }
-.title,
-.author,
-.released,
-.purchased,
-.page_count,
-.category,
-.price {
-  width: 100%;
-  height: 16px;
-  font-family: 'Noto Sans JP';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 16px;
-  letter-spacing: 0.08em;
-  color: #000000;
-}
-.title {
-  margin-top: 130px;
-}
-.author {
-  margin-top: 45px;
-}
 #id_author {
-  margin-left: 85px;
+  position: absolute;
+  top: 204px;
+  margin-left: 44px;
   text-decoration:underline;
   text-decoration-color: #D9D9D9;
   font-size: 32px;
@@ -164,27 +147,57 @@ main {
 #id_author{
   outline: none;
   border: none;
+  left: 228px;
 }
-.released {
-  margin-left: 441px;
-  margin-top: 55px;
+
+/* label */
+#form-p0,
+#form-p1,
+#form-p4,
+#form-p5,
+#form-p6,
+#form-p7,
+#form-p8 {
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 16px;
+  letter-spacing: 0.08em;
+  color: #000000;
 }
-.purchased {
-  margin-left: 441px;
+#form-p4,
+#form-p5,
+#form-p6,
+#form-p7,
+#form-p8 {
+  margin-left: 402px;
+}
+#form-p0 {
+  margin-top: 126px;
+  margin-left: 42px;
+}
+#form-p1 {
+  margin-top: 48px;
+  margin-left: 60px;
+}
+#form-p4 {
+  margin-top: 75px;
+}
+#form-p5 {
   margin-top: 43px;
 }
-.page_count {
-  margin-left: 441px;
+#form-p6 {
   margin-top: 43px;
 }
-.category {
-  margin-left: 441px;
+#form-p7 {
   margin-top: 43px;
 }
-.price {
-  margin-left: 441px;
+#form-p8 {
   margin-top: 43px;
 }
+
+/* form */
 #id_released_at,
 #id_purchased_at,
 #id_page_count,
@@ -210,33 +223,34 @@ main {
   box-sizing: border-box;
 }
 #id_released_at {
-  margin-left: 565px;
-  top: 278px;
+  top: 296px;
 }
 #id_purchased_at {
-  margin-left: 565px;
-  top: 337px;
+  top: 355px;
 }
 #id_page_count {
-  margin-left: 565px;
-  top: 396px;
-  text-align: right;
+  top: 414px;
 }
 #id_category {
-  margin-left: 565px;
-  top: 456px;
+  top: 474px;
+  margin-left: 18px;
 }
 #id_price {
-  margin-left: 565px;
-  top: 515px;
-  text-align: right;
+  top: 533px;
 }
-img {
-  position: absolute;
-  width: 163px;
-  height: auto;
-  left: 78px;
-  top: 150px;
+#id_released_at,
+#id_purchased_at {
+  margin-left: 60px;
+}
+#id_page_count,
+#id_price {
+  text-align: right;
+  margin-left: 39px;
+}
+
+#form-p2 label,
+#form-p3 label {
+  display: none;
 }
 
 input[type="number"]::-webkit-outer-spin-button,
@@ -244,19 +258,38 @@ input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+/* img */
+img {
+  position: absolute;
+  width: auto;
+  height: 270px;
+  left: 228px;
+  top: 300px;
+}
 /* アップロードボタンのスタイルを無効にする */
-#image_add input {
+#form-p3 input {
   display:none; 
 }
-#image_add {
+#form-p3 label{
   position: absolute;
   width: 41px;
   height: 41px;
-  left: 342px;
-  top: 486px;
+  left: 396px;
+  top: 548px;
   background: url(../images/plus.png);
   border: none; /* インラインボックスに設定 */
   display: inline-block; /* マウスカーソルを当てた時、ポインタに設定 */
   cursor: pointer;
+  z-index: 1;
+  color: transparent;
 }
 
+.errorlist {
+  position: absolute;
+  width: 1000px;
+  top: 10px;
+  display: flex;
+  text-align: center;
+  color: red;
+}
