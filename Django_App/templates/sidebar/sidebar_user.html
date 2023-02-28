@@ -1,6 +1,6 @@
 {% load static %} 
 {% block content %}
-<link rel="stylesheet" type="text/css" href="{% static '/css/book-modal.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static '/css/modal.css' %}" />
 <link rel="stylesheet" href="{% static 'css/sidebar.css' %}" />
 <div class="sidebar">
   <div class="profile-tag">
@@ -11,7 +11,7 @@
       プロフィール
     </a>
   </div>
-  <div class="mail-tag">
+  <div class="mail-tag-02">
     <a href="{% url 'life:user_change' %}">
       <svg width="29" height="21" viewBox="0 0 29 21" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path class="mail-path01" d="M8 6L14.5 11L21 6" stroke="#929292" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -28,10 +28,10 @@
     </a>
   </div>
   <div class="logout-button">
-    <button type="button" class="modal" id="book-confirmation-btn">
+    <button type="button" id="logout-modal">
     </button>
   </div>
   {% include 'modal/logout.html' %}
 </div>
-<script type="text/javascript" src="{% static 'js/book-delete-modal.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/logout-modal.js' %}"></script>
 {% endblock content %}

@@ -99,7 +99,7 @@ main {
   display: flex;
   align-items: center;
   text-align: center;
-  color: #FFFFFF;
+  color: #787878;
 }
 .btn-r,
 .btn-c {
@@ -116,7 +116,7 @@ main {
 /* タイトルと著者 */
 #id_title {
   position: absolute;
-  width: 786px;
+  width: 624px;
   font-size: 36px;
   letter-spacing: 0.02em;
   color: black;
@@ -275,14 +275,17 @@ img {
   position: absolute;
   width: 41px;
   height: 41px;
-  left: 396px;
+  left: 402px;
   top: 548px;
   background: url(../images/plus.png);
-  border: none; /* インラインボックスに設定 */
-  display: inline-block; /* マウスカーソルを当てた時、ポインタに設定 */
+  border: none;
+  display: inline-block; 
   cursor: pointer;
   z-index: 1;
   color: transparent;
+}
+#form-p3 label:hover {
+  background: url(../images/plus-hover.png);
 }
 
 .errorlist {

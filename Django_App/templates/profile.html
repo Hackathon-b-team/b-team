@@ -4,7 +4,7 @@
 {% include 'navbar/navbar_mypage.html' %}
 <link rel="stylesheet" href="{% static 'css/profile.css' %}" />
 <main>
-  {% include 'sidebar_mypage.html' %}
+  {% include 'sidebar/sidebar_profile.html' %}
   <div class="content">
     <div class="my_icon">
       <svg width="80" height="92" viewBox="0 0 80 92" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -18,6 +18,5 @@
     <div class="password">パスワード</div>
     <div class="user_password">●●●●●●●●●●</div>
   </div>
-  <script type="text/javascript" src="{% static 'js/profile.js' %}"></script>
 </main>
 {% endblock content %}
