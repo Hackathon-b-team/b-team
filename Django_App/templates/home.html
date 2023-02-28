@@ -24,11 +24,11 @@
         </button>
       </div>
     </div>
+    {% include 'modal/add-category.html' %}
     <div class="content">
       <div class="title">
         本棚
       </div>
-      {% include 'modal/add-category.html' %}
       <div>
         <ul class="items">
           {% for obj in object_list %}

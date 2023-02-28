@@ -95,6 +95,11 @@ body {
   opacity: 0;
 }
 
+#add-category-modal{
+  z-index: 10;
+}
+
+
 /* 本棚 */
 .content{
   position: absolute;
@@ -109,12 +114,27 @@ body {
   scrollbar-width: thin;
 }
 
+.title{
+  z-index: 2;
+  position: fixed;
+  margin-top: 2%;
+  font-family: 'Noto Sans JP';
+  text-align: center;
+  width: 10%;
+  font-size: 36px;
+  color: white;
+  background: #155E75;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 0px 25px 25px 0px;
+}
 
-
+.items{
+  display: flex;
+}
 
 .item {
-  position: relative;
   z-index: 1;
+  position: relative;
 }
 
 .item img{
@@ -124,6 +144,7 @@ body {
 
 .item-back{
   background-color: #74C4B7;
+  padding-top: ;
   width: 155px;
   height: 210px;
 }
@@ -163,18 +184,4 @@ body {
   left: 20px;
   border: 6px solid transparent;
   border-top: 10px solid white;
-}
-
-.title{
-  z-index: 10;
-  position: fixed;
-  margin-top: 2%;
-  font-family: 'Noto Sans JP';
-  text-align: center;
-  width: 10%;
-  font-size: 36px;
-  color: white;
-  background: #155E75;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 0px 25px 25px 0px;
 }
