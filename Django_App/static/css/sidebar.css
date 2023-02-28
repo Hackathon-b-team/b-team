@@ -1,6 +1,6 @@
 .sidebar {
   width: 262px;
-  height: 657px;
+  height: 577px;
   background-color: white;
   box-shadow: 0px 0px 30px rgba(200, 200, 200, 0.4);
   border-radius: 10px;
@@ -10,19 +10,65 @@
   position: relative;
 }
 
+.profile-tag,
+.mail-tag,
+.password-tag {
+  position: absolute;
+  left: 48px;
+  overflow: hidden;
+}
+
+.profile-tag {
+  top: 44px;
+}
+.mail-tag {
+  top: 119px;
+}
+.password-tag {
+  top: 192px;
+}
+
+.profile-tag a,
+.mail-tag a,
+.password-tag a {
+  font-family: 'Noto_Sans_JP';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.08em;
+  color: #929292;
+}
+
+.profile-tag svg,
+.mail-tag svg,
+.password-tag svg {
+  width: 26px;
+  height: 26px;
+  margin-right: 24px;
+}
+
+.profile-tag a:hover,
+.mail-tag a:hover,
+.password-tag a:hover {
+  color: #115E59;
+}
+
+.profile-tag a:hover path,
+.mail-tag a:hover path,
+.password-tag a:hover path {
+  stroke: #115E59;
+}
+
 .logout-button {
   position: absolute;
-  top: 650px;
+  bottom: 51px;
   left: 72px;
   width: 224px;
   height: 40px;
   overflow: hidden;
-  cursor: pointer;
-}
-.profile-icon {
-  position: absolute;
-  top: 80px;
-  justify-content: center;
 }
 
 .logout-button button {
@@ -31,6 +77,7 @@
   border: none;
   background-color: white;
   background-image:  url(../images/logout.png);
+  cursor: pointer;
 }
 
 .logout-button button:hover  {

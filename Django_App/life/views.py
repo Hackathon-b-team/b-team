@@ -147,7 +147,7 @@ def imageupload(updata, path):
 # バーコード画像解析
 def barcodetonumber(img):
     src_img = Image.open(img)
-    rate = numpy.arange(0.5, 2.1, 0.1)
+    rate = numpy.arange(0.1, 2.1, 0.1)
     imgs = [src_img.resize(
         (int(src_img.width * i), int(src_img.height * i)), Image.LANCZOS) for i in rate]
     datas = [decode(img) for img in imgs]
