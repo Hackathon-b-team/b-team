@@ -10,7 +10,7 @@
 {% include "navbar/navbar_home.html" %}
 <main>
   <div class="main-content">
-    <div class="sab-content">
+    <div class="sub-content">
       <div class="category-name">カテゴリー</div>
       <ul class="category">
         {% for cate in category_list %}
@@ -24,27 +24,28 @@
         </button>
       </div>
     </div>
+    {% include 'modal/add-category.html' %}
     <div class="content">
       <div class="title">
         本棚
       </div>
-      {% include 'modal/add-category.html' %}
       <div>
         <ul class="items">
           {% for obj in object_list %}
           <div class="item item{{obj.cid_id}}">
+            <div class="item-back">
+              <a href="{% url 'life:detail' obj.uuid %}">
+                <span>詳細ページへ</span>
+                {% if obj.bid.image_path != "img/noimage.png" %}
+                <img src="/media/{{ obj.bid.image_path }}" alt="画像" />
+                {% elif obj.bid.image_link %}
+                <img src="{{ obj.bid.image_link }}" alt="画像" />
+                {% elif obj.bid.image_path %}
+                <img src="/media/{{ obj.bid.image_path }}" alt="画像" />
+                {% endif %}
+              </a>
+            </div>
             <p>{{ obj.bid.title }}</p>
-            <a href="{% url 'life:detail' obj.uuid %}">
-              <span>詳細ページへ</span>
-              {% if obj.bid.image_path != "img/noimage.png" %}
-              <img src="/media/{{ obj.bid.image_path }}" alt="画像" />
-              {% elif obj.bid.image_link %}
-              <img src="{{ obj.bid.image_link }}" alt="画像" />
-              {% elif obj.bid.image_path %}
-              <img src="/media/{{ obj.bid.image_path }}" alt="画像" />
-              {% endif %}
-            </a>
-            <!-- <hr /> -->
           </div>
           {% endfor %}
         </ul>
