@@ -240,7 +240,7 @@ class BarcodeCameraView(LoginRequiredMixin, FormView):
     def post(self, request, *args, **kwargs):
         # バーコード取得
         data_url = request.POST.get('photo')
-        path = f"{settings.MEDIA_ROOT}/barcode/{request.user.username}"
+        path = f"{settings.MEDIA_ROOT}/barcode/{request.user.username}.png"
         with open(path,"wb") as f:
             f.write(base64.b64decode(data_url.split(',')[1]))
         barcode = barcodetonumber(path)

@@ -29,27 +29,26 @@
       <div class="title">
         本棚
       </div>
-      <div>
-        <ul class="items">
-          {% for obj in object_list %}
-          <div class="item item{{obj.cid_id}}">
-            <div class="item-back">
-              <a href="{% url 'life:detail' obj.uuid %}">
-                <span>詳細ページへ</span>
-                {% if obj.bid.image_path != "img/noimage.png" %}
-                <img src="/media/{{ obj.bid.image_path }}" alt="画像" />
-                {% elif obj.bid.image_link %}
-                <img src="{{ obj.bid.image_link }}" alt="画像" />
-                {% elif obj.bid.image_path %}
-                <img src="/media/{{ obj.bid.image_path }}" alt="画像" />
-                {% endif %}
-              </a>
-            </div>
-            <p>{{ obj.bid.title }}</p>
+      <ul class="items">
+        {% for obj in object_list %}
+        <div class="item item{{obj.cid_id}}">
+          <div class="item-back">
+            <a href="{% url 'life:detail' obj.uuid %}">
+              <span>詳細ページへ</span>
+              {% if obj.bid.image_path != "img/noimage.png" %}
+              <img src="/media/{{ obj.bid.image_path }}" alt="画像" />
+              {% elif obj.bid.image_link %}
+              <img src="{{ obj.bid.image_link }}" alt="画像" />
+              {% elif obj.bid.image_path %}
+              <img src="/media/{{ obj.bid.image_path }}" alt="画像" />
+              {% endif %}
+            </a>
           </div>
-          {% endfor %}
-        </ul>
-      </div>
+          <p>{{ obj.bid.title }}</p>
+        </div>
+        {% endfor %}
+      </ul>
+    </div>
   </div>
 </main>
 <script type="text/javascript" src="{% static 'js/category.js' %}"></script>
