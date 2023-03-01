@@ -19,26 +19,6 @@
       {% csrf_token %} 
       {{ form.non_field_errors }}
       <div class="form-group">
-        {% comment %} <div class="title">タイトル{{ form.title }}</div>
-        <div class="author">著者{{ form.author }}</div>
-        <ul>
-          <li class="released">発売日</li>
-          <div>{{ form.released_at }}</div>
-          <li class="purchased">購入日</li>
-          <div>{{ form.purchased_at }}</div>
-          <li class="page_count">ページ数</li>
-          <div>{{ form.page_count }}</div>
-          <li class="category">カテゴリー</li>
-          <div>{{ form.category }}</div>
-          <li class="price">購入金額</li>
-          <div>{{ form.price }}</div>
-        </ul>
-        <div id="image_link">
-          <img src="{{ book_barcode_model.image_link.url }}" alt="本の画像">
-        </div>
-        <div id="image_add">
-          <input type="file" name="image_path" accept="image/*" id="id_image_path"/>
-        </div> {% endcomment %}
         {{ form.as_p }}
         <div class="btn-wrapper">
           <a href="{% url 'life:barcode' %}" class="btn-c">キャンセル</a>
@@ -48,7 +28,6 @@
         </div>
       </div>
     </form>
-
     <script type="text/javascript" src="{% static 'js/imgadd.js' %}"></script>
   </div>
 </main>

@@ -32,11 +32,23 @@ items.forEach((item) => {
         total_init += Number(num[num.length-1]);
     }
 
+    category[0].style.color = "#155E75";
+    category[0].style.backgroundColor = "#EBEBEB";
+
     // タグがクリックされた時の処理
     for(let j=0; j<category.length; j++){
         category[j].addEventListener('click',()=>{
 
             const categoryName = category[j].className;
+
+            category[j].style.color = "#155E75";
+            category[j].style.backgroundColor = "#EBEBEB";
+            for(let k=0; k<category.length; k++){
+                if( k !== j ){
+                    category[k].style.color = "#BEBEBE";
+                    category[k].style.backgroundColor = "#FFFFFF";
+                }
+            }
 
             if( count[j] < items.length){
                 if( item.className === `item it${categoryName}` ){
