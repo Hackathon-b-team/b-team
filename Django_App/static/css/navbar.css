@@ -50,6 +50,9 @@ li {
   right: 601px;
   top: 0px;
 }
+.home-icon:active {
+  top: 3px;
+}
 
 .add-icon {
   position: absolute;
@@ -57,6 +60,9 @@ li {
   height: 140px;
   right: 390px;
   top: 0px;
+}
+.add-icon:active {
+  top: 3px;
 }
 
 .yen-icon {
@@ -66,6 +72,9 @@ li {
   right: 200px;
   top: 0px;
 }
+.yen-icon:active {
+  top: 3px;
+}
 
 .mypage-icon {
   position: absolute;
@@ -74,14 +83,10 @@ li {
   right: 0px;
   top: 0px;
 }
-
-.logout-icon {
-  position: absolute;
-  width: 119px;
-  height: 140px;
-  right: 0px;
-  top: 0px;
+.mypage-icon:active {
+  top: 3px;
 }
+
 /* 
 li svg {
   position: absolute;

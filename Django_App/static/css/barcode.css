@@ -18,7 +18,7 @@ main {
 }
 
 .content {
-  position: absolute;
+  position: relative;
   width: 70%;
   height: 70%;
   min-width: 1110px;
@@ -74,14 +74,11 @@ main {
   letter-spacing: 0.02em;
 }
 
-.errorlist {
+.errorlist li {
   position: absolute;
-  /* display: inline; */
-  margin: 0 calc(50% - 50vw);
-  width: 100vw;
-  top: 0;
-  /* align-items: center; */
-  margin-bottom: 900px;
+  display: flex;
+  width: auto;
+  top: 3%;
   font-family: 'Noto Sans JP';
   font-style: normal;
   font-weight: 700;
@@ -95,7 +92,7 @@ main {
 #form1,
 #form2,
 #form3 {
-  position: relative;
+  /* position: relative; */
   text-align: center;
   width: 245px;
   height: 301px;
@@ -124,24 +121,19 @@ main {
 .form-group-input,
 .form-group-update {
   display: flex;
-  font-family: 'Noto Sans JP';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 32px;
-  line-height: 46px;
-  text-align: center;
-  letter-spacing: 0.02em;
-  color: #000000;
   justify-content: center;
+}
+.form-group-update {
+  margin-bottom: 100px;
 }
 
 #image-area {
   position: relative;
   display: inline-block;
-  background-color: #D9D9D9;
-  width: 60%;
-  height: 50%;
-  text-align: center;
+  width: 55%;
+  height: 45%;
+  outline: none;
+  border: none;
 }
 
 #image-area img {
@@ -150,21 +142,25 @@ main {
   object-fit: contain;
 }
 
+#form_send_varcode_update {
+  outline: none;
+  border: none;
+}
+
 input[type="file"] {
   display: none;
 }
 
 
 #form-group-update-label {
-  padding: 0 2%;
-  color: #ffffff;
-  width: 90px;
-  height: 132px;
-  background: #74C3B7;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  color: transparent;
+  width: 169px;
+  height: 201px;
+  background: url(../images/img-add.png);
   cursor: pointer;
-  font-family: 'Roboto';
-  font-style: normal;
+  top: 215px;
+  left: 148px;
 }
 
 .form-group-update button,
@@ -184,10 +180,15 @@ input[type="file"] {
   line-height: 35px;
   text-align: center;
   letter-spacing: 0.02em;
-  bottom: 28px;
+  bottom: 132px;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 4px 2px 0;
+}
+.form-group-update button:active,
+.form-group-input button:active {
+  bottom: 129px;
 }
 
 #id_barcode {
@@ -212,6 +213,10 @@ input[type="file"] {
   display: flex;
   cursor: pointer;
   margin-top: 23px;
+}
+#form3 img:active {
+  position: relative;
+  top: 3px;
 }
 
 input[type="number"]::-webkit-outer-spin-button,
