@@ -8,9 +8,9 @@
 {% block content %}
 {% include "navbar/navbar_add.html" %}
 <main>
-  <div class="main-content">
+  {% comment %} <div class="main-content"> {% endcomment %}
     <div class="content">
-      <h1>カメラで検索</h1>
+      <p class="tag">検索</p>
       {% if messages %}
         <ul class="messages">
           {% for message in messages %}
@@ -19,8 +19,10 @@
         </ul>
       {% endif %}
       <div id="take">
-        <video id="video" width="480" height="320" autoplay></video><br>
-        <button type="button" id="picture">写真を撮る</button>
+        <video id="video" width="358" height="266" autoplay></video><br>
+        <button id="picture">
+          <img src="{% static 'images/camera.png' %}" alt="カメラで撮る">
+        </button>
       </div>
       <div id="send">
         <div id="send_canvas">
@@ -28,15 +30,16 @@
         </div>
         <form method="post">
           {% csrf_token %}
-          <input type="hidden" name="photo" id="photo" />
-          <button type="submit" id="send_button">検索</button>
+          <div id="send_button">
+            <input type="hidden" name="photo" id="photo" />
+            <button type="submit">検索！</button>
+          </div>
         </form>
       </div>
     </div>
     <a href="{% url 'life:barcode' %}" id="barcode_link">
-      <label>戻る</label>
+      <img src="{% static 'images/return.png' %}" alt="">      
     </a>
-  </div>
 </main>
 <script type="text/javascript" src="{% static 'js/barcode-camera.js' %}"></script>
 {% endblock %}

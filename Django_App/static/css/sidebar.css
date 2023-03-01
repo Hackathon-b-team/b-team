@@ -11,26 +11,35 @@
 }
 
 .profile-tag,
+.profile-tag-02,
 .mail-tag,
-.password-tag {
+.mail-tag-02,
+.password-tag,
+.password-tag-02 {
   position: absolute;
   left: 48px;
   overflow: hidden;
 }
 
-.profile-tag {
+.profile-tag,
+.profile-tag-02 {
   top: 44px;
 }
-.mail-tag {
+.mail-tag,
+.mail-tag-02 {
   top: 119px;
 }
-.password-tag {
+.password-tag,
+.password-tag-02 {
   top: 192px;
 }
 
 .profile-tag a,
+.profile-tag-02 a,
 .mail-tag a,
-.password-tag a {
+.mail-tag-02 a,
+.password-tag a,
+.password-tag-02 a {
   font-family: 'Noto_Sans_JP';
   font-style: normal;
   font-weight: 400;
@@ -39,15 +48,35 @@
   display: flex;
   align-items: center;
   letter-spacing: 0.08em;
+}
+
+.profile-tag a,
+.mail-tag a,
+.password-tag a {
   color: #929292;
 }
 
+.profile-tag-02 a,
+.mail-tag-02 a,
+.password-tag-02 a {
+  color: #115E59;
+}
+
 .profile-tag svg,
+.profile-tag-02 svg,
 .mail-tag svg,
-.password-tag svg {
+.mail-tag-02 svg,
+.password-tag svg,
+.password-tag-02 svg {
   width: 26px;
   height: 26px;
   margin-right: 24px;
+}
+
+.profile-tag-02 a path,
+.mail-tag-02 a path,
+.password-tag-02 a path {
+  stroke: #115E59;
 }
 
 .profile-tag a:hover,

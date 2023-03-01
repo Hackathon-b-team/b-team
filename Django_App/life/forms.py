@@ -68,7 +68,7 @@ class BookAddForm(forms.ModelForm):
     price = forms.IntegerField(label='購入金額')
     page_count = forms.IntegerField(label='ページ数')
     image_link = forms.URLField(label='image', widget=forms.URLInput(attrs={"class":"form-img-link"}), required=False)
-    image_path = forms.ImageField(label='本の画像を変更する', required=False)
+    image_path = forms.ImageField(label='+', required=False)
     released_at = forms.DateField(label='発売日', widget=DateInput(), required=False)
     purchased_at = forms.DateField(label='購入日', widget=DateInput())
     category = forms.ModelChoiceField(label='カテゴリー', queryset=CategoryModel.objects.none())

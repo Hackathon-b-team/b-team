@@ -47,7 +47,3 @@ function outsideClose(e) {
     bookCategoryModal.style.display = "none";
   }
 }
-
-$(document).ready(function(){
-  $('.modal').modal(); // モーダルを初期化
-});
