@@ -39,10 +39,10 @@ class CategoryModel(models.Model):
 
 class BookBarcodeModel(models.Model):
     barcode =models.CharField(max_length=15)
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=120)
     author = models.CharField(max_length=50, null=True, blank=True)
     price = models.IntegerField(null=True, blank=True)
-    page_count = models.SmallIntegerField(null=True, blank=True)
+    page_count = models.PositiveSmallIntegerField(null=True, blank=True)
     image_link = models.URLField(null=True, blank=True)
     image_path = models.ImageField(upload_to='img/', default='img/noimage.png')
     released_at = models.DateField(null=True, blank=True)
@@ -59,7 +59,7 @@ class BookModel(models.Model):
     uid = models.ForeignKey(Users, on_delete=models.DO_NOTHING)
     cid = models.ForeignKey(CategoryModel, on_delete=models.DO_NOTHING)
     bid = models.ForeignKey(BookBarcodeModel, on_delete=models.DO_NOTHING)
-    progress = models.PositiveIntegerField(default=0)
+    progress = models.PositiveSmallIntegerField(default=0)
     evaluation = models.PositiveSmallIntegerField(default=0)
     review = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -67,12 +67,3 @@ class BookModel(models.Model):
 
     def __str__(self):
         return self.bid.title
-
-
-class UserIconModel(models.Model):
-    uid = models.ForeignKey(Users, on_delete=models.DO_NOTHING)
-    icon_image = models.ImageField(upload_to='icon/')
-    active_flag = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.icon_image

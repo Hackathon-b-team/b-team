@@ -4,8 +4,10 @@ body {
 }
 .main-content{
   display: flex;
-  margin-top:10%;
+  margin-top: 200px;
   margin-right: 5%;
+  min-width: 1115px;
+  /* overflow-x: scroll; */
 }
 
 /* カテゴリー */
@@ -14,6 +16,7 @@ body {
   left: 5%;
   width: 15%;
   height: 70%;
+  min-width: 230px;
   background: #FFFFFF;
   box-shadow: 0px 0px 30px rgba(170, 170, 170, 0.16), 0px 10px 20px rgba(194, 194, 194, 0.16);
   border-radius: 10px;
@@ -103,20 +106,24 @@ body {
 /* 本棚 */
 .content{
   position: absolute;
-  right: 5%;
+  /* right: 5%; */
+  left: 25%;
   width: 70%;
   height: 70%;
+  min-width: 800px;
+  min-height: 500px;
   background: #FFFFFF;
   box-shadow: 0px 0px 30px rgba(170, 170, 170, 0.16), 0px 10px 20px rgba(194, 194, 194, 0.16);
   border-radius: 10px;
-  overflow-y: scroll;
+  /* overflow-y: scroll;
   scrollbar-color: rebeccapurple green;
-  scrollbar-width: thin;
+  scrollbar-width: thin; */
+  overflow: hidden;
 }
 
 .title{
   z-index: 2;
-  position: fixed;
+  position: relative;
   margin-top: 2%;
   font-family: 'Noto Sans JP';
   text-align: center;
@@ -129,26 +136,62 @@ body {
 }
 
 .items{
+  position: relative;
   display: flex;
+  flex-wrap: wrap;
+  margin-top: 3%;
+  margin-left: 10%;
+  width: 90%;
+  height: 80%;
+
+  object-fit: contain;
+  overflow-y: scroll;
+  /* scrollbar-color: rebeccapurple green;
+  scrollbar-width: thin; */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.items::-webkit-scrollbar {
+  display:none;
 }
 
 .item {
   z-index: 1;
   position: relative;
+  display: inline-block;
+  margin-left: 1%;
+  margin-right: 1%;
+  text-align: center;
 }
 
 .item img{
   width: 128px;
   height: 186px;
+  margin-top: 12px;
 }
 
 .item-back{
+  display: inline-block;
   background-color: #74C4B7;
-  padding-top: ;
   width: 155px;
   height: 210px;
 }
 
+.item p {
+  width: 200px;
+  height: 55px;
+
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.item p::-webkit-scrollbar {
+  display:none;
+}
+
+/* 吹き出し表示 */
 .item span {
   position: absolute;
   width: 110px;
