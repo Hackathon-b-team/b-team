@@ -16,8 +16,9 @@ fileInput.addEventListener('change', e => {
     img.src = window.URL.createObjectURL(e.target.files[0]);
 });
 
-// クリック時にlabel要素を消す
+// 画像選択後にlabel要素を消す
+const imgElement = document.querySelector('img');
 const labelElement = document.querySelector('label');
-labelElement.addEventListener('click', function() {
+imgElement.addEventListener('load', function() {
     labelElement.style.display = 'none';
 });

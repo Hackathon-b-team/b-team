@@ -24,5 +24,8 @@
         <a href="{% url 'life:social:begin' 'google-oauth2' %}"><button class= "Google-login">Login with Google</button></a>
         <div class="or"><img src="../static/images/or.png"></div>
         <div class="sign-up-message">Don't have an account?<a class="switch-register-mode" href="{% url 'life:regist' %}">SIGN UP!</a></div>
+        <div>
+            <a class="switch-register-mode" href="{% url 'life:privacy' %}">Privacy Policy</a>
+        </div>
     </div>
 {% endblock content %}
