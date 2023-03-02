@@ -20,6 +20,8 @@ from dateutil.relativedelta import relativedelta
 import numpy
 import requests
 import base64
+from django.utils.translation import ugettext_lazy as _
+from django import forms
 
 
 # SignUp用
@@ -360,12 +362,23 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
     form_class = UserUpdateForm
     template_name = 'user_change.html'
     success_url = reverse_lazy('life:user_change')
+    # fields = ['username', 'email']
 
     def get_object(self):
         return self.request.user
 
     def form_valid(self, form):
         messages.success(self.request, '登録内容を変更しました')
+        return super().form_valid(form)
+    
+    def form_valid(self, form):
+        # フォームから送信されたデータの中に同じユーザー名が存在するかどうかをチェックする
+        if Users.objects.filter(username=form.cleaned_data['username']).exclude(pk=self.object.pk).exists():
+            # エラーメッセージを設定する
+            form.add_error('username', 'This username is already in use.')
+            # form_invalidメソッドを呼び出す
+            return self.form_invalid(form)
+
         return super().form_valid(form)
 
 # password変更用
@@ -378,7 +391,22 @@ class PasswordUpdateView(LoginRequiredMixin, PasswordChangeView):
     def form_valid(self, form):
         messages.success(self.request, '登録内容を変更しました')
         return super().form_valid(form)
+    
+    def form_invalid(self, form):
+        error_messages = []
+        for field, errors in form.errors.items():
+            for error in errors:
+                if field == 'new_password2' and error == "The two password fields didn't match.":
+                    error_messages.append("新しいパスワードと確認用パスワードが一致しません。")
+                elif field == 'new_password2' and error == "This password is too short. It must contain at least %(min_length)d characters.":
+                    error_messages.append(f"新しいパスワードは%(min_length)d文字以上で設定してください。")
+                elif field == 'new_password1' and error == "This password is too common.":
+                    error_messages.append("新しいパスワードが簡単すぎます。もう少し複雑なパスワードに設定してください。")
+                else:
+                    error_messages.append(error)
 
+        return render(self.request, self.template_name, {'form': form, 'error_messages': error_messages})
+    
 # User情報表示用
 class UserProfileView(LoginRequiredMixin, TemplateView):
     template_name = 'profile.html'

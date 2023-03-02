@@ -18,8 +18,10 @@ main {
 
 .content {
   position: relative;
-  width: 572px;
-  height: 577px;
+  min-width: 572px;
+  min-height: 577px;
+  max-width: 572px;
+  max-height: 577px;
   display: flex;
   background-color: white;
   box-shadow: 0px 0px 30px rgba(200, 200, 200, 0.4);
@@ -178,6 +180,7 @@ hr{
   letter-spacing: 0.08em;
   color: #FFFFFF;
   border: none;
+  cursor: pointer;
 }
 #user-fix:active {
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -195,6 +198,34 @@ hr{
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.errorlist {
+  font-family: 'Noto_Sans_JP';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: 0.08em;
+  color: red;
+}
+#old_ps ul {
+  display: flex;
+  position: absolute;
+  margin: 0 30px 0;
+  top: 10px;
+}
+#new_ps2 ul {
+  margin: 0 30px 0;
+  display: block;
+  position: absolute;
+  top: 30px;
+}
+#username_fix ul {
+  display: flex;
+  position: absolute;
+  margin: 0 70px 0;
+  top: 30px;
 }
 
 #success {
