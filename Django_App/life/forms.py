@@ -66,7 +66,7 @@ class DateInput(forms.DateInput):
 class BookAddForm(forms.ModelForm):
     barcode = forms.CharField(widget=forms.HiddenInput())
     title = forms.CharField(label='タイトル')
-    author = forms.CharField(label='著者')
+    author = forms.CharField(label='著者',required=False)
     price = forms.IntegerField(label='購入金額')
     page_count = forms.IntegerField(label='ページ数')
     image_link = forms.URLField(label='image', widget=forms.URLInput(attrs={"class":"form-img-link"}), required=False)
