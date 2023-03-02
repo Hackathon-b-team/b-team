@@ -31,16 +31,15 @@
             <tr class="item item{{obj.bid.purchased_at_month}}">
               <td class="date">{{ obj.bid.purchased_at }}</td>
               <td>{{ obj.bid.title }}</td>
-              <td>{{ obj.bid.price }}円</td>
+              <td class="mny">{{ obj.bid.price }}円</td>
             </tr>
           {% endfor %}
-          <tr>
-            <td>合計</td>
-            <td></td>
-            <td id="total"></td>
-          </tr>
         </table>
       </ul>
+      <div id="expense">
+        <span>月支出：</span>
+        <span id="total"></span>
+      </div>
     </div>
   </div>
 </main>

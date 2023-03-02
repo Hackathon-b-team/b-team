@@ -1,0 +1,210 @@
+  /* Header */
+.life-logo {
+    position: absolute;
+    width: 240px;
+    height: 80px;
+    left: 39px;
+    top: 15px;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 900;
+    font-size: 70px;
+    line-height: 103px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.14em;
+    background: linear-gradient(81.45deg, #0891b2 4.54%, #5eead4 96.15%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.header-bar {
+    position: fixed;
+    width: 100%;
+    height: 100px;
+    min-width: 1115px;
+    left: 0px;
+    top: 0px;
+    z-index: 9999;
+    background: #ffffff;
+    box-shadow: 0px 10px 20px rgba(194, 194, 194, 0.2);
+}
+
+.header-bar ul {
+    padding-left: 0;
+}
+  
+.header-bar li {
+    list-style: none;
+}
+
+.login-link {
+    position: absolute;
+    right: 5%;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 103px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.14em;
+}
+  
+
+.image {
+    width: 100vw;
+    height: 100vh;
+    background-color: #f0fdfa;
+}
+
+h1 {
+    top:0px;
+    padding-top:15%;
+    height:209;
+    text-align: center;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 88px;
+    line-height: 103px;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.14em;
+
+    /* Gradation/2color */
+
+    background: linear-gradient(81.45deg, #0891B2 4.54%, #5EEAD4 96.15%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+h2 {
+    font-family: 'Noto_Sans_JP';
+    top:0px;
+    margin:0px;
+    padding:0px;
+    text-align: center;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 35px;
+    letter-spacing: 0.02em;
+    color: #0E7490;
+}
+
+h3 {
+    font-family: 'Noto_Sans_JP';
+    top:0px;
+    margin-top:3%;
+    padding:0px;
+    text-align: center;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 35px;
+    letter-spacing: 1em;
+    color: black;
+}
+
+
+
+.content1 {
+    width: 100vw;
+}
+
+.content1 p {
+    text-align: center;
+}
+
+.content1 ol {
+    width: 720px;
+    margin: auto;
+    text-align: center;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 28px;
+    border: solid 1.5px #C8C8C8;
+    border-radius: 20px;
+}
+
+.content1 li {
+    padding: 4% 7%;
+}
+
+.about1 {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 56px;
+    line-height: 66px;
+    letter-spacing: 0.14em;
+    color: #0E7490;
+}
+
+.desc1 {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 36px;
+}
+
+
+.content2 {
+    position: relative;
+    margin-top: 5%;
+    width: 100vw;
+    height: 320px;
+    background: #ebf8f8;
+    text-align: center;
+}
+
+.content2 p {
+    padding-top: 3%;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 56px;
+    line-height: 66px;
+    letter-spacing: 0.14em;
+
+    color: #06B6D4;
+}
+
+.login-go {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 38px;
+
+    background: linear-gradient(90deg, #0891B2 0%, #06B6D4 48.52%, #5EEAD4 96.47%);
+    border-radius: 10px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 400px;
+    height: 64px;
+    transition: all 0.25s;
+    margin-bottom:40px;
+    transition-duration: .4s;
+}
+
+#footer {
+    margin-top: 0;
+    width: 100vw;
+    height: 200px;
+    background: #D9D9D9;
+    text-align: center;
+}
+
+#footer p {
+    padding-top: 3%;
+}

@@ -3,9 +3,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 from .views import (
     RegistView,
-    HomeView,
     CustumLoginView,
     CustumLogoutView,
+    IndexView,
+    HomeView,
     BarcodeView,
     BookAddView,
     DetailView,
@@ -27,6 +28,7 @@ urlpatterns = [
     path('regist/', RegistView.as_view(), name='regist'),
     path('login/', CustumLoginView.as_view(), name='login'),
     path('logout/', CustumLogoutView.as_view(), name='logout'),
+    path('', IndexView.as_view(), name='index'),
     path('home/', HomeView.as_view(), name='home'),
     path('detail/<uuid:uuid>/', DetailView.as_view(), name='detail'),
     path('book_delete/<uuid:pk>/', DetailDeleteView.as_view(), name='book_delete'),

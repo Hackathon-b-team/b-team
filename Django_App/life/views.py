@@ -50,6 +50,10 @@ class CustumLogoutView(LogoutView):
     pass
 
 
+class IndexView(TemplateView):
+    template_name = "index.html"
+
+
 class HomeView(LoginRequiredMixin, TemplateView, ModelFormMixin):
     template_name = "home.html"
     form_class = CategoryAddForm
@@ -412,5 +416,5 @@ class UserProfileView(LoginRequiredMixin, TemplateView):
     template_name = 'profile.html'
 
 # プライバシーポリシーリンク用
-class PrivacyView(LoginRequiredMixin, TemplateView):
+class PrivacyView(TemplateView):
     template_name = 'privacy.html'
