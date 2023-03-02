@@ -18,10 +18,10 @@ main {
 
 .content {
   position: relative;
-  width: 1000px;
-  height: 657px;
-  min-width: 700px;
-  min-height: 480px;
+  min-width: 1000px;
+  min-height: 657px;
+  max-width: 1000px;
+  max-height: 657px;
   display: flex;
   background-color: white;
   box-shadow: 0px 0px 30px rgba(200, 200, 200, 0.4);
@@ -78,6 +78,7 @@ main {
   text-align: center;
   letter-spacing: 0.08em;
   color: #FFFFFF;
+  cursor: pointer;
 }
 .btn-r:active,
 .btn-c:active {

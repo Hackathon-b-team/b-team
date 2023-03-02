@@ -4,6 +4,8 @@ from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from datetime import date
 from django.contrib.auth import get_user_model
+from django.utils.translation import gettext as _
+import re
 
 
 # SignUp用フォーム
@@ -101,10 +103,61 @@ class UserUpdateForm(forms.ModelForm):
 
 # パスワード変更用
 class PasswordUpdateForm(PasswordChangeForm):
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['old_password'].widget.attrs.update({'class': 'form-control'})
+        self.fields['new_password1'].widget.attrs.update({'class': 'form-control'})
+        self.fields['new_password2'].widget.attrs.update({'class': 'form-control'})
 
+    def clean_password2(self):
+        password1 = self.cleaned_data.get('new_password1')
+        password2 = self.cleaned_data.get('new_password2')
+
+        # パスワードが一致しない場合
+        if password1 != password2:
+            raise forms.ValidationError(
+                _("The two password fields didn't match."),
+                code='password_mismatch',
+            )
+
+        # パスワードが短すぎる場合
+        if len(password1) < 8:
+            raise forms.ValidationError(
+                _("Password must be at least 8 characters long."),
+                code='password_too_short',
+            )
+
+        # パスワードに数字が含まれていない場合
+        if not any(char.isdigit() for char in password1):
+            raise forms.ValidationError(
+                _("Password must contain at least one digit."),
+                code='password_no_digit',
+            )
+
+        # パスワードにアルファベットが含まれていない場合
+        if not any(char.isalpha() for char in password1):
+            raise forms.ValidationError(
+                _("Password must contain at least one letter."),
+                code='password_no_letter',
+            )
+
+        # パスワードに大文字が含まれていない場合
+        if not any(char.isupper() for char in password1):
+            raise forms.ValidationError(
+                _("Password must contain at least one uppercase letter."),
+                code='password_no_upper',
+            )
+
+        # パスワードに小文字が含まれていない場合
+        if not any(char.islower() for char in password1):
+            raise forms.ValidationError(
+                _("Password must contain at least one lowercase letter."),
+                code='password_no_lower',
+            )
+
+        return password2
+    
+    
 #詳細情報の更新用
 class BookForm(forms.ModelForm):
     class Meta:

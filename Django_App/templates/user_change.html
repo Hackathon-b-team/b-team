@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
 {% include 'navbar/navbar_mypage.html' %}
 <link rel="stylesheet" type="text/css" href="{% static '/css/modal.css' %}" />
@@ -37,10 +36,18 @@
       </div>
       <div class="username">{{ user.username }}</div>
       <hr />
-      <div class="name-fix-label">名前</div>
-      <div>{{ form.username }}</div>
-      <div class="mail-fix-label">メールアドレス</div>
-      <div>{{ form.email }}</div>
+      <div id="username_fix">
+        <label class="name-fix-label" for="{{ form.username.id_for_label }}">名前</label>
+        {{ form.username }}
+        <!-- エラーメッセージを表示する部分 -->
+        {% if form.errors.username %}
+        <div id="alert">{{ form.errors.username }}</div>
+        {% endif %}
+      </div>
+      <div>
+        <label class="mail-fix-label" for="{{ form.email.id_for_label }}">メールアドレス</label>
+        {{ form.email }}
+      </div>
       <div class="completion">
         <button type="button" id="user-fix">完了</button>
       </div>
