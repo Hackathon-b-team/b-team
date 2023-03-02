@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" type="text/css" href="{% static '/css/index.css' %}" />
+{% endblock %} 
+
+{% block content %}
+<header id="header">
+  <nav class="header-bar">
+    <ul>
+      <li class="life-logo">LIFE</li>
+      <li class="login-link"><a href="{% url 'life:login' %}">LOGIN</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <section class="image">
+    <h1>LIFE</h1>
+    <h2>暮らしをもっと便利に</h2>
+    <h3>本を管理するWebアプリ</h3>
+  </section>
+  <section class="content1">
+    <p class="about1">本の管理方法</p>
+    <p class="desc1">■バーコードで本データを簡単取得</p>
+    <ol>
+      <li>既にあるバーコード画像をアップロード</li>
+      <li>バーコードの数字を入力</li>
+      <li>カメラでバーコード画像を取得し、アップロード</li>
+    </ol>
+  </section>
+  <section class="content2">
+    <p>START</p>
+    <a href="{% url 'life:login' %}">
+      <button class="login-go" type="button">Log In</button>
+    </a>
+  </section>
+  <footer id="footer">
+    <p>ハッカソン2022 冬の陣 Bチーム</p>
+    <a href="{% url 'life:privacy' %}">プライバシーポリシー</a>
+  </footer>
+</main>
+{% endblock content %}

@@ -4,7 +4,7 @@ body {
 }
 .main-content{
   display: flex;
-  margin-top: 200px;
+  margin-top: 190px;
   margin-right: 5%;
   min-width: 1115px;
   /* overflow-x: scroll; */
@@ -35,7 +35,6 @@ body {
 
 .category{
   margin: 0 auto;
-  
 }
 
 #category-button{
@@ -55,6 +54,14 @@ body {
   align-items: center;
   letter-spacing: 0.08em;
   color: #BEBEBE;
+
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+#category-button::-webkit-scrollbar {
+  display:none;
 }
 
 #category-button::after {
