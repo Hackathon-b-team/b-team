@@ -162,12 +162,13 @@ class PasswordUpdateForm(PasswordChangeForm):
 class BookForm(forms.ModelForm):
     class Meta:
         model = BookModel
-        fields = ['progress', 'evaluation', 'review']
+        fields = ['progress', 'evaluation', 'review','cid']
         
         labels = {
             'progress': '進捗状況',
             'evaluation': '評価',
-            'review': 'レビュー',
+            'review': '',
+            'cid': 'カテゴリー',
         }
 
     def clean_evaluation(self):
@@ -179,14 +180,34 @@ class BookForm(forms.ModelForm):
 class BookBarcodeForm(forms.ModelForm):
     class Meta:
         model = BookBarcodeModel
-        fields = ['title','author','price', 'image_path', 'purchased_at','released_at']
+        fields = ['title','author','price','page_count','purchased_at','released_at']
         labels = {
-            'title':'タイトル',
-            'author':'著者',
-            'price': '価格',
-            'image_path': '画像ファイル',
+            'title':'',
+            'author':'',
+            'price': '値段',
+            'page_count':'ページ数',
             'purchased_at': '購入日',
             'released_at':'発売日',
         }
+
+class BookBarcodeImageForm(forms.ModelForm):
+    image = forms.ImageField(required=False)
+
+    class Meta:
+        model = BookBarcodeModel
+        fields = ['image']
+        labels = {
+            'image':'',
+        }
+
+    def save(self, commit=True):
+        book = super().save(commit=False)
+        image = self.cleaned_data.get('image')
+        if image:
+            book.image_path.delete()  # 既存の画像を削除
+            book.image_path = image  # 新しい画像を設定
+        if commit:
+            book.save()
+        return book
 
 
