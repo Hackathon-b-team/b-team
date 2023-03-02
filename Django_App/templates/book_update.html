@@ -2,22 +2,77 @@
 {% load static %}
 {% block header %}
 <link rel="stylesheet" type="text/css" href="{% static '/css/modal.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static '/css/update.css' %}" />
 {% endblock %}
 {% block content %}
 {% include "navbar/navbar_detail.html" %}
 
-<!-- ヘッダー回避用（CSSつけたら消してください） -->
-<br><br><br><br><br><br>
+<main>
+  <div class="content">
+    <h1>編集</h1>
+    <form method="post" enctype="multipart/form-data" id="myForm">
 
-<h1>編集画面</h1>
-<form method="post" enctype="multipart/form-data" id="myForm">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {{ barcode_form.as_p }}
+      {% csrf_token %}
+      <img src="{{ object.bid.image_link.url }}" alt="{{ object.bid.title }}" width="200" id="bookimg">
+      {{ form.as_p }}
+      {{ barcode_form.as_p }}
+      <label for="id_image" id="img-btn">
+        <img src="{% static '/images/plus-hover.png' %}" />
+        <img src="{% static '/images/plus.png' %}" />
+      </label>
+      {{ image_form.as_p }}
+      <div id="evaluation"></div>
+      <div id="frame"></div>
+      <button type="button" id="book-confirmation-btn">更新</button>
+      {% include 'modal/book-update.html' %}
 
-    <button type="button" id="book-confirmation-btn">更新</button>
-  {% include 'modal/book-update.html' %}
+    </form>
+    <div id="amazonlink">
+      <a href="https://www.amazon.co.jp/s?k={{ object.bid.barcode }}" target="_blank">Amazonで見る</a>
+    </div>
 
-</form>
+  </div>
+</main>
 <script type="text/javascript" src="{% static 'js/book-delete-modal.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bookupdate.js' %}"></script>
+<script>
+  const input = document.querySelector('input[type="file"]');
+  const image = document.getElementById('bookimg');
+  input.onchange = e => {
+    if (e.target.files.length) {
+      const image = document.getElementById('bookimg');
+      image.src = URL.createObjectURL(e.target.files[0]);
+    }
+  };
+  var f = document.getElementById("myForm");
+  var div = document.getElementById("frame");
+  var evaluation = document.getElementById("evaluation");
+  var title = f.getElementsByTagName("p")[4];
+  var author = f.getElementsByTagName("p")[5];
+  var released = f.getElementsByTagName("p")[9];
+  var purchased = f.getElementsByTagName("p")[8];
+  var category = f.getElementsByTagName("p")[3];
+  var price = f.getElementsByTagName("p")[6];
+  var progress = f.getElementsByTagName("p")[0];
+  var page = f.getElementsByTagName("p")[7];
+  var id_evaluation = f.getElementsByTagName("p")[1];
+  // var inimage = f.getElementsByTagName("p")[10];
+  div.appendChild(title);
+  div.appendChild(author);
+  div.appendChild(released);
+  div.appendChild(purchased);
+  div.appendChild(category);
+  div.appendChild(price);
+  div.appendChild(progress);
+  div.appendChild(page);
+  evaluation.appendChild(id_evaluation);
+
+
+
+
+  // var id_title = document.getElementById("id_title");
+  // div.appendChild(id_title);
+  // var id_title = document.getElementById("id_title");
+  // div.appendChild(id_title);
+</script>
 {% endblock %}

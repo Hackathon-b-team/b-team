@@ -4,7 +4,7 @@ from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic import UpdateView
-from .forms import RegistForm, LoginForm, CategoryAddForm, BarcodeUpdateForm, BarcodeInputForm, BookAddForm, UserUpdateForm, PasswordUpdateForm,BookForm, BookBarcodeForm
+from .forms import RegistForm, LoginForm, CategoryAddForm, BarcodeUpdateForm, BarcodeInputForm, BookAddForm, UserUpdateForm, PasswordUpdateForm,BookForm, BookBarcodeForm,BookBarcodeImageForm
 from .models import Users, CategoryModel, BookBarcodeModel, BookModel
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
@@ -126,23 +126,27 @@ class DetailUpdateView(LoginRequiredMixin, UpdateView):
     form_class = BookForm
     success_url = reverse_lazy('life:home')
     template_name = 'book_update.html'
-
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.request.POST:
             context['barcode_form'] = BookBarcodeForm(self.request.POST, instance=self.object.bid)
+            context['image_form'] = BookBarcodeImageForm(self.request.POST, self.request.FILES, instance=self.object.bid)
         else:
             context['barcode_form'] = BookBarcodeForm(instance=self.object.bid)
+            context['image_form'] = BookBarcodeImageForm(instance=self.object.bid)
         return context
 
     def form_valid(self, form):
         context = self.get_context_data()
+        image_form = context['image_form']
         barcode_form = context['barcode_form']
-        if barcode_form.is_valid():
+        if image_form.is_valid()and barcode_form.is_valid():
+            image_form.save()
             barcode_form.save()
         return super().form_valid(form)
 
-
+    
 # バーコード画像保存
 def imageupload(updata, path):
     f = open(path, 'wb+')
