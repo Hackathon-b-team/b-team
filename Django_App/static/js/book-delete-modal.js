@@ -35,15 +35,3 @@ function outsideClose(e) {
   }
 }
 
-// モーダル内のキャンセルがクリックされた時
-addCategoryCloseBtn.addEventListener("click", () => {
-  modalClose("book-confirmation");
-});
-
-// モーダルコンテンツ以外がクリックされた時
-addEventListener("click", outsideClose);
-function outsideClose(e) {
-  if (e.target == bookCategoryModal) {
-    bookCategoryModal.style.display = "none";
-  }
-}

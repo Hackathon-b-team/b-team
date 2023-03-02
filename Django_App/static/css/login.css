@@ -1,6 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 @font-face {
     font-family: 'Roboto';
@@ -42,7 +39,6 @@ h1 {
     top:0px;
     margin:0px;
     padding:0px;
-    weight:209;
     text-align: center;
     font-family: 'Roboto';
     font-style: normal;
@@ -214,7 +210,7 @@ input[type="password"]{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-fill-color: transparent;
+    /* text-fill-color: transparent; */
   }
 
   .btn-Signup{
