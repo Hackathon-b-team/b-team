@@ -18,9 +18,9 @@ services:
     # DBのコンテナのヘルスチェックを行う
     # mysqladmin(MySQLサーバーの管理を行うクライアントを使ってDBコンテナ自身(127.0.0.1)にpingを送ってヘルスチェックを行う
     healthcheck:
-      test: mysqladmin ping -h 127.0.0.1 -u$$MYSQL_USER -p$$MYSQL_PASSWORD
+      test: mysqladmin ping -h database-1.coyheawufs64.ap-northeast-1.rds.amazonaws.com -u$$MYSQL_USER -p$$MYSQL_PASSWORD
       # ヘルスチェックのインターバルは10秒
-      interval: 10s
+      interval: 10si
       # タイムアウト時間は10秒
       timeout: 10s
       # リトライ回数は3回
@@ -37,20 +37,20 @@ services:
       context: .
       dockerfile: Docker/Django/Dockerfile
     volumes:
-      - ./app_dir:/code
+      - ./Django_App:/code
       - ./static:/static
     # 8000番ポートをNginx側が接続できるよう開く
     expose:
       - "8000"
     # uWSGIを起動させる
     command:  bash -c "python manage.py collectstatic --noinput && \
-              uwsgi --socket :8000 --module django_sample.wsgi --py-autoreload 1 --logto /tmp/mylog.log"
+              uwsgi --socket :8000 --module life_project.wsgi --py-autoreload 1 --logto /tmp/mylog.log"
     env_file:
       - .env.prod
-    depends_on:
-      db:
-        # dbのヘルスチェックが終わってからappを起動させる
-        condition: service_healthy
+    # depends_on:
+    #   db:
+    #     # dbのヘルスチェックが終わってからappを起動させる
+    #     condition: service_healthy
 
   web:
     # コンテナ名をnginxに指定
@@ -72,6 +72,18 @@ services:
     # 先にappを起動してからwebを起動する
     depends_on:
       - app
+
+  phpmyadmin:
+      image: phpmyadmin/phpmyadmin
+      # コンテナ内の環境変数を.envを使って設定
+      env_file:
+        - .env.prod
+      # links:
+      #   - db
+      ports:
+        - 4000:80
+      volumes:
+        - ./phpmyadmin/sessions:/sessions
       
 volumes:
   mysql_data:
