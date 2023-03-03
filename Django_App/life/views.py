@@ -20,8 +20,6 @@ from dateutil.relativedelta import relativedelta
 import numpy
 import requests
 import base64
-from django.utils.translation import ugettext_lazy as _
-from django import forms
 
 
 # SignUp用
@@ -379,15 +377,6 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
         messages.success(self.request, '登録内容を変更しました')
         return super().form_valid(form)
     
-    def form_valid(self, form):
-        # フォームから送信されたデータの中に同じユーザー名が存在するかどうかをチェックする
-        if Users.objects.filter(username=form.cleaned_data['username']).exclude(pk=self.object.pk).exists():
-            # エラーメッセージを設定する
-            form.add_error('username', 'This username is already in use.')
-            # form_invalidメソッドを呼び出す
-            return self.form_invalid(form)
-
-        return super().form_valid(form)
 
 # password変更用
 class PasswordUpdateView(LoginRequiredMixin, PasswordChangeView):
