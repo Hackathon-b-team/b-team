@@ -19,7 +19,7 @@ main {
 
 .content {
   position: absolute;
-  width: 750px;
+  width: 50%;
   height: 500px;
   min-width: 700px;
   min-height: 480px;
