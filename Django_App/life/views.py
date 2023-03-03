@@ -289,7 +289,7 @@ class BookAddView(LoginRequiredMixin, CreateView):
         if "authors" in book_data["items"][0]["volumeInfo"]:
             author = book_data["items"][0]["volumeInfo"]["authors"]
         else:
-            author = None
+            author = ""
         if "listPrice" in book_data["items"][0]["saleInfo"]:
             price = book_data["items"][0]["saleInfo"]["listPrice"]["amount"]
         else:
