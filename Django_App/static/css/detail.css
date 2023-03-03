@@ -13,8 +13,8 @@ main {
   align-items: center;
   width: 100%;
   display: flex;
-  height: calc(100vh - 140px);
-  margin-top: 140px;
+  height: calc(100vh - 160px);
+  margin-top: 150px;
 }
 
 .content {

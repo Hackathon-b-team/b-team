@@ -1,5 +1,4 @@
 body {
-  width: 100vw;
   height: 100vh;
   background: #f0fdfa;
   margin: 0 auto;
@@ -8,12 +7,13 @@ body {
 /* Body */
 
 main {
+  position: absolute;
   justify-content: center;
   align-items: center;
   width: 100%;
   display: flex;
-  height: calc(100vh - 140px);
-  padding-top: 140px;
+  height: calc(100vh - 160px);
+  margin-top: 150px;
 }
 
 .content {

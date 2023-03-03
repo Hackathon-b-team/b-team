@@ -1,5 +1,4 @@
 body {
-  width: 100vw;
   height: 100vh;
   background: #f0fdfa;
   margin: 0 auto;
@@ -12,16 +11,16 @@ main {
   align-items: center;
   width: 100%;
   display: flex;
-  height: calc(100vh - 140px);
-  padding-top: 140px;
+  height: calc(100vh - 160px);
+  margin-top: 150px;
 }
 
 .content {
   position: relative;
-  min-width: 1000px;
-  min-height: 657px;
-  max-width: 1000px;
-  max-height: 657px;
+  min-width: 944px;
+  min-height: 600px;
+  max-width: 944px;
+  max-height: 600px;
   display: flex;
   background-color: white;
   box-shadow: 0px 0px 30px rgba(200, 200, 200, 0.4);
@@ -35,11 +34,11 @@ main {
   width: 178px;
   height: 63px;
   left: 0;
-  top: 40px;
-  background: #155E75;
+  top: 0;
+  background: #155e75;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 0px 25px 25px 0px;
-  font-family: 'Noto Sans JP';
+  font-family: "Noto Sans JP";
   font-style: normal;
   font-weight: 400;
   font-size: 36px;
@@ -47,7 +46,7 @@ main {
   align-items: center;
   letter-spacing: 0.08em;
   text-align: center;
-  color: #FFFFFF;
+  color: #ffffff;
   display: flex;
   justify-content: center;
 }
@@ -57,18 +56,18 @@ main {
   display: flex;
   width: 450px;
   justify-content: space-between;
-  margin-left: 200px;
-  margin-top: 54px;
+  margin-left: 180px;
+  margin-top: 45px;
 }
 .btn-r {
   width: 195px;
   height: 62px;
   text-decoration: none;
   border: none;
-  background: #2DD4BF;
+  background: #2dd4bf;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
-  font-family: 'Noto Sans JP';
+  font-family: "Noto Sans JP";
   font-style: normal;
   font-weight: 400;
   font-size: 32px;
@@ -77,7 +76,7 @@ main {
   align-items: center;
   text-align: center;
   letter-spacing: 0.08em;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
 }
 .btn-r:active,
@@ -87,12 +86,12 @@ main {
 .btn-c {
   width: 195px;
   height: 62px;
-  background: #E1E1E1;
+  background: #e1e1e1;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
   text-align: center;
   text-decoration: none;
-  font-family: 'Noto Sans JP';
+  font-family: "Noto Sans JP";
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
@@ -124,16 +123,16 @@ main {
   font-family: "Noto Sans JP";
   font-style: normal;
   margin-left: 44px;
-  top: 138px;
-  text-decoration:underline;
-  text-decoration-color: #D9D9D9;
+  top: 100px;
+  text-decoration: underline;
+  text-decoration-color: #d9d9d9;
 }
 #id_author {
   position: absolute;
-  top: 204px;
+  top: 166px;
   margin-left: 44px;
-  text-decoration:underline;
-  text-decoration-color: #D9D9D9;
+  text-decoration: underline;
+  text-decoration-color: #d9d9d9;
   font-size: 32px;
   letter-spacing: 0.02em;
   line-height: 100%;
@@ -145,7 +144,7 @@ main {
   margin-bottom: 0;
 }
 #id_title,
-#id_author{
+#id_author {
   outline: none;
   border: none;
   left: 228px;
@@ -159,7 +158,7 @@ main {
 #form-p6,
 #form-p7,
 #form-p8 {
-  font-family: 'Noto Sans JP';
+  font-family: "Noto Sans JP";
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -175,7 +174,7 @@ main {
   margin-left: 402px;
 }
 #form-p0 {
-  margin-top: 126px;
+  margin-top: 90px;
   margin-left: 42px;
 }
 #form-p1 {
@@ -219,25 +218,25 @@ main {
   background-color: white;
   border-width: 1px;
   border-style: solid;
-  border: 1px solid #D9D9D9;
+  border: 1px solid #d9d9d9;
   border-radius: 8px;
   box-sizing: border-box;
 }
 #id_released_at {
-  top: 296px;
+  top: 260px;
 }
 #id_purchased_at {
-  top: 355px;
+  top: 318px;
 }
 #id_page_count {
-  top: 414px;
+  top: 378px;
 }
 #id_category {
-  top: 474px;
+  top: 437px;
   margin-left: 18px;
 }
 #id_price {
-  top: 533px;
+  top: 496px;
 }
 #id_released_at,
 #id_purchased_at {
@@ -263,24 +262,24 @@ input[type="number"]::-webkit-inner-spin-button {
 /* img */
 img {
   position: absolute;
-  width: auto;
-  height: 270px;
+  width: 188px;
+  height: auto;
   left: 228px;
-  top: 300px;
+  top: 270px;
 }
 /* アップロードボタンのスタイルを無効にする */
 #form-p3 input {
-  display:none; 
+  display: none;
 }
-#form-p3 label{
+#form-p3 label {
   position: absolute;
   width: 41px;
   height: 41px;
-  left: 402px;
-  top: 548px;
+  left: 397px;
+  top: 512px;
   background: url(../images/plus.png);
   border: none;
-  display: inline-block; 
+  display: inline-block;
   cursor: pointer;
   z-index: 1;
   color: transparent;
