@@ -1,12 +1,10 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, FormView, FormMixin, ModelFormMixin,DeleteView,UpdateView
 from django.views.generic.base import TemplateView
-from django.views.generic.detail import DetailView
-from django.views.generic.list import ListView
 from django.views.generic import UpdateView
 from .forms import RegistForm, LoginForm, CategoryAddForm, BarcodeUpdateForm, BarcodeInputForm, BookAddForm, UserUpdateForm, PasswordUpdateForm,BookForm, BookBarcodeForm,BookBarcodeImageForm
 from .models import Users, CategoryModel, BookBarcodeModel, BookModel
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import login
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
@@ -368,7 +366,6 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
     form_class = UserUpdateForm
     template_name = 'user_change.html'
     success_url = reverse_lazy('life:user_change')
-    # fields = ['username', 'email']
 
     def get_object(self):
         return self.request.user
@@ -388,21 +385,7 @@ class PasswordUpdateView(LoginRequiredMixin, PasswordChangeView):
     def form_valid(self, form):
         messages.success(self.request, '登録内容を変更しました')
         return super().form_valid(form)
-    
-    def form_invalid(self, form):
-        error_messages = []
-        for field, errors in form.errors.items():
-            for error in errors:
-                if field == 'new_password2' and error == "The two password fields didn't match.":
-                    error_messages.append("新しいパスワードと確認用パスワードが一致しません。")
-                elif field == 'new_password2' and error == "This password is too short. It must contain at least %(min_length)d characters.":
-                    error_messages.append(f"新しいパスワードは%(min_length)d文字以上で設定してください。")
-                elif field == 'new_password1' and error == "This password is too common.":
-                    error_messages.append("新しいパスワードが簡単すぎます。もう少し複雑なパスワードに設定してください。")
-                else:
-                    error_messages.append(error)
 
-        return render(self.request, self.template_name, {'form': form, 'error_messages': error_messages})
     
 # User情報表示用
 class UserProfileView(LoginRequiredMixin, TemplateView):
