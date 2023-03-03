@@ -4,7 +4,7 @@ body {
 }
 .main-content{
   display: flex;
-  margin-top: 190px;
+  margin-top: 180px;
   margin-right: 5%;
   min-width: 1115px;
   /* overflow-x: scroll; */
