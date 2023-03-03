@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/money.css' %}" />
+{% endblock %}
+
+{% block content %}
+{% include 'navbar/navbar_money.html' %}
+<main>
+  <div class="main-content">
+    <div class="sub-content">
+      <div class="category-name">年月</div>
+      <ul class="category">
+        {% for month in month_list %}
+          <button id="category-button" class="em{{ month }}">{{ month }}</button>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="content">
+      <div class="title">
+        支出管理
+      </div>
+      <ul class="items">
+        <table>
+          <tr>
+            <th>購入日</th>
+            <th>タイトル</th>
+            <th>金額</th>
+          </tr>
+          {% for obj in object_list %}
+            <tr class="item item{{obj.bid.purchased_at_month}}">
+              <td class="date">{{ obj.bid.purchased_at }}</td>
+              <td>{{ obj.bid.title }}</td>
+              <td class="mny">{{ obj.bid.price }}円</td>
+            </tr>
+          {% endfor %}
+        </table>
+      </ul>
+      <div id="expense">
+        <span>月支出：</span>
+        <span id="total"></span>
+      </div>
+    </div>
+  </div>
+</main>
+<script type="text/javascript" src="{% static 'js/money.js' %}"></script>
+{% endblock content %}

@@ -1,0 +1,226 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  background: #f0fdfa;
+  margin: 0 auto;
+}
+
+/* Body */
+
+main {
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  display: flex;
+  height: calc(100vh - 140px);
+  margin-top: 140px;
+}
+
+.content {
+  position: relative;
+  width: 70%;
+  height: 70%;
+  min-width: 1110px;
+  min-height: 552px;
+  max-width: 1110px;
+  max-height: 552px;
+  display: flex;
+  background-color: white;
+  box-shadow: 0px 0px 30px rgba(200, 200, 200, 0.4);
+  border-radius: 10px;
+  padding: 32px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+/* Tag */
+.tag {
+  position: absolute;
+  width: 178px;
+  height: 63px;
+  left: 0;
+  top: 0;
+  background: #155E75;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 0px 25px 25px 0px;
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 100%;
+  align-items: center;
+  letter-spacing: 0.08em;
+  text-align: center;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+}
+
+.messages {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 3%;
+  color: red;
+  text-align: center;
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 46px;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.errorlist li {
+  position: absolute;
+  display: flex;
+  width: auto;
+  top: 3%;
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 46px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: red;
+}
+
+#form1,
+#form2,
+#form3 {
+  /* position: relative; */
+  text-align: center;
+  width: 245px;
+  height: 301px;
+  min-width: 270px;
+  min-height: 370px;
+  margin: 40px 4% 0;
+  background-color: #F8F8F8;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+}
+
+#form1 p,
+#form2 p,
+#form3 p {
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 35px;
+  letter-spacing: 0.02em;
+  color: #000000;
+}
+
+.form-group-input,
+.form-group-update {
+  display: flex;
+  justify-content: center;
+}
+.form-group-update {
+  margin-bottom: 100px;
+}
+
+#image-area {
+  position: relative;
+  display: inline-block;
+  width: 55%;
+  height: 45%;
+  outline: none;
+  border: none;
+}
+
+#image-area img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+#form_send_varcode_update {
+  outline: none;
+  border: none;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+
+#form-group-update-label {
+  position: absolute;
+  color: transparent;
+  width: 169px;
+  height: 201px;
+  background: url(../images/img-add.png);
+  cursor: pointer;
+  top: 215px;
+  left: 148px;
+}
+
+.form-group-update button,
+.form-group-input button {
+  position: absolute;
+  width: 134px;
+  height: 43px;
+  background: #EBFF00;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 35px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  bottom: 132px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 2px 0;
+}
+.form-group-update button:active,
+.form-group-input button:active {
+  bottom: 129px;
+}
+
+#id_barcode {
+  width: 210px;
+  height: 46px;
+  margin: 25px;
+  background: #FFFFFF;
+  border: 0.5px solid #929292;
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+#form3 a {
+  display: flex;
+  justify-content: center;
+}
+
+#form3 img {
+  position: absolute;
+  display: flex;
+  cursor: pointer;
+  margin-top: 23px;
+}
+#form3 img:active {
+  position: relative;
+  top: 3px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

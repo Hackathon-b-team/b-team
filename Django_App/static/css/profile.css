@@ -1,0 +1,239 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  background: #f0fdfa;
+  margin: 0 auto;
+}
+
+/* Body */
+
+main {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  display: flex;
+  height: calc(100vh - 140px);
+  padding-top: 140px;
+}
+
+.content {
+  position: relative;
+  min-width: 572px;
+  min-height: 577px;
+  max-width: 572px;
+  max-height: 577px;
+  display: flex;
+  background-color: white;
+  box-shadow: 0px 0px 30px rgba(200, 200, 200, 0.4);
+  border-radius: 10px;
+  padding: 32px;
+  left: 0;
+  margin-left: 50px;
+}
+.my_icon svg {
+  position: relative;
+  width: 94px;
+  height: 94px;
+  left: 60px;
+  top: 36px;
+}
+
+.username {
+  position: absolute;
+  width: 200px;
+  height: 47px;
+  left: 244px;
+  top: 102px;
+  font-family: 'Noto_Sans_JP';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 47px;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+  color: #000000;
+}
+hr{
+  position: absolute;
+  width: 504px;
+  top: 222px;
+  left: 72px;
+  border: none;
+  border-bottom: 2px solid #E0E4EC;
+  margin: 0;
+  transform: rotate(0.07deg);
+}
+.email,
+.password,
+.name-fix-label,
+.mail-fix-label,
+.old-ps-label,
+.new-ps1-label,
+.new-ps2-label {
+  position: absolute;
+  width: 450px;
+  height: 28px;
+  left: 96px;
+  font-family: 'Noto_Sans_JP';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+  color: #000000;
+}
+.email,
+.name-fix-label {
+  top: 302px;
+}
+.password,
+.mail-fix-label {
+  top: 450px;
+}
+.old-ps-label {
+  top: 261px
+}
+.new-ps1-label {
+  top: 369px
+}
+.new-ps2-label {
+  top: 471px
+}
+.user_email,
+.user_password {
+  position: absolute;
+  width: 450px;
+  height: 54px;
+  left: 96px;
+  box-sizing: border-box;
+  position: absolute;
+  border: 1px solid #D9D9D9;
+  border-radius: 8px;
+  font-family: 'Noto_Sans_JP';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+  color:#A9A9A9;
+  display: flex;
+  align-items: center;
+}
+#id_username,
+#id_email,
+#id_old_password,
+#id_new_password1,
+#id_new_password2 {
+  width: 450px;
+  height: 54px;
+  left: 96px;
+  box-sizing: border-box;
+  position: absolute;
+  border: 1px solid #D9D9D9;
+  border-radius: 8px;
+  font-family: 'Noto_Sans_JP';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+  color:#A9A9A9;
+  display: flex;
+  align-items: center;
+}
+.user_email,
+#id_username {
+  top: 330px;
+}
+.user_password,
+#id_email {
+  top: 478px;
+}
+#id_old_password {
+  top: 289px;
+}
+#id_new_password1 {
+  top: 397px;
+}
+#id_new_password2 {
+  top: 499px;
+}
+
+.completion {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+#user-fix {
+  position: absolute;
+  width: 80px;
+  height: 30px;
+  right: 21px;
+  bottom: 17px;
+  background: #06B6D4;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  font-family: 'Noto_Sans_JP';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: 0.08em;
+  color: #FFFFFF;
+  border: none;
+  cursor: pointer;
+}
+#user-fix:active {
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.messages {
+  width: 572px;
+  font-family: 'Noto_Sans_JP';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: 0.08em;
+  color: red;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.errorlist {
+  font-family: 'Noto_Sans_JP';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: 0.08em;
+  color: red;
+}
+#old_ps ul {
+  display: flex;
+  position: absolute;
+  margin: 0 30px 0;
+  top: 10px;
+}
+#new_ps2 ul {
+  margin: 0 30px 0;
+  display: block;
+  position: absolute;
+  top: 30px;
+}
+#username_fix ul {
+  display: flex;
+  position: absolute;
+  margin: 0 70px 0;
+  top: 30px;
+}
+
+#success {
+  font-family: 'Noto_Sans_JP';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.08em;
+  color: red;
+}

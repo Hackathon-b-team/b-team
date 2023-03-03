@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+<link rel="stylesheet" type="text/css" href="{% static '/css/modal.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static '/css/update.css' %}" />
+{% endblock %}
+{% block content %}
+{% include "navbar/navbar_detail.html" %}
+
+<main>
+  <div class="content">
+    <h1>編集</h1>
+    <form method="post" enctype="multipart/form-data" id="myForm">
+
+      {% csrf_token %}
+      {% if object.bid.image_path != "img/noimage.png" %}
+      <img src="/media/{{ object.bid.image_path}}" alt="画像" id="bookimg">
+      {% elif object.bid.image_link %}
+      <img src="{{ object.bid.image_link}}" alt="画像" id="bookimg">
+      {% elif object.bid.image_path %}
+      <img src="/media/{{ object.bid.image_path}}" alt="画像" id="bookimg">
+      {% endif %}
+      {{ form.as_p }}
+      {{ barcode_form.as_p }}
+      <label for="id_image" id="img-btn">
+        <img src="{% static '/images/plus-hover.png' %}" />
+        <img src="{% static '/images/plus.png' %}" />
+      </label>
+      {{ image_form.as_p }}
+      <div id="evaluation"></div>
+      <div id="frame"></div>
+      <button type="button" id="book-confirmation-btn">更新</button>
+      {% include 'modal/book-update.html' %}
+
+    </form>
+    <div id="amazonlink">
+      <a href="https://www.amazon.co.jp/s?k={{ object.bid.barcode }}" target="_blank">Amazonで見る</a>
+    </div>
+
+  </div>
+</main>
+<script type="text/javascript" src="{% static 'js/book-delete-modal.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bookupdate.js' %}"></script>
+{% endblock %}

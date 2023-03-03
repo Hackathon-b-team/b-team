@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+<link rel="stylesheet" href="{% static '/css/login.css'%}">
+{% endblock %}
+
+
+{% block content %}
+    <div class="image-form">
+        <div class="Login-btn">
+            <a href="" class="btn btn-Login">Login</a>
+        </div>
+            <a href="{% url 'life:regist' %}" class="btn btn-Signup">Sign Up</a>
+    </div>
+    <div class="Login-form">
+        <h1>LIFE</h1>
+        <h2>暮らしをもっと便利に</h2>
+        <form method="POST">
+        {% csrf_token %}
+            {{ form }}
+            <input type="hidden" name="next" value="{{next}}">
+            <button class="login-go" type="submit">Log In</button>
+        </form>
+        <a href="{% url 'life:social:begin' 'google-oauth2' %}"><button class= "Google-login">Login with Google</button></a>
+        <div class="or"><img src="../static/images/or.png"></div>
+        <div class="sign-up-message">Don't have an account?<a class="switch-register-mode" href="{% url 'life:regist' %}">SIGN UP!</a></div>
+        <div>
+            <a class="switch-register-mode" href="{% url 'life:privacy' %}">Privacy Policy</a>
+        </div>
+    </div>
+{% endblock content %}

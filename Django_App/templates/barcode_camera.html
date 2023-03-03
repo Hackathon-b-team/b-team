@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/barcode-camera.css' %}" />
+{% endblock %}
+
+{% block content %}
+{% include "navbar/navbar_add.html" %}
+<main>
+  {% comment %} <div class="main-content"> {% endcomment %}
+    <div class="content">
+      <p class="tag">検索</p>
+      {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+      <div id="take">
+        <video id="video" width="358" height="266" autoplay></video><br>
+        <button id="picture">
+          <img src="{% static 'images/camera.png' %}" alt="カメラで撮る">
+        </button>
+      </div>
+      <div id="send">
+        <div id="send_canvas">
+          <canvas id="canvas"></canvas>
+        </div>
+        <form method="post">
+          {% csrf_token %}
+          <div id="send_button">
+            <input type="hidden" name="photo" id="photo" />
+            <button type="submit">検索！</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <a href="{% url 'life:barcode' %}" id="barcode_link">
+      <img src="{% static 'images/return.png' %}" alt="">      
+    </a>
+</main>
+<script type="text/javascript" src="{% static 'js/barcode-camera.js' %}"></script>
+{% endblock %}

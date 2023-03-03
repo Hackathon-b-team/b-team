@@ -1,0 +1,170 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  background: #f0fdfa;
+  margin: 0 auto;
+}
+
+/* Body */
+
+main {
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  display: flex;
+  height: calc(100vh - 140px);
+  margin-top: 140px;
+}
+
+.content {
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  min-width: 1110px;
+  min-height: 552px;
+  max-width: 1110px;
+  max-height: 552px;
+  display: flex;
+  background-color: white;
+  box-shadow: 0px 0px 30px rgba(200, 200, 200, 0.4);
+  border-radius: 10px;
+  padding: 32px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Tag */
+.tag {
+  position: absolute;
+  width: 178px;
+  height: 63px;
+  left: 0;
+  top: 0;
+  background: #155e75;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 0px 25px 25px 0px;
+  font-family: "Noto Sans JP";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 100%;
+  align-items: center;
+  letter-spacing: 0.08em;
+  text-align: center;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+}
+
+.messages {
+  width: 520px;
+  position: absolute;
+  top: 3%;
+  color: red;
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0.02em;
+}
+
+.error {
+  text-align: center;
+}
+
+#take,
+#send {
+  position: relative;
+  width: 436px;
+  height: 385px;
+  min-width: 436px;
+  min-height: 385px;
+  margin: 30px 5% 0;
+  background-color: #f8f8f8;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+#picture {
+  position: absolute;
+  display: flex;
+  background: none;
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  bottom: 15px;
+  cursor: pointer;
+}
+#picture:active {
+  position: absolute;
+  bottom: 12px;
+}
+#picture img {
+  width: 56px;
+  height: auto;
+}
+
+#video {
+  position: absolute;
+  top: 36px;
+}
+
+/* 画像検索 */
+#send_canvas {
+  position: absolute;
+  display: flex;
+  background-color: #d9d9d9;
+  width: 358px;
+  height: 266px;
+  top: 36px;
+}
+
+#canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+#send_button {
+  display: flex;
+  justify-content: center;
+}
+
+#send_button button{
+  position: absolute;
+  width: 134px;
+  height: 43px;
+  background: #ebff00;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  font-family: "Noto Sans JP";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 35px;
+  letter-spacing: 0.02em;
+  bottom: 26px;
+  padding: 4px 2px 0;
+}
+#send_button button:active {
+  bottom: 23px;
+}
+
+#barcode_link {
+  position: relative;
+  display: flex;
+  cursor: pointer;
+  margin-top: 530px;
+  margin-right: 1090px;
+}
+#barcode_link:active {
+  position: relative;
+  top: 3px;
+}

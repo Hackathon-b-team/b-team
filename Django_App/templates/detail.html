@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+<link rel="stylesheet" type="text/css" href="{% static '/css/modal.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static '/css/detail.css' %}" />
+{% endblock %}
+{% block content %}
+{% include "navbar/navbar_detail.html" %}
+<main>
+  <div class="content">
+    <h1>詳細</h1>
+    <div>
+      <ul>
+        <div id="bookimg">
+          {% for obj in object_list %}
+          {% if obj.bid.image_path != "img/noimage.png" %}
+          <img src="/media/{{ obj.bid.image_path}}" alt="画像">
+          {% elif obj.bid.image_link %}
+          <img src="{{ obj.bid.image_link}}" alt="画像">
+          {% elif obj.bid.image_path %}
+          <img src="/media/{{ obj.bid.image_path}}" alt="画像">
+          {% endif %}
+        </div>
+        <div id="evaluation">
+          {% if obj.evaluation != 0 %}
+          {% with ''|center:obj.evaluation as range %}
+          {% for _ in range %}
+          <span>★</span>
+          {% endfor %}
+          {% endwith %}
+          {% else %}
+          <span>☆ ☆ ☆ ☆ ☆</span>
+          {% endif %}
+        </div>
+        <div id="amazonlink">
+        <a href="https://www.amazon.co.jp/s?k={{ obj.bid.barcode }}" target="_blank" >Amazonで見る</a></div>
+        <div id="frame">
+          <div id="title">
+            <p>{{ obj.bid.title }}</p>
+          </div>
+
+          <div id="author">{% if obj.bid.author != "" %}
+            <p>{{ obj.bid.author }}</p>
+            {% else %}
+            <p>--</p>
+            {% endif %}
+          </div>
+          <div id="released">
+            {% if obj.bid.released_at != None %}
+            <span id="left">出版日</span><span id="right">{{ obj.bid.released_at }}</span>
+            {% else %}
+            <span id="left">出版日</span><span id="right">--</span>
+            {% endif %}
+          </div>
+          <div id="purchased">
+            {% if obj.bid.purchased_at != None %}
+            <span id="left">購入日</span><span id="right">{{ obj.bid.purchased_at }}</span>
+            {% else %}
+            <span id="left">購入日</span><span id="right">--</span>
+            {% endif %}
+          </div>
+          <div id="category">
+            <span id="left">カテゴリー</span><span id="right">{{ obj.cid.category_name }}</span>
+          </div>
+
+          <div id="price">
+            {% if obj.bid.price != None %}
+            <span id="left">価格</span><span id="right">{{ obj.bid.price }}円</span>
+            {% else %}
+            <span id="left">価格</span><span id="right">--円</span>
+            {% endif %}
+          </div>
+        <div id="page">
+        {% if obj.bid.page_count != None %}
+        <span id="left">ページ数</span><span id="right">{{ obj.bid.page_count }}ページ</span>
+        {% else %}
+        <span id="left">ページ数</span><span id="right">--ページ</span>
+        {% endif %}
+        </div>
+
+
+
+          <div id="progress">
+            {% if obj.progress != "unread"%}
+            <span id="left">進捗状況</span><span id="right">{{ obj.progress }}ページ</span>
+            {% else %}
+            <span id="left">進捗状況</span><span id="right">--ページ</span>
+            {% endif %}
+          </div>
+        </div>
+
+        <div id="review">
+          {% if obj.review != None %}
+          <p>{{ obj.review }}</p>
+          {% else %}
+          <p>感想</p>
+          {% endif %}
+        </div>
+
+
+
+
+        <div id="delete">
+          <button id="book-confirmation-btn">削除</button>
+        </div>
+        <div id ="update">
+          <button id="book-update-btn"> <a href="{% url 'life:book_update' obj.uuid %}">編集する</a></button>
+        </div>
+        {% include 'modal/book-delete.html' %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</main>
+<script type="text/javascript" src="{% static 'js/book-delete-modal.js' %}"></script>
+{% endblock content %}

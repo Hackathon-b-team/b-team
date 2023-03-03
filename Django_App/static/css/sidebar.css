@@ -1,0 +1,116 @@
+.sidebar {
+  min-width: 262px;
+  min-height: 577px;
+  max-width: 262px;
+  max-height: 577px;
+  background-color: white;
+  box-shadow: 0px 0px 30px rgba(200, 200, 200, 0.4);
+  border-radius: 10px;
+  left: 0;
+  padding: 32px;
+  text-align: center;
+  position: relative;
+}
+
+.profile-tag,
+.profile-tag-02,
+.mail-tag,
+.mail-tag-02,
+.password-tag,
+.password-tag-02 {
+  position: absolute;
+  left: 48px;
+  overflow: hidden;
+}
+
+.profile-tag,
+.profile-tag-02 {
+  top: 44px;
+}
+.mail-tag,
+.mail-tag-02 {
+  top: 119px;
+}
+.password-tag,
+.password-tag-02 {
+  top: 192px;
+}
+
+.profile-tag a,
+.profile-tag-02 a,
+.mail-tag a,
+.mail-tag-02 a,
+.password-tag a,
+.password-tag-02 a {
+  font-family: 'Noto_Sans_JP';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.08em;
+}
+
+.profile-tag a,
+.mail-tag a,
+.password-tag a {
+  color: #929292;
+}
+
+.profile-tag-02 a,
+.mail-tag-02 a,
+.password-tag-02 a {
+  color: #115E59;
+}
+
+.profile-tag svg,
+.profile-tag-02 svg,
+.mail-tag svg,
+.mail-tag-02 svg,
+.password-tag svg,
+.password-tag-02 svg {
+  width: 26px;
+  height: 26px;
+  margin-right: 24px;
+}
+
+.profile-tag-02 a path,
+.mail-tag-02 a path,
+.password-tag-02 a path {
+  stroke: #115E59;
+}
+
+.profile-tag a:hover,
+.mail-tag a:hover,
+.password-tag a:hover {
+  color: #115E59;
+}
+
+.profile-tag a:hover path,
+.mail-tag a:hover path,
+.password-tag a:hover path {
+  stroke: #115E59;
+}
+
+.logout-button {
+  position: absolute;
+  bottom: 51px;
+  left: 72px;
+  width: 224px;
+  height: 40px;
+  overflow: hidden;
+}
+
+.logout-button button {
+  width: 262px;
+  height: 40px;
+  border: none;
+  background-color: white;
+  background-image:  url(../images/logout.png);
+  cursor: pointer;
+}
+
+.logout-button button:hover  {
+  background-image:  url(../images/logout-hover.png);
+}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+<link rel="stylesheet" href="{% static '/css/regist.css'%}">
+{% endblock %}
+
+{% block content %}
+    <div class="image-form">
+        <a href="{% url 'life:login' %}" class="btn btn-Login">Login</a>
+        <div class="signup"><a href="" class="btn btn-Signup">Sign Up</a></div>
+    </div>
+    <div class="Login-form">
+        <h1>LIFE</h1>
+        <h2>暮らしをもっと便利に</h2>
+        <form method="POST">
+        {% csrf_token %}
+            {{ form }}
+            <button class="signup-go" type="submit">Sign UP</button>
+        </form>
+        <a href="{% url 'life:social:begin' 'google-oauth2' %}"><button class= "Google-login">Login with Google</button></a>
+        <div class="or"><img src="../static/images/or.png"></div>
+        <div class="sign-up-message">Already have an account?<a class="switch-register-mode" href="{% url 'life:login' %}">Login!</a></div>
+    </div>
+{% endblock content %}
