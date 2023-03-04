@@ -21,7 +21,7 @@
     width: 20%;
     height: 100vh;
     text-align: left;
-    background-image: url(../images/Login-Image.png);
+    background-image: url(../images/login-image.png);
     background-repeat: no-repeat;
 }
 
@@ -169,7 +169,7 @@ input[type="password"]{
 .Google-login:before{
     content: "";
     display: inline-block;
-    background: url("../images/Google-icon.png") no-repeat;
+    background: url("../images/google-icon.png") no-repeat;
     background-size: contain;
     vertical-align: middle;
     width: 50px;
